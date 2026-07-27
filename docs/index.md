@@ -11,7 +11,7 @@ Ridgeline is a fictional security product. This site is a portfolio artifact: it
 
 ## How this site is built
 
-Every page is a Markdown file in the `docs/` folder of the [ridgeline-docs repository](https://github.com/YOUR-GITHUB-USERNAME/ridgeline-docs). Changes ship through pull requests. CI builds the site on every pull request and blocks merges that would break it. Merging to `main` deploys the site automatically.
+Every page is a Markdown file in the `docs/` folder of the [ridgeline-docs repository](https://github.com/orlee-gillis/ridgeline-docs). Changes ship through pull requests. CI builds the site on every pull request and blocks merges that would break it. Merging to `main` deploys the site automatically.
 
 ## What's coming
 
