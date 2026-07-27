@@ -1,0 +1,4 @@
+{
+  "name": "ridgeline-docs",
+  "postCreateCommand": "npm install && npm install -g @anthropic-ai/claude-code"
+}
