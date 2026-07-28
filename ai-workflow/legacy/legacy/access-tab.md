@@ -256,21 +256,5 @@ After you review the proposed changes, export the plan as a PDF: `[SCREENSHOT: t
 
 For more information, see [How we determine recommendations](access-tab-reference.md#how-we-determine-recommendations).
 
----
-
-## Open items for SME review
-
-Terminology on this page that is not yet settled in the Ridgeline glossary. Each is flagged
-inline above. Resolve, record the decision in the glossary, then delete the flag and this
-section.
-
-| Flag | Item | Question |
-| --- | --- | --- |
-| `[MAP-1]` | Scores in the information panel | **Reach score** is the only score currently defined. Confirm whether the panel surfaces any others, and what they measure. |
-| `[MAP-2]` | Critical assets | Confirm this is the term Ridgeline uses for these resources, in the legend and as a column. |
-| `[MAP-3]` | **Grant type** | Sits beside **Role type** in the same table, which may read ambiguously. Confirm the label. |
-| `[MAP-4]` | **Grant ID** | Confirm the label for the non-default identifier column. |
-| `[MAP-5]` | **Risky access right**; "known escalation paths" | Confirm both the column label and the phrase describing what makes a right risky. |
-| `[MAP-6]` | "Resource type group" node and legend | "Group" is on the glossary avoid list and collides with the **Workspace group** scope type. Confirm this compound is acceptable, or rename the node and legend. |
 
 Screenshots are placeholders throughout and need to be captured against the Ridgeline UI.
