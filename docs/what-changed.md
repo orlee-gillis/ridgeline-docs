@@ -1,7 +1,7 @@
 ---
 title: What changed, and why
 description: A before-and-after account of two documentation pages, the audit that drove the rewrite, and what the two passes caught differently.
-sidebar_position: 90
+sidebar_position: 100
 ---
 
 These pages are fictionalized from documentation I wrote and published professionally. The structure
