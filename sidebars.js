@@ -7,6 +7,21 @@
 const sidebars = {
   docsSidebar: [
     'index',
+    {
+      type: 'category',
+      label: 'Unused Access',
+      items: [
+        'unused-access-report',
+        'about-the-access-tab',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'About this project',
+      items: [
+        'what-changed',
+      ],
+    },
   ],
 };
 
