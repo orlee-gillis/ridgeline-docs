@@ -1,5 +1,5 @@
 // @ts-check
-// SETUP - replace YOUR-GITHUB-USERNAME in 3 spots below.
+// SETUP - replace orlee-gillis in 3 spots below.
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -7,10 +7,10 @@ const config = {
   tagline: 'Customer documentation for Ridgeline, built as code',
   favicon: 'img/favicon.svg',
 
-  organizationName: 'YOUR-GITHUB-USERNAME', // (1)
+  organizationName: 'orlee-gillis', // (1)
   projectName: 'ridgeline-docs',
 
-  url: 'https://YOUR-GITHUB-USERNAME.github.io', // (2)
+  url: 'https://orlee-gillis.github.io', // (2)
   baseUrl: '/ridgeline-docs/',
 
   onBrokenLinks: 'throw',
@@ -26,7 +26,7 @@ const config = {
         docs: {
           sidebarPath: './sidebars.js',
           editUrl:
-            'https://github.com/YOUR-GITHUB-USERNAME/ridgeline-docs/edit/main/', // (3)
+            'https://github.com/orlee-gillis/ridgeline-docs/edit/main/', // (3)
           routeBasePath: '/',
         },
         blog: false,
