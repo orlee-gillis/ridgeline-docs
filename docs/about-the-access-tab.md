@@ -23,10 +23,9 @@ The tab has four parts, read in this order:
 | **Remediation recommendations** | The proposed narrower access, and how to apply it |
 
 ## Integration information panel
-#### Fake
 
 The panel gives you a quick read on the integration and its risk before you examine individual
-grants. [nonsense](does-not-exist.md)
+grants.
 
 `[SCREENSHOT: the integration information panel]`
 
