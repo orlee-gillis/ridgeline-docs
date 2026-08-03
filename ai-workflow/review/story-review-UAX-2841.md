@@ -1,84 +1,73 @@
 # UAX-2841 review
 
-Written against the Jira story alone, before any draft of the page existed.
+A working review of an incoming Jira story - not a customer-facing page. Written from the story
+alone, before any draft existed, and committed before the draft so the order is checkable in the
+history.
 
-- `[mine]` - found in that first read
-- `[added]` - found in a second pass, with my published pages open next to the story
-
-This file is committed before the draft. The commit dates show which came first, so the order is
-checkable rather than something I have to claim.
-
-**Status note:** the story is In Review. Rollback is In Progress and the re-consent banner is To Do.
-Nothing here has shipped, so anything drafted from this story carries `[UNRELEASED]` until the status
-changes.
+**None of this is available to customers yet.** Status is In Review, rollback is In Progress, the banner is To
+Do. Anything drafted from it carries `[UNRELEASED]`.
 
 ---
 
-## Contradicts a published page
+## Findings
 
-Both of these mean something already live on the site becomes wrong.
+Ranked. The first two mean something already published becomes wrong.
 
-| Contradiction | Published page says | Story says |
+| # | Finding | Type | Found by |
+|---|---|---|---|
+| 1 | **Scope.** Published page: *"Scope is never narrowed."* Story: an applied remediation can narrow it, if the user picks a tighter scope | Contradiction | Writer |
+| 2 | **Platform permissions.** Published page: *"requires no additional platform permissions."* Story: write access is now required | Contradiction | Claude |
+| 3 | Partial failure and the safety window are two mechanisms with one name between them. Raised in a comment, deferred | Missing | Claude |
+| 4 | Safety window has no stated duration | Missing | Writer |
+| 5 | Inherited grants: the description says TBD, the acceptance criteria list them as required | Missing | Claude |
+| 6 | Success state is a toast with no summary of what changed - and the summary is out of this release | Missing | Claude |
+| 7 | The in-scope section reads as a list that stopped, not a stated boundary | Missing | Writer |
+| 8 | Terminology unsettled - one-click remediation, apply flow, Apply, guided apply | Ambiguous | Writer |
+| 9 | JIT position raised twice, never answered. Not documentable either way | Ambiguous | Writer |
+| 10 | *"Without write permission... Apply is unavailable"* - unclear whether it is disabled, hidden, or absent | Ambiguous | Writer |
+| 11 | Limits give a number with no reasoning, and the enterprise exception is undecided | Ambiguous | Writer |
+| 12 | *"Handles failure gracefully"* is not testable and not documentable | Ambiguous | Writer |
+| 13 | *"One grant at a time"* is a UI constraint, not a product one - the API accepts a list | Ambiguous | Claude |
+
+## What happens with each finding
+
+| | |
+|---|---|
+| **Ask the PM before drafting** | Findings 1, 3, 4, 5 |
+| **Draft with a `[VERIFY]` flag** | The rest |
+| **Raise with the team** | Which team owns UAX-2841, so the questions above have somewhere to go. And a warning: a published page states that no additional platform permissions are required, so it becomes wrong on the day version 4.7 reaches customers. I need that release date so the page is corrected before 4.7 goes out, and someone needs to confirm support has been told |
+| **My call** | Whether this becomes a new page or a section on the Access tab page |
+
+---
+
+## Why Claude found things I didn't
+
+| How the problem was found | Writer | Claude |
 |---|---|---|
-| **Scope preservation** `[mine, reclassified]` | *"Scope is never narrowed. The replacement applies at the grant's original scope."* - Access tab page | An applied remediation *can* narrow scope, if the user chooses a tighter one. M. Bell, 29 Jul |
-| **Platform permissions** `[added]` | *"Unused Access requires no additional platform permissions. It reuses the permissions granted when each integration was connected."* - report page | Write access is now required, to modify role definitions and assignments |
+| Reading the story on its own | 10 | 1 |
+| Comparing the story to another document | **0** | **5** |
 
-The scope one is the more serious. A reader who has internalised an absolute guarantee and then
-narrows scope by accident was misled by the documentation.
+The zero is the finding. Claude's five comparisons were:
 
-## Missing
+| Story compared with | What it showed | Count |
+|---|---|---|
+| My published pages | The story describes behaviour those pages say cannot happen | 2 |
+| The story's own description | A comment records a decision, and nobody updated the description to match | 3 |
 
-| Gap | |
-|---|---|
-| Safety window has no stated duration | `[mine]` |
-| The in-scope section is incomplete - reads as a list that stopped rather than a boundary | `[mine]` |
-| Partial failure and the safety window are two different mechanisms with one name between them. M. Bell says so, the PM defers it | `[added]` |
-| Success state is a toast with no summary of what changed, and the summary is explicitly out of this release | `[added]` |
-| Inherited grants are internally contradictory - the description says TBD, the acceptance criteria list them as required | `[added]` |
-
-## Ambiguous
-
-| Item | |
-|---|---|
-| Final terminology unsettled - one-click remediation, apply flow, Apply, guided apply | `[mine]` |
-| JIT position raised twice and never answered. Not documentable either way until someone decides | `[mine]` |
-| *"Without write permission everything else still works and Apply is unavailable"* - unclear what the reader sees. Disabled, hidden, or absent | `[mine]` |
-| Limits section gives a number with no reasoning, and the enterprise exception is undecided | `[mine]` |
-| *"Handles failure gracefully"* as an acceptance criterion is not testable and not documentable | `[mine]` |
-| *"One grant at a time"* is a UI constraint, not a product one - the API accepts a list. Changes how the limit should be phrased | `[added]` |
-
-## Routing questions
-
-Not content gaps - these decide who to ask and who else needs to know.
-
-- Which team owns this in the tracker `[mine]`
-- Which customer-facing team needs briefing, for example Customer Success `[mine]`
-- Whether this is a new page or a section on the existing Access tab page - the story leaves it to
-  the writer `[mine]`
-
-## What I would ask the PM first
-
-1. Does an applied remediation narrow scope? If yes, the published guarantee has to change, and that
-   is a bigger edit than this feature.
-2. How long is the safety window?
-3. What happens on partial failure, and what is it called?
-4. Are inherited grants in this release?
+Both are comparisons I could have made and did not. A step I skipped, not a judgment I got wrong -
+and the same thing happened in my legacy audit.
 
 ---
 
-## What the split shows
+## My checklist for reviewing an incoming Jira story
 
-*Written by me, in my own words - not drafted.*
+Steps 6 and 7 are new, from this review.
 
-My findings all came from reading the Jira story as a document: is it clear, is it decided, is it
-testable. Almost all of the added ones came from comparing the story against something else - the
-published pages, or the comment thread against the description.
-
-That is not a difference in judgment. It is a difference in what each reader had open. I read the
-story cold; the second pass had my published pages alongside it.
-
-The same split showed up in the legacy audit. Reading finds judgment problems. Comparison finds
-consistency problems.
-
-**Checklist change:** before finishing a review, check the story against every published page it
-touches, and name those pages in the review.
+1. Read the story once through without taking notes
+2. List what is unclear, undecided, or untestable
+3. Read the comment thread separately - decisions live there, and the description goes stale
+4. Compare the acceptance criteria with the description and look for contradictions between them
+5. Separate content gaps from routing questions
+6. **Compare the story with every published page it touches, and name those pages here**
+7. **List any contradiction with a published page at the top of the findings, and label it a contradiction** - it means a page that is live now becomes wrong, which is more urgent than a gap in the story
+8. Mark what must be answered before drafting, and what can go into the draft flagged
