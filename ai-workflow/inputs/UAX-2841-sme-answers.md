@@ -1,4 +1,7 @@
-Four questions that have to be answered before the feature can be documented. This document is written after reviewing the PRD; the commit dates show that I found the gaps before anything was written.
+# UAX-2841: SME answers
+
+Four questions that have to be answered before the page can be written. Committed after the review and
+before the draft, so the commit dates show that I found the gaps before anything was written.
 
 **The capability UAX-2841 describes.**
 
@@ -13,17 +16,33 @@ Four questions that have to be answered before the feature can be documented. Th
 | Coming later | Bulk apply across several grants, planned for 4.8 |
 | Not supported, and nobody has decided whether it ever will be | Directory and App-level grants, because there is no usage data to work from. JIT grants, unresolved - see below |
 
-Answers are invented, since the SMEs are fictional. Numbers match the findings in
-`../review/story-review-UAX-2841.md`.
+Answers are invented, since the SMEs are fictional. Each records where the answer was written down -
+in a comment on the story rather than a conversation, so it can be checked again later. Numbers match
+the findings in `../review/story-review-UAX-2841.md`.
 
 ---
 
 ## Questions that block the draft
 
-Each one carries the evidence behind it, why it stops the page being written, and who can answer it.
-Written to be readable alone, so a single question can go to the person who can settle it.
+**Start here.** The table is the whole answer set. Everything after it is supporting detail, kept for
+the record and for anyone who needs to see where an answer came from.
 
-### 1. Can an applied remediation narrow a grant's scope?
+| # | Question | Answer | Who answered |
+|---|---|---|---|
+| 1 | Can applying a remediation narrow a grant's scope? | Yes, but only if the reader chooses to | M. Bell, D. Reyes |
+| 2 | What happens when an apply partly fails? | The edited role stays and an error appears. A **failed apply**, distinct from a **reversal** | M. Bell |
+| 3 | How long is the safety window? | 24 hours | M. Bell |
+| 4 | Are inherited grants in release 4.7? | No. Direct grants only | D. Reyes |
+
+---
+
+### The four questions in detail
+
+Each repeats itself in full - the evidence, why it blocked the page, and what the answer changes - so a
+single one can be sent to the person who can settle it. Skip this if the table above told you what you
+needed.
+
+#### 1. Can an applied remediation narrow a grant's scope?
 
 A grant names a role and the scope it applies over - organization, workspace, project, or a single
 resource. Recommendations have only ever changed the role and left the scope alone.
@@ -36,13 +55,20 @@ resource. Recommendations have only ever changed the role and left the scope alo
 | Why it blocks the page | An absolute guarantee becomes conditional. A reader who trusts the published version could narrow scope without realising it was possible |
 | Who can answer it | M. Bell, engineer, for what the code does. Then D. Reyes, product manager - only she can decide whether the published guarantee gets rewritten |
 
-> **Answer:**
+> **Answer:** Yes. The recommendation always keeps the grant's original scope - if it was granted
+> across the whole organization, the narrower role still applies across the whole organization. But the
+> apply flow lets the reader pick a smaller scope, so the change can end up narrower than what was
+> recommended.
 >
-> *Answered by:* · *Source:*
+> **What to change in the documentation:** the Access tab page says *"Scope is never narrowed"* as a
+> flat guarantee. It now has to separate what Ridgeline does from what the reader can do - Ridgeline
+> never reduces scope on its own, and the reader can choose to reduce it.
+>
+> *Answered by:* M. Bell, D. Reyes · *Source:* comment on UAX-2841, [date]
 
 ---
 
-### 2. What happens when an apply partly fails, and what is each state called?
+#### 2. What happens when an apply partly fails, and what is each state called?
 
 Applying is two writes: Ridgeline edits the role, then updates the grant attaching it to the
 integration. Either can fail on its own.
@@ -54,13 +80,18 @@ integration. Either can fail on its own.
 | Why it blocks the page | Two behaviours, one name between them - a half-applied failure, and a successful apply the reader undoes. I cannot describe either until they are named separately |
 | Who can answer it | M. Bell, engineer. She raised it, and it is a question about how the code behaves |
 
-> **Answer, with a name for each state:**
+> **Answer:** The edited role stays in place, an error appears, and the reader re-runs the apply.
+> Nothing rolls back on its own. Call that a **failed apply**. Undoing an apply that succeeded is a
+> **reversal**.
 >
-> *Answered by:* · *Source:*
+> **What to change in the documentation:** use the two names consistently, and give the failure its own
+> section. It is not a variety of reversal.
+>
+> *Answered by:* M. Bell · *Source:* comment on UAX-2841, [date]
 
 ---
 
-### 3. How long is the safety window?
+#### 3. How long is the safety window?
 
 The period after a successful apply during which the reader can undo it and get the original grant
 back.
@@ -72,13 +103,16 @@ back.
 | Why it blocks the page | The duration changes how carefully someone reviews before clicking Apply. Minutes and days are different features |
 | Who can answer it | M. Bell, engineer. She owns the rollback sub-task |
 
-> **Answer:**
+> **Answer:** 24 hours from the apply completing.
 >
-> *Answered by:* · *Source:*
+> **What to change in the documentation:** state the 24 hours wherever the reversal window is
+> mentioned, not only in its own section.
+>
+> *Answered by:* M. Bell · *Source:* comment on UAX-2841, [date]
 
 ---
 
-### 4. Are inherited grants included in release 4.7?
+#### 4. Are inherited grants included in release 4.7?
 
 An integration gets access directly, or inherited through a team. Reducing an inherited grant affects
 every member, so Ridgeline analyses what all of them use first.
@@ -90,9 +124,13 @@ every member, so Ridgeline analyses what all of them use first.
 | Why it blocks the page | The story contradicts itself, and inherited grants are a large share of what the report surfaces. The page has to either document them or exclude them |
 | Who can answer it | D. Reyes, product manager. A decision about what goes in the release, not about how the code works |
 
-> **Answer:**
+> **Answer:** Not in 4.7. Direct grants only - applying to an inherited grant affects every member of
+> the team, and that needs its own review.
 >
-> *Answered by:* · *Source:*
+> **What to change in the documentation:** say direct grants only, and say inherited grants are not
+> supported yet rather than leaving them unmentioned.
+>
+> *Answered by:* D. Reyes · *Source:* comment on UAX-2841, [date]
 
 ---
 
