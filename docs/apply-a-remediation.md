@@ -157,9 +157,8 @@ side before anything is written]`
 
 ## Related documents
 
-- [About the Unused Access report](about-the-unused-access-report.md)
+- [About the Unused Access report](unused-access-report.md)
 - [About the Access tab](about-the-access-tab.md)
-- [Access tab reference](access-tab-reference.md)
 
 ## Open items for SME review
 
