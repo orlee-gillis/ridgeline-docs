@@ -61,31 +61,46 @@ Every apply and every reversal is recorded in the integration's history.
 
 ### How the role changes
 
+An integration's access grant holds a role. When you apply a recommendation, Ridgeline edits that role, but doesn't edit the grant. Because the role determines the grant's rights, Ridgeline's edit changes the grant's rights too.
+
+### How the role changes
+
+An integration's access grant holds a role. When you apply a recommendation, Ridgeline edits that role, but doesn't edit the grant.
+
 | The grant holds | What Ridgeline changes |
 | --- | --- |
 | A custom role | Edits the role definition, removing only the unused access rights |
 | A built-in role | Replaces it with the narrowest built-in role that still covers every retained right |
 
-An apply retains every **Used** access right and every **Undetermined** access right.
-**Undetermined** rights are ones the activity logs cannot audit at all. Ridgeline treats them as used
-and never removes them, so an apply cannot strip access that an integration silently depends on.
+### How the role changes
 
-A single apply is capped at five updates, matching the cap on the recommendation itself.
+An integration's access grant holds a role. When you apply a recommendation, Ridgeline edits that role, but doesn't edit the grant.
+
+| The grant holds | What Ridgeline changes |
+| --- | --- |
+| A custom role | Edits the role definition, removing only the unused access rights |
+| A built-in role | Replaces it with the narrowest built-in role that still covers every retained right |
+
+### Which access rights are retained
+
+Because the role determines the integration grant's access rights, editing the role changes those rights. Applying a recommendation retains every **Used** and **Undetermined** access right the integration grant holds.
+
+Ridgeline determines whether an access right is in use by checking for a matching record in the platform's activity logs. The logs record actions that create or change a resource, but not actions that happen inside a resource afterward. If Ridgeline doesn't have a log record to check, the access right is defined as **Undetermined**. Ridgeline treats an Undetermined access right as used, so it never removes the access right.
+
+As a result, if an integration depends on an Undetermined access right, an apply won't remove it — even though nothing in the logs proves that dependency exists.
+
+A recommendation changes at most five access rights at a time. Keeping the list short lets you review every change before confirming it. An apply carries out exactly the changes in its recommendation, so it also changes at most five access rights.
 `[VERIFY: whether the cap is documented as fixed - a higher cap for larger customers is under
 discussion, and a cap the page cannot explain reads as arbitrary]`
 
 ### How to narrow the grant's scope
 
-An access grant applies over a scope: **Organization**, **Workspace group**, **Workspace**,
-**Project**, or **Resource**. A recommendation never changes it. The narrower role Ridgeline
-recommends applies at the grant's original scope, whatever that scope is.
+An access grant is limited to one scope level: Organization, Workspace group, Workspace, Project, or Resource. The grant's access rights only work within that level.
 
-An apply defaults to the same original scope, and you can choose a narrower one. If you do, then the
-change written to the platform is narrower than what was recommended.
+By default, an apply keeps the grant's current scope. You can choose a narrower one instead, and Ridgeline will apply that scope.
 
 :::important
-Ridgeline never reduces a grant's scope on its own. Narrowing scope during an apply is a choice you
-make, and leaving the default in place preserves the grant's original scope.
+Ridgeline never reduces a grant's scope on its own. Narrowing scope during an apply is optional. If you don't narrow it, the grant keeps its original scope.
 :::
 
 ### How to reverse an apply
