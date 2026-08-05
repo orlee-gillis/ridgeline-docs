@@ -105,41 +105,38 @@ Ridgeline never reduces a grant's scope on its own. Narrowing scope during an ap
 
 ### How to reverse an apply
 
-Within 24 hours of an apply completing, you can reverse it. A reversal restores the grant to the role
-and scope it held before the apply.
+You can reverse an apply within 24 hours of its completion. Reversing an apply restores the integration's grant to the role and scope it held beforehand. Once 24 hours has passed, the apply can no longer be reversed using Ridgeline.
 
-After 24 hours, the apply can no longer be reversed from Ridgeline.
 `[VERIFY: what the reader is expected to do after the window closes, and whether 24 hours is fixed -
 the rollback sub-task is unfinished]`
 
 ### When the change appears
 
-Unused Access data recalculates on a nightly run, so an applied change is reflected in the Unused
-Access report after the next run.
+Ridgeline recalculates Unused Access data once nightly [VERIFY: nightly relative to which time zone].
+An applied change doesn't appear in the Unused Access report until the next recalculation.
 `[VERIFY: whether the grant table on the Access tab updates immediately after an apply, or only after
 the next nightly run - readers will otherwise read the unchanged report as a failed apply]`
 
-The confirmation Ridgeline shows after a successful apply does not summarize what changed. To see the
-applied change, open the grant on the Access tab or the integration's history.
+When an apply succeeds, Ridgeline shows a confirmation. To see what changed, open the grant on the Access tab or the integration's history.
 `[VERIFY: the success state is a toast and a highlighted row; a change summary is out of scope for
 this release]`
 
 ### When an apply fails
 
-An apply is two writes: Ridgeline changes the role, then updates the grant that attaches that role to
-the integration. Either write can fail on its own.
+A failed apply is a change that was only partially written, when one of Ridgeline's two writes succeeds and the other doesn't. This is different from a reversal, which undoes an apply that completed successfully.
 
-If the role change succeeds and the grant update fails, then Ridgeline leaves the changed role
-definition in place and reports an error. Nothing is reversed automatically. Re-run the apply to
-complete the change.
+Ridgeline performs an apply as two writes:
 
-A failed apply and a reversal are different things. A reversal undoes an apply that succeeded; a
-failed apply is a change that was only half written, and the 24-hour reversal window does not cover it.
+- Write 1: Changes the role
+- Write 2: Updates the grant that attaches the role to the integration
 
-:::important
-A failed apply leaves the changed role definition on the platform. Ridgeline does not undo it, and
-reversing it is not an option, because there is no completed apply to reverse. Re-run the apply.
-:::
+If Write 1 succeeds but Write 2 fails, Ridgeline leaves the changed role definition in place and reports an error, without reversing anything automatically.
+
+You can re-run the apply to complete the role change.
+
+#### Failure vs. reversal
+
+A failed apply can't be reversed, because reversal only applies to a completed apply.
 
 ## Limits and known gaps
 
@@ -158,7 +155,7 @@ side before anything is written]`
 
 `[SCREENSHOT: a completed apply on the Access tab, with the reversal option visible]`
 
-## Related
+## Related documents
 
 - [About the Unused Access report](about-the-unused-access-report.md)
 - [About the Access tab](about-the-access-tab.md)
