@@ -50,27 +50,15 @@ Applying a recommendation is for:
 ## How an apply runs
 
 1. Review the narrower role Ridgeline recommends for the grant.
-2. Select **Apply**. Ridgeline shows the change it proposes to write, before anything is written.
-   `[VERIFY: reader-facing name for this step - the story calls it a dry run]`
-3. Confirm the change. Nothing is written to the platform until you confirm.
+2. Select **Apply**. Ridgeline shows the change it proposes to write.
+   `[VERIFY: reader-facing name for this step — the story calls it a dry run]`
+3. Confirm the change. Ridgeline uses its write permission on the integration only after you confirm.
 4. Ridgeline writes the change.
 5. For 24 hours after the apply completes, you can reverse it and restore the grant to what it was.
 
+![Confirmation modal comparing current and proposed access rights](/img/apply-confirmation.jpg)
+
 Every apply and every reversal is recorded in the integration's history.
-`[VERIFY: exact name of the history surface, and whether it is linkable from the apply confirmation]`
-
-### How the role changes
-
-An integration's access grant holds a role. When you apply a recommendation, Ridgeline edits that role, but doesn't edit the grant. Because the role determines the grant's rights, Ridgeline's edit changes the grant's rights too.
-
-### How the role changes
-
-An integration's access grant holds a role. When you apply a recommendation, Ridgeline edits that role, but doesn't edit the grant.
-
-| The grant holds | What Ridgeline changes |
-| --- | --- |
-| A custom role | Edits the role definition, removing only the unused access rights |
-| A built-in role | Replaces it with the narrowest built-in role that still covers every retained right |
 
 ### How the role changes
 
@@ -110,7 +98,7 @@ You can reverse an apply within 24 hours of its completion. Reversing an apply r
 `[VERIFY: what the reader is expected to do after the window closes, and whether 24 hours is fixed -
 the rollback sub-task is unfinished]`
 
-### When the change appears
+### When changes appear
 
 Ridgeline recalculates Unused Access data once nightly [VERIFY: nightly relative to which time zone].
 An applied change doesn't appear in the Unused Access report until the next recalculation.
@@ -120,6 +108,8 @@ the next nightly run - readers will otherwise read the unchanged report as a fai
 When an apply succeeds, Ridgeline shows a confirmation. To see what changed, open the grant on the Access tab or the integration's history.
 `[VERIFY: the success state is a toast and a highlighted row; a change summary is out of scope for
 this release]`
+
+![Grant row marked Applied, with a Reverse button](/img/apply-completed.jpg)
 
 ### When an apply fails
 
@@ -150,10 +140,6 @@ by hand in the platform's admin console; what is unavailable is Ridgeline writin
 | JIT grants | A Just-In-Time (JIT) grant is a sub-category of **Directory** and receives best-practice guidance rather than a rewritten role. `[VERIFY: whether JIT grants are ever intended to be applicable - an engineer has argued twice that they should not be, and nobody has answered]` |
 | Applying to several grants at once | Each apply covers one grant. `[VERIFY: whether to state that applying across several grants is planned, and whether to name a release]` |
 
-`[SCREENSHOT: the confirmation step, showing the current grant and the proposed narrower grant side by
-side before anything is written]`
-
-`[SCREENSHOT: a completed apply on the Access tab, with the reversal option visible]`
 
 ## Related documents
 
@@ -199,9 +185,6 @@ side before anything is written]`
 
 **Terminology still to settle**
 
-- [ ] "an apply" is used throughout as a countable noun and is not in `glossary.md`. Decide whether it
-      is reader-facing vocabulary or internal shorthand. It is load-bearing in the failed apply and
-      reversal pair, so dropping it costs the shorter name for the failure state.
 - [ ] **failed apply** and **reversal** need entries in `glossary.md`, defined against each other,
       since the point of naming them separately was to stop one being read as a variety of the other.
       Neither is a UI label, so neither is bolded in prose.
@@ -220,8 +203,3 @@ side before anything is written]`
 
 - [ ] `sidebar_position: 40` is provisional. This page sits after About the Access tab and before
       Access tab reference; confirm against the family's existing numbering.
-
-**Screenshots**
-
-- [ ] Both `[SCREENSHOT: ...]` placeholders above. Neither can be captured until the feature ships. No
-      fact on this page depends on a screenshot.
