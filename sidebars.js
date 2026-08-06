@@ -13,6 +13,7 @@ const sidebars = {
       items: [
         'unused-access-report',
         'about-the-access-tab',
+        'apply-a-remediation',
       ],
     },
     {
