@@ -62,19 +62,6 @@ Every apply and every reversal is recorded in the integration's history.
 
 ### How the role changes
 
-An integration's access grant holds a role. When you apply a recommendation, Ridgeline edits that role, but doesn't edit the grant. Because the role determines the grant's rights, Ridgeline's edit changes the grant's rights too.
-
-### How the role changes
-
-An integration's access grant holds a role. When you apply a recommendation, Ridgeline edits that role, but doesn't edit the grant.
-
-| The grant holds | What Ridgeline changes |
-| --- | --- |
-| A custom role | Edits the role definition, removing only the unused access rights |
-| A built-in role | Replaces it with the narrowest built-in role that still covers every retained right |
-
-### How the role changes
-
 An integration's access grant holds a role. When you apply a recommendation, Ridgeline edits that role, but doesn't edit the grant.
 
 | The grant holds | What Ridgeline changes |
@@ -111,7 +98,7 @@ You can reverse an apply within 24 hours of its completion. Reversing an apply r
 `[VERIFY: what the reader is expected to do after the window closes, and whether 24 hours is fixed -
 the rollback sub-task is unfinished]`
 
-### When the change appears
+### When changes appear
 
 Ridgeline recalculates Unused Access data once nightly [VERIFY: nightly relative to which time zone].
 An applied change doesn't appear in the Unused Access report until the next recalculation.
@@ -121,8 +108,6 @@ the next nightly run - readers will otherwise read the unchanged report as a fai
 When an apply succeeds, Ridgeline shows a confirmation. To see what changed, open the grant on the Access tab or the integration's history.
 `[VERIFY: the success state is a toast and a highlighted row; a change summary is out of scope for
 this release]`
-
-Ridgeline marks the grant as applied and offers a reversal:
 
 ![Grant row marked Applied, with a Reverse button](/img/apply-completed.jpg)
 
