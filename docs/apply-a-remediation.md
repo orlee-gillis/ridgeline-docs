@@ -56,7 +56,7 @@ Applying a recommendation is for:
 4. Ridgeline writes the change.
 5. For 24 hours after the apply completes, you can reverse it and restore the grant to what it was.
 
-![Confirmation modal comparing current and proposed access rights](/img/apply-confirmation.jpg)
+![Review proposed role change — comparison of current and proposed access rights](/img/apply-remediation/confirmation-step.jpg)
 
 Every apply and every reversal is recorded in the integration's history.
 
