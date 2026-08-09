@@ -10,7 +10,8 @@ integrations to reduce access on first.
 
 Open the report from **Access Center** > **Exposures** > **Unused Access**.
 
-![The four overview cards at the top of the report: report scope, integration count, service account count, and team count](/img/unused-access-report-cards.png)Unused Access requires no additional platform permissions. It reuses the permissions granted when
+![The four overview cards at the top of the report: report scope, integration count, service account count, and team count](/img/unused-access-report-cards.png)
+Unused Access requires no additional platform permissions. It reuses the permissions granted when
 each integration was connected, and reads activity logs already available under them.
 
 ## What the report includes
