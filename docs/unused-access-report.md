@@ -10,8 +10,7 @@ integrations to reduce access on first.
 
 Open the report from **Access Center** > **Exposures** > **Unused Access**.
 
-![The Unused Access report, showing overview cards and the integration table](/img/unused-access-report.png)
-Unused Access requires no additional platform permissions. It reuses the permissions granted when
+![The four overview cards at the top of the report: report scope, integration count, service account count, and team count](/img/unused-access-report-cards.png)Unused Access requires no additional platform permissions. It reuses the permissions granted when
 each integration was connected, and reads activity logs already available under them.
 
 ## What the report includes
@@ -38,7 +37,7 @@ An empty **Reach score** means no scenarios are defined for that environment. It
 
 The cards across the top of the report summarize its scope and contents.
 
-`[SCREENSHOT: cropped view of the four overview cards]`
+![The integration table, sorted by Reach score, with a usage bar per row](/img/unused-access-report-table.png)
 
 | Card | What it shows |
 | --- | --- |
