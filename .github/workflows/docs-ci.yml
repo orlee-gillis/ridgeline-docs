@@ -42,3 +42,10 @@ jobs:
         with:
           args: --no-progress --offline --root-dir "$(pwd)/static" docs/ README.md
           fail: true
+
+  markdown:
+    name: Markdown structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DavidAnson/markdownlint-cli2-action@v19
