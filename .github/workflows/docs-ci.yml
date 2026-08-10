@@ -1,8 +1,11 @@
-name: docs-ci
-
 on:
   pull_request:
     branches: [main]
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
 
 jobs:
   build:
@@ -17,3 +20,15 @@ jobs:
         run: npm install
       - name: Production build
         run: npm run build
+
+  vale:
+    name: Vale prose linting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: errata-ai/vale-action@reviewdog
+        with:
+          files: docs
+          fail_on_error: true
+          reporter: github-pr-check
+          token: ${{ secrets.GITHUB_TOKEN }}

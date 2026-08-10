@@ -264,3 +264,5 @@ When you have reviewed the proposed changes, export the plan as a PDF.
 - [ ] `[VERIFY: "escalation paths" as the description for a risky access right]` - awaiting terminology sign-off
 - [ ] `[VERIFY: whether Grant ID is the correct column name]`
 - [ ] Confirm whether the 90-day usage window is configurable by the reader
+
+Please note this is a test, e.g. a deliberate one.
