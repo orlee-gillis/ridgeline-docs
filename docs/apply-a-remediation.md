@@ -110,6 +110,7 @@ When an apply succeeds, Ridgeline shows a confirmation. To see what changed, ope
 this release]`
 
 ![Completed apply on the Access tab, with the reversal option visible](/img/apply-completed.png)
+
 ### When an apply fails
 
 A failed apply is a change that was only partially written, when one of Ridgeline's two writes succeeds and the other doesn't. This is different from a reversal, which undoes an apply that completed successfully.
@@ -138,7 +139,6 @@ by hand in the platform's admin console; what is unavailable is Ridgeline writin
 | **Directory** and **App-level** grants | Neither category carries usage data, so there is no usage-derived change to derive an apply from. Their recommendations remain posture-based and best-practice guidance. |
 | JIT grants | A Just-In-Time (JIT) grant is a sub-category of **Directory** and receives best-practice guidance rather than a rewritten role. `[VERIFY: whether JIT grants are ever intended to be applicable - an engineer has argued twice that they should not be, and nobody has answered]` |
 | Applying to several grants at once | Each apply covers one grant. `[VERIFY: whether to state that applying across several grants is planned, and whether to name a release]` |
-
 
 ## Related documents
 
