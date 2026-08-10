@@ -8,8 +8,6 @@ The **Access** tab on an integration's card is where you investigate one integra
 decide what to reduce. It answers three questions: what the integration can do, how it got that
 access, and which of it goes.
 
-See the [nonexistent page](does-not-exist.md).
-
 You reach the tab either from a row in the [Unused Access report](unused-access-report.md), or by
 opening an integration card from anywhere and selecting **Access**.
 
