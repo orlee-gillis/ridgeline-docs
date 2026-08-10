@@ -45,3 +45,14 @@ docs is a real product. Treat it accordingly.
 
 `ridgeline-doc-writer` and `unused-access-expert` are frozen until the Phase F baseline eval is
 recorded (roadmap session 21). No edits to either skill before then.
+
+## Skills Freeze
+
+The following skills are frozen until the Phase F baseline evaluation is recorded 
+in Session 21:
+
+- `ridgeline-doc-writer`
+- `unused-access-expert`
+
+Do not edit these skills during Sessions 19–20. Session 21 measures their output 
+against this baseline state. After Session 21, these skills are open for iteration.
