@@ -12,6 +12,7 @@ You reach the tab either from a row in the [Unused Access report](unused-access-
 opening an integration card from anywhere and selecting **Access**.
 
 ![The Access tab on an integration card, showing the access summary and grant table](/img/access-tab.png)
+
 The tab has four parts, read in this order:
 
 | Part | What it is for |
@@ -26,13 +27,13 @@ The tab has four parts, read in this order:
 The panel gives you a quick read on the integration and its risk before you examine individual
 grants.
 
-`[SCREENSHOT: the integration information panel]`
+![The integration information panel, showing basic details, labels, and Reach score](/img/information-panel.png)
 
 | Section | What it shows |
 | --- | --- |
 | **Basic details** | Name of the integration as it appears in your **Integration Inventory** |
 | **Action bar** | Actions for watching the integration, adding comments, and suppressing it |
-| **Labels** | Enrichment labels Ridgeline adds automatically, and custom labels you or your workspace platform add |
+| **Labels** | Enrichment labels Ridgeline adds automatically, and custom labels you or your cloud platform add |
 | **Integration properties** | Integration fields from your **Integration Inventory**. Which properties appear varies by environment type |
 | **Scores and impact** | **Reach score** - how much of the environment an attacker could affect by compromising this integration |
 
@@ -42,7 +43,7 @@ To collapse the panel and give the rest of the tab more room, click the button a
 
 Four counters across the top of the tab size up the integration's access.
 
-`[SCREENSHOT: the access summary strip]`
+![The access summary, showing grant count, accessible services, accessible resources, and unused access rights](/img/access-summary.png)
 
 | Counter | What it shows |
 | --- | --- |
@@ -90,11 +91,11 @@ Read each path from the integration outward:
 | **Grant paths** | The lines between nodes, showing how access is derived |
 | **Action bar** | **Reset graph** returns the graph to its default view. **Show legend** toggles the resource type legend |
 
-`[SCREENSHOT: a complete grant path with all four node types labeled]`
+![The grant graph, showing how access reaches the integration through direct and inherited paths](/img/grant-graph.png)
 
 What the grant node's own fields tell you:
 
-- **Category** is where the grant comes from. **Platform** grants manage workspace platform
+- **Category** is where the grant comes from. **Platform** grants manage cloud platform
   infrastructure and are the only category with usage data. **Directory** grants administer the
   workspace directory. **App-level** grants apply inside a single application.
 - **Scope** is the range the grant's access applies over, from largest to smallest:
@@ -123,7 +124,7 @@ in place; more open in a drawer.
 
 Resource type nodes carry indicators as well as a count.
 
-`[SCREENSHOT: annotated resource type node showing the count badge, critical-resource marker, and the three usage bands]`
+![A resource type node, with its resource count, critical-resource marker, and usage bands](/img/resource-node-legend.png)
 
 | Indicator | What it shows |
 | --- | --- |
@@ -144,7 +145,7 @@ used, and remediation advice never removes them. **Undetermined** is not a lower
 The grant table lists every grant for the integration, one per row, and lets you drill down two
 levels: from a grant to its individual access rights, and from a right to the resources it reaches.
 
-`[SCREENSHOT: the grant table with the drill-down control on each row]`
+![The grant table drilled down from a grant to its access rights and the resources they reach](/img/grant-drilldown.png)
 
 Every grant has a **Grant category**, **Role type**, and **Grant type**. Only **Platform** grants
 carry scope, accessible services, accessible resources, and usage data - **Directory** and
@@ -212,8 +213,6 @@ finished investigating.
 
 To open the recommendations, click **Show remediations** from either the graph or the table.
 
-`[SCREENSHOT: the Show remediations button]`
-
 Two guarantees hold for every recommendation:
 
 - **Scope is never narrowed.** The replacement applies at the grant's original scope.
@@ -221,7 +220,7 @@ Two guarantees hold for every recommendation:
 
 There is one recommendation per grant. Use the arrows in the wizard header to move between them.
 
-`[SCREENSHOT: the remediation wizard with its navigation arrows]`
+![The remediation wizard, comparing the current role with the proposed narrower one](/img/remediation-wizard.png)
 
 ### What the wizard proposes
 
@@ -240,7 +239,7 @@ Recommendations cap at five updates at a time, so each one stays reviewable.
 
 Each recommendation carries labels describing what kind of change it is.
 
-`[SCREENSHOT: a remediation card with its labels]`
+![A remediation card showing its characteristic labels: inherited grant, team-level remediation, and the team name](/img/remediation-labels.png)
 
 | Label | What it means |
 | --- | --- |
@@ -254,15 +253,12 @@ actually uses, so applying it cannot strip access from an active member.
 
 When you have reviewed the proposed changes, export the plan as a PDF.
 
-`[SCREENSHOT: the export-to-PDF control]`
-
 ## Related
 
 - [About the Unused Access report](unused-access-report.md)
 
 ## Open items for SME review
 
-- [ ] All screenshots are placeholders and need capturing against the Ridgeline UI
 - [ ] **Integration Inventory** has no page yet - referenced as plain text rather than linked
 - [ ] `[VERIFY: whether the integration information panel carries a visible label in the UI, and what it is]`
 - [ ] `[VERIFY: "escalation paths" as the description for a risky access right]` - awaiting terminology sign-off
