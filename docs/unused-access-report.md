@@ -112,3 +112,6 @@ after the next one.
 - [ ] `[VERIFY: exact criteria for the Highly privileged label]`
 - [ ] `[VERIFY: exported CSV column set]`
 - [ ] Confirm whether the 90-day usage window is configurable by the reader
+
+Ridgeline recalculates access usage every 15 minutes, and the report reflects changes within
+two minutes of a grant being modified.
