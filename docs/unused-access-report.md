@@ -42,7 +42,7 @@ The cards across the top of the report summarize its scope and contents.
 
 | Card | What it shows |
 | --- | --- |
-| **Report scope** | Which workspace platform the integrations sit in, and how many organizations and workspaces are actively monitored |
+| **Report scope** | Which cloud platform the integrations sit in, and how many organizations and workspaces are actively monitored |
 | **Integration count** | How many integrations are in the report, and how many are highly privileged |
 | **Service account count** | How many non-human integrations are in the report, covering both workspace-assigned and system-assigned service accounts, and how many are highly privileged |
 | **Team count** | How many teams appear in the report, and how many are highly privileged |
