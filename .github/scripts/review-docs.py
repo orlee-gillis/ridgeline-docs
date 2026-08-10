@@ -59,7 +59,7 @@ def call_api(diff: str) -> str:
     body = json.dumps({
         "model": MODEL,
         "max_tokens": 1000,
-        "messages": [{"role": "user", "content": PROMPT.format(diff=diff)}],
+        "messages": [{"role": "user", "content": PROMPT.replace("{diff}", diff)}],
     }).encode()
 
     req = urllib.request.Request(
