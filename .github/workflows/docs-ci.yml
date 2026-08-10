@@ -32,3 +32,13 @@ jobs:
           fail_on_error: true
           reporter: github-pr-check
           token: ${{ secrets.GITHUB_TOKEN }}
+
+  links:
+    name: Link check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --offline docs/ README.md
+          fail: true
