@@ -11,7 +11,7 @@ access, and which of it goes unused.
 You reach the tab either from a row in the [Unused Access report](unused-access-report.md), or by
 opening an integration card from anywhere and selecting **Access**.
 
-![The Access tab on an integration card, showing the access summary and grant table](/img/access-tab.JPG)
+![The Access tab on an integration card, showing the access summary and grant table](/img/access-tab.png)
 The tab has four parts, read in this order:
 
 | Part | What it is for |

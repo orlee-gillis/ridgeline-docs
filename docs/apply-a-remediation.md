@@ -56,7 +56,7 @@ Applying a recommendation is for:
 4. Ridgeline writes the change.
 5. For 24 hours after the apply completes, you can reverse it and restore the grant to what it was.
 
-![Review proposed role change — comparison of current and proposed access rights](/img/apply-confirmation.jpg)
+![Review proposed role change — comparison of current and proposed access rights](/img/apply-confirmation.png)
 
 Every apply and every reversal is recorded in the integration's history.
 
@@ -109,7 +109,7 @@ When an apply succeeds, Ridgeline shows a confirmation. To see what changed, ope
 `[VERIFY: the success state is a toast and a highlighted row; a change summary is out of scope for
 this release]`
 
-![Completed apply on the Access tab, with the reversal option visible](/img/apply-completed.jpg)
+![Completed apply on the Access tab, with the reversal option visible](/img/apply-completed.png)
 ### When an apply fails
 
 A failed apply is a change that was only partially written, when one of Ridgeline's two writes succeeds and the other doesn't. This is different from a reversal, which undoes an apply that completed successfully.
