@@ -13,6 +13,17 @@ The pipeline: Markdown source in `docs/`, pull-request review, CI quality gates,
 | `styles/Ridgeline/` | Custom Vale rules (the style guide as code) |
 | `.github/workflows/` | `docs-ci.yml` (blocking gates), `deploy.yml` (Pages deploy) |
 
+## CI Gates
+
+This site enforces five quality gates before merge:
+- **Docusaurus build** — validates the site builds without errors
+- **Vale linting** — enforces prose style and consistency
+- **Lychee link validation** — ensures all internal links are live
+- **Markdownlint** — validates Markdown syntax and formatting
+- **AI-assisted content audit** — checks for clarity, consistency, and style using Claude
+
+The AI-assisted gate is part of an intentional workflow exploring modern documentation practices.
+
 ## Setup (browser-only)
 
 1. **Upload these files** to the repo root via **Add file -> Upload files**. If the uploader drops the hidden `.github` or `.devcontainer` folders, create their files via **Add file -> Create new file** - typing the full path (for example `.github/workflows/deploy.yml`) creates the folders.
