@@ -22,6 +22,8 @@ const sidebars = {
       items: [
         'what-changed',
         'pipeline-and-ai-terms',
+        'design-system',
+      ],
       ],
     },
   ],
