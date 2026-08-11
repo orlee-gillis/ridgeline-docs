@@ -16,11 +16,15 @@ const sidebars = {
         'apply-a-remediation',
       ],
     },
-    {
+  {
       type: 'category',
       label: 'About this project',
       items: [
-        'what-changed',
+        {
+          type: 'doc',
+          id: 'what-changed',
+          label: 'AI-Assisted Audit & Rewrite',
+        },
         'pipeline-and-ai-terms',
       ],
     },
