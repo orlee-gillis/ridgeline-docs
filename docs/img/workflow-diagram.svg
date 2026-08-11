@@ -1,0 +1,100 @@
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="900" height="300" fill="white" stroke="#e5e5e5" stroke-width="1" rx="12"/>
+  
+  <!-- Step 1: Audit -->
+  <g>
+    <!-- Box -->
+    <rect x="30" y="40" width="140" height="130" fill="#f2f0ff" stroke="#7c6cff" stroke-width="2" rx="10"/>
+    
+    <!-- Number badge -->
+    <circle cx="100" cy="68" r="18" fill="#7c6cff"/>
+    <text x="100" y="75" font-size="18" font-weight="600" fill="white" text-anchor="middle" font-family="system-ui, -apple-system">1</text>
+    
+    <!-- Label -->
+    <text x="100" y="110" font-size="16" font-weight="600" fill="#1a1a1a" text-anchor="middle" font-family="system-ui, -apple-system">Audit</text>
+    
+    <!-- Description -->
+    <text x="100" y="145" font-size="12" fill="#666666" text-anchor="middle" font-family="system-ui, -apple-system">with skills</text>
+  </g>
+  
+  <!-- Arrow 1 -->
+  <line x1="175" y1="105" x2="210" y2="105" stroke="#7c6cff" stroke-width="2.5"/>
+  <polygon points="210,105 205,100 207,105 205,110" fill="#7c6cff"/>
+  
+  <!-- Step 2: Compare -->
+  <g>
+    <!-- Box -->
+    <rect x="215" y="40" width="140" height="130" fill="#f2f0ff" stroke="#7c6cff" stroke-width="2" rx="10"/>
+    
+    <!-- Number badge -->
+    <circle cx="285" cy="68" r="18" fill="#7c6cff"/>
+    <text x="285" y="75" font-size="18" font-weight="600" fill="white" text-anchor="middle" font-family="system-ui, -apple-system">2</text>
+    
+    <!-- Label -->
+    <text x="285" y="110" font-size="16" font-weight="600" fill="#1a1a1a" text-anchor="middle" font-family="system-ui, -apple-system">Compare</text>
+    
+    <!-- Description -->
+    <text x="285" y="145" font-size="12" fill="#666666" text-anchor="middle" font-family="system-ui, -apple-system">findings</text>
+  </g>
+  
+  <!-- Arrow 2 -->
+  <line x1="360" y1="105" x2="395" y2="105" stroke="#7c6cff" stroke-width="2.5"/>
+  <polygon points="395,105 390,100 392,105 390,110" fill="#7c6cff"/>
+  
+  <!-- Step 3: Rewrite -->
+  <g>
+    <!-- Box -->
+    <rect x="400" y="40" width="140" height="130" fill="#f2f0ff" stroke="#7c6cff" stroke-width="2" rx="10"/>
+    
+    <!-- Number badge -->
+    <circle cx="470" cy="68" r="18" fill="#7c6cff"/>
+    <text x="470" y="75" font-size="18" font-weight="600" fill="white" text-anchor="middle" font-family="system-ui, -apple-system">3</text>
+    
+    <!-- Label -->
+    <text x="470" y="110" font-size="16" font-weight="600" fill="#1a1a1a" text-anchor="middle" font-family="system-ui, -apple-system">Rewrite</text>
+    
+    <!-- Description -->
+    <text x="470" y="145" font-size="12" fill="#666666" text-anchor="middle" font-family="system-ui, -apple-system">with guidance</text>
+  </g>
+  
+  <!-- Arrow 3 -->
+  <line x1="545" y1="105" x2="580" y2="105" stroke="#7c6cff" stroke-width="2.5"/>
+  <polygon points="580,105 575,100 577,105 575,110" fill="#7c6cff"/>
+  
+  <!-- Step 4: Gate -->
+  <g>
+    <!-- Box -->
+    <rect x="585" y="40" width="140" height="130" fill="#f2f0ff" stroke="#7c6cff" stroke-width="2" rx="10"/>
+    
+    <!-- Number badge -->
+    <circle cx="655" cy="68" r="18" fill="#7c6cff"/>
+    <text x="655" y="75" font-size="18" font-weight="600" fill="white" text-anchor="middle" font-family="system-ui, -apple-system">4</text>
+    
+    <!-- Label -->
+    <text x="655" y="110" font-size="16" font-weight="600" fill="#1a1a1a" text-anchor="middle" font-family="system-ui, -apple-system">Gate</text>
+    
+    <!-- Description -->
+    <text x="655" y="145" font-size="12" fill="#666666" text-anchor="middle" font-family="system-ui, -apple-system">with CI</text>
+  </g>
+  
+  <!-- Arrow 4 -->
+  <line x1="730" y1="105" x2="765" y2="105" stroke="#7c6cff" stroke-width="2.5"/>
+  <polygon points="765,105 760,100 762,105 760,110" fill="#7c6cff"/>
+  
+  <!-- Step 5: Ship -->
+  <g>
+    <!-- Box -->
+    <rect x="770" y="40" width="140" height="130" fill="#f2f0ff" stroke="#7c6cff" stroke-width="2" rx="10"/>
+    
+    <!-- Number badge -->
+    <circle cx="840" cy="68" r="18" fill="#7c6cff"/>
+    <text x="840" y="75" font-size="18" font-weight="600" fill="white" text-anchor="middle" font-family="system-ui, -apple-system">5</text>
+    
+    <!-- Label -->
+    <text x="840" y="110" font-size="16" font-weight="600" fill="#1a1a1a" text-anchor="middle" font-family="system-ui, -apple-system">Ship</text>
+    
+    <!-- Description -->
+    <text x="840" y="145" font-size="12" fill="#666666" text-anchor="middle" font-family="system-ui, -apple-system">confident</text>
+  </g>
+</svg>
