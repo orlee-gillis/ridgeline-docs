@@ -1,8 +1,8 @@
-# AI-Assisted Audit & Rewrite
+## AI-Assisted Audit & Rewrite
 
 Two pages from the Ridgeline portfolio were audited with structured Claude Skills, then rewritten based on findings. This case study shows what changed and why.
 
-## How This Workflow Works
+### How This Workflow Works
 
 **Stage 1: Audit** — Run structured skills to identify problems that human review might miss or catch differently.
 
@@ -14,7 +14,7 @@ Two pages from the Ridgeline portfolio were audited with structured Claude Skill
 
 ---
 
-## The Biggest Changes
+### The Biggest Changes
 
 **Stage 2: Rewrite** — Show which problems the audit identified and how the rewrite addressed them.
 
@@ -28,7 +28,7 @@ Two pages from the Ridgeline portfolio were audited with structured Claude Skill
 
 **Reference links that pointed nowhere** (skills-only flag). Five cross-page anchors resolved to headings that did not exist. All five are gone, replaced with live links or inline definitions. The skills audit caught these via automated link validation; the writer-only audit found only three of the five.
 
-## What the Two Passes Caught Differently
+### What the Two Passes Caught Differently
 
 **Stage 1: Compare** — Show which problem classes the writer and skills each caught, and where they diverged.
 
@@ -41,13 +41,13 @@ The overlap collapsed on the second page. Its problems were mostly invisible whe
 
 ---
 
-## CI Quality Gates
+### CI Quality Gates
 
 **Stage 4: Gate** — Automate detection of countable problems so mechanical errors don't make it to production.
 
 Every pull request runs through five blocking gates in `.github/workflows/docs-ci.yml`. Each gate catches a different class of problem:
 
-**Docusaurus build** (npm script)
+#### Docusaurus build** (npm script)
 
 - Command: `npm run build`
 - Parses all Markdown files in `docs/`
@@ -56,7 +56,7 @@ Every pull request runs through five blocking gates in `.github/workflows/docs-c
 - Fails if any link references a page that doesn't exist or a heading anchor with no match
 - Output: build logs in Actions; blocks merge if build fails
 
-**Vale prose linting** (GitHub Action)
+#### Vale prose linting (GitHub Action)
 
 - Runs custom Vale rules in [`styles/Ridgeline/`](https://github.com/orlee-gillis/ridgeline-docs/blob/main/styles/Ridgeline/) (currently: `AccessGrant.yml` for terminology substitutions)
 - Scans for banned terms using "access grant" instead of alternatives and enforcing "cloud platform" terminology
@@ -64,7 +64,7 @@ Every pull request runs through five blocking gates in `.github/workflows/docs-c
 - Fails if any error-level violations are found; warnings are reported but don't block
 - Output: PR check status + inline comments; blocks merge if errors exist
 
-**Link validation** (GitHub Action)
+#### Link validation (GitHub Action)
 
 - Tool: Lychee link checker
 - Offline validation: checks links in `docs/` and `README.md` against local filesystem (`static/` directory)
@@ -73,7 +73,7 @@ Every pull request runs through five blocking gates in `.github/workflows/docs-c
 - Output: detailed report in Actions; blocks merge if broken links found
 - Complements Docusaurus (which catches route/anchor issues); catches filesystem-level problems
 
-**Markdown structure** (GitHub Action)
+#### Markdown structure (GitHub Action)
 
 - Tool: markdownlint
 - Validates markdown syntax and structure:
@@ -84,7 +84,7 @@ Every pull request runs through five blocking gates in `.github/workflows/docs-c
 - Output: error report with file and line number; blocks merge on violations
 - Enforces readability at the syntax level
 
-**AI-assisted content audit** (Python script + Claude API)
+#### AI-assisted content audit (Python script + Claude API)
 
 - Script: `.github/scripts/review-docs.py`
 - Runs on PRs with changes to `docs/` directory
