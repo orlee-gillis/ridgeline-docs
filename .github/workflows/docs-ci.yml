@@ -51,7 +51,7 @@ jobs:
       - uses: DavidAnson/markdownlint-cli2-action@v19
 
   review:
-    name: Advisory documentation review
+    name: AI-assisted content audit
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
