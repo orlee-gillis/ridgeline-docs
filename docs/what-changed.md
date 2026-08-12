@@ -4,6 +4,10 @@ Two pages from the Ridgeline portfolio were audited with structured Claude Skill
 
 ### How This Workflow Works
 
+![Audit & rewrite provenance diagram](/img/what-changed-diagram.svg)
+
+_Figure: Audit → Draft → Edit → Gate — provenance chain (placeholder)._
+
 **Stage 1: Audit** — Run structured skills to identify problems that human review might miss or catch differently.
 
 1. **Audit** with structured skills (`ridgeline-doc-auditor`, `unused-access-expert`) — surface editorial and factual problems
@@ -18,15 +22,15 @@ Two pages from the Ridgeline portfolio were audited with structured Claude Skill
 
 **Stage 2: Rewrite** — Show which problems the audit identified and how the rewrite addressed them.
 
-**A safety guarantee that was missing from both pages** (caught by both writer + skills). Access rights the activity logs cannot audit are classified **Undetermined**, and the product treats them as *used* — remediation never removes them. Both pages named the classification and neither explained that. For a security feature, a reader who reads **Undetermined** as "probably unused" draws the opposite conclusion from the truth. It now appears on both pages, as an admonition, in the same words.
+**A safety guarantee that was missing from both pages** (caught by both writer + skills). Access rights the activity logs cannot audit are classified **Undetermined**, and the product treats them [...]
 
-**One page stopped depending on another** (writer caught this). The Access tab page linked out for four concepts — category, scope, JIT grants, inheritance. Rather than repointing links to pages now out of scope, I explained each concept in place. The page got longer and became self-sufficient. Deferring an explanation is only free when the target actually exists.
+**One page stopped depending on another** (writer caught this). The Access tab page linked out for four concepts — category, scope, JIT grants, inheritance. Rather than repointing links to pages[...]
 
-**Section order was confusing readers** (writer + skills both flagged). Both pages presented mechanism details before answering "what can I actually do?" The rewrite surfaces the "why" and "what" before the "how," so readers can decide whether the page is for them before diving into process.
+**Section order was confusing readers** (writer + skills both flagged). Both pages presented mechanism details before answering "what can I actually do?" The rewrite surfaces the "why" and "what" [...]
 
-**Terminology that changed a claim** (skills caught this). One page said rows sort by "unused access rights" when they sort by unused *grants*. A grant is a container holding many rights, so the two produce different orderings. This is exactly the distinction the glossary exists to hold. The skills audit found this terminology slip; the writer-only audit did not.
+**Terminology that changed a claim** (skills caught this). One page said rows sort by "unused access rights" when they sort by unused _grants_. A grant is a container holding many rights, so the t[...]
 
-**Reference links that pointed nowhere** (skills-only flag). Five cross-page anchors resolved to headings that did not exist. All five are gone, replaced with live links or inline definitions. The skills audit caught these via automated link validation; the writer-only audit found only three of the five.
+**Reference links that pointed nowhere** (skills-only flag). Five cross-page anchors resolved to headings that did not exist. All five are gone, replaced with live links or inline definitions. The[...]
 
 ### What the Two Passes Caught Differently
 
@@ -37,7 +41,7 @@ Two pages from the Ridgeline portfolio were audited with structured Claude Skill
 | Unused Access report | 10           | 14           | 7       |
 | About the Access tab | 12           | 22           | 1       |
 
-The overlap collapsed on the second page. Its problems were mostly invisible when reading: broken anchors, a column named two different things across two pages, a factual error introduced in translation, inconsistent terminology. No amount of careful reading surfaces those. The first page's problems were editorial — dense paragraphs, confusing headings, missing structure — and there the two passes largely agreed.
+The overlap collapsed on the second page. Its problems were mostly invisible when reading: broken anchors, a column named two different things across two pages, a factual error introduced in trans[...]
 
 ---
 
