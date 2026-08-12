@@ -28,7 +28,7 @@ Write as a knowledgeable colleague: direct, specific, helpful. The reader is com
 
 ## Structure and headings
 
-- **Sentence case for headings.** Capitalize proper names and named surfaces inside them.
+- **Title case for headings.** Capitalize proper names (ridgeline-specific-terms) and named surfaces inside them.
 - A heading named after a capitalized surface stays capitalized: "The Access tab."
 - UI tab names are Title Case, including tabs inside a drawer.
 - Never skip heading levels. Body headings start at `##` (the title lives in frontmatter).
@@ -47,9 +47,6 @@ Write as a knowledgeable colleague: direct, specific, helpful. The reader is com
 ## Punctuation
 
 - Oxford comma in lists.
-- No em dash or en dash. Use a spaced hyphen instead: space, hyphen, space.
-- No *e.g.* or *i.e.* Write "for example," "such as," or "that is."
-- Capitalize the first word after a colon.
 - Straight quotes only. Curly quotes and typographic dashes pasted from other tools must be replaced.
 
 ## Grammar
@@ -109,14 +106,6 @@ sidebar_position: 20
 ---
 ```
 
-## Release notes
-
-- One `##` heading per release date, formatted `## YYYY-M-D`.
-- One `###` per user-visible change, named for the change in the reader's terms - not for the
-  internal work item.
-- Describe what the reader can now do, not what was built.
-- Anything not yet available is marked `[UNRELEASED]` and does not ship in a dated section.
-
 ## Publish-readiness checklist
 
 Run this against the draft before handing it over. Every unchecked item goes in
@@ -150,7 +139,7 @@ Run this against the draft before handing it over. Every unchecked item goes in
 
 - [ ] Present tense; no "will" for system behavior
 - [ ] Bold used only for exact UI labels; no bolded link text
-- [ ] Spaced hyphens, Oxford commas, straight quotes, no *e.g.* or *i.e.*
+- [ ] Spaced hyphens, Oxford commas, straight quotes
 - [ ] Every **if** has a **then**
 - [ ] Lists and tables chosen by the one-criterion / multi-criterion rule
 
