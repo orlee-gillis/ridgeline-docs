@@ -3,7 +3,7 @@
 Two pages from the Ridgeline portfolio were audited with structured Claude Skills, then rewritten based on findings. This case study shows what changed and why.
 
 ### How This Workflow Works
-![Audit & rewrite provenance diagram](/static/img/what-changed-diagram.svg)
+![Audit & rewrite provenance diagram](/img/what-changed-diagram.svg)
 
 _Figure: Audit → Draft → Edit → Gate — provenance chain (placeholder)._
 
