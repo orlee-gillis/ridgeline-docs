@@ -1,12 +1,10 @@
 on:
   pull_request:
     branches: [main]
-
 permissions:
   contents: read
   checks: write
   pull-requests: write
-
 jobs:
   build:
     name: Docusaurus build
@@ -20,7 +18,6 @@ jobs:
         run: npm install
       - name: Production build
         run: npm run build
-
   vale:
     name: Vale prose linting
     runs-on: ubuntu-latest
@@ -32,7 +29,6 @@ jobs:
           fail_on_error: true
           reporter: github-pr-check
           token: ${{ secrets.GITHUB_TOKEN }}
-
   links:
     name: Link check
     runs-on: ubuntu-latest
@@ -42,14 +38,12 @@ jobs:
         with:
           args: --no-progress --offline --root-dir "$(pwd)/static" docs/ README.md
           fail: true
-
   markdown:
     name: Markdown structure
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: DavidAnson/markdownlint-cli2-action@v19
-
   review:
     name: Advisory documentation review
     runs-on: ubuntu-latest
@@ -67,3 +61,51 @@ jobs:
         run: |
           git diff "origin/${{ github.base_ref }}...HEAD" -- docs/ \
             | python3 .github/scripts/review-docs.py
+
+  validate-parent-report:
+    name: Validate parent-report templates
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install anthropic
+      - name: Run parent-report validation
+        env:
+          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+        run: python .github/scripts/validate-parent-report.py
+
+  validate-child-report:
+    name: Validate child-report templates
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install anthropic
+      - name: Run child-report validation
+        env:
+          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+        run: python .github/scripts/validate-child-report.py
+
+  validate-workflow-methodology:
+    name: Validate workflow-methodology templates
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install anthropic
+      - name: Run workflow-methodology validation
+        env:
+          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+        run: python .github/scripts/validate-workflow-methodology.py
