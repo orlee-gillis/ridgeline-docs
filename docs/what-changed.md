@@ -6,7 +6,7 @@ Two pages from the Ridgeline portfolio were audited with structured Claude Skill
 
 ![Audit & rewrite provenance diagram](/img/what-changed-diagram.svg)
 
-_Figure: Audit → Draft → Edit → Gate — provenance chain (placeholder)._ 
+_Figure: Audit → Draft → Edit → Gate — provenance chain (placeholder)._
 
 **Stage 1: Audit** — Run structured skills to identify problems that human review might miss or catch differently.
 
