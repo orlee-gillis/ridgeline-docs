@@ -4,9 +4,7 @@ Two pages from the Ridgeline portfolio were audited with structured Claude Skill
 
 ### How This Workflow Works
 
-![Audit & rewrite provenance diagram](/img/what-changed-diagram.svg)
-
-_Figure: Audit → Draft → Edit → Gate — provenance chain (placeholder)._
+![Documentation workflow: Legacy Pages → Audit → Improved Pages → AI Drafting → Gates → Skills Evaluation](/img/workflow-diagram.svg)
 
 **Stage 1: Audit** — Run structured skills to identify problems that human review might miss or catch differently.
 
