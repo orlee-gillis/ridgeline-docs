@@ -61,7 +61,7 @@ def validate_parent_report_mechanical(sections):
 
 def validate_parent_report_ai(filepath, sections):
     """Use Claude to validate template compliance of Introduction section."""
-    client = anthropic.Anthropic(api_key=os.environ.get("CLAUDE_API_KEY"))
+    client = anthropic.Anthropic(api_key=os.environ.get("CLAUDE_API_KEY").strip)
 
     intro = sections.get('Introduction', '')
 
