@@ -1,4 +1,3 @@
-cat > docs/test-eval-case-1.md << 'EOF'
 ---
 template: parent-report
 ---
@@ -48,4 +47,3 @@ The Unused Access feature includes:
 - [CHILD URL: cloud platform name] — confirm the correct name for the cloud platform
 - Confirm child report page titles and links are correct
 - Confirm secondary "See also" links exist and are correct
-EOF
