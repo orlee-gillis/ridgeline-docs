@@ -1,79 +1,83 @@
 {
   "gate": "audit-report-pages",
-  "session": 21,
-  "description": "Test cases for the audit-report-pages gate. Each case specifies an input (page content or path) and expected outcome (pass/fail + severity if fail).",
+  "session": 22,
+  "description": "Test cases for the audit-report-pages gate. Each case specifies a fixture page under docs/eval-cases/ and the expected outcome (pass/fail + severity if fail). Run with: node audit-report.js --test-file gates-test.json",
   "testCases": [
     {
       "id": "eval-case-1",
-      "name": "[YOUR EVAL CASE 1 NAME]",
-      "description": "Description of what this case tests",
+      "name": "Idle Credential report - fully compliant",
+      "description": "A Report page with inclusion/exclusion criteria, sort + empty-value handling, a column table, a working-a-finding walkthrough, and data freshness, all in the correct order.",
       "type": "pass",
-      "filepath": "docs/[eval case 1 path].md",
-      "reason": "Matches child-report template, clear task, properly sourced",
+      "filepath": "docs/eval-cases/sample-report-pass-1.md",
+      "reason": "Matches the Report page genre defined in ai-workflow/skills/ridgeline-doc-auditor/references/audit-checklist.md, task is clear, no unsourced claims within the fixture's own scope.",
       "expectedSeverity": "none",
-      "notes": "This page should pass all audit criteria"
+      "notes": "This page should pass all audit criteria."
     },
     {
       "id": "eval-case-2",
-      "name": "[YOUR EVAL CASE 2 NAME]",
-      "description": "Description of what this case tests",
+      "name": "Exposed Storage report - fully compliant, different shape",
+      "description": "A second compliant Report page on a different topic, to confirm the gate isn't keying off one specific layout or wording.",
       "type": "pass",
-      "filepath": "docs/[eval case 2 path].md",
-      "reason": "Matches template structure, task is clear",
+      "filepath": "docs/eval-cases/sample-report-pass-2.md",
+      "reason": "Matches the Report page genre, task is clear, sections in the required order.",
       "expectedSeverity": "none",
-      "notes": "This page should pass all audit criteria"
+      "notes": "This page should pass all audit criteria."
     },
     {
       "id": "eval-case-3",
-      "name": "[YOUR EVAL CASE 3 NAME]",
-      "description": "Description of what this case tests",
+      "name": "Overprivileged Roles - missing sections, wrong order",
+      "description": "Missing 'What the report includes' (inclusion criteria) and 'Working a finding' entirely; leads with a column table before explaining what a row is.",
       "type": "fail",
-      "filepath": "docs/[eval case 3 path].md",
-      "reason": "Missing 'How to investigate' section, wrong genre (structured as overview instead of report)",
+      "filepath": "docs/eval-cases/sample-report-fail-high.md",
+      "reason": "Wrong genre execution - reads as a screen reference, not a report walkthrough. A reader cannot tell what a row is or what to do about one.",
       "expectedSeverity": "high",
       "expectedProblems": [
         {
-          "type": "genre",
-          "description": "Page is structured as an overview, not a child-report walkthrough"
+          "type": "structure",
+          "description": "Missing inclusion criteria (what puts a row in the report)"
         },
         {
           "type": "structure",
-          "description": "Missing 'How to investigate' section"
+          "description": "Missing 'Working a finding' - no guidance on what to do with a row"
+        },
+        {
+          "type": "order",
+          "description": "Columns are introduced before the reader knows what a row is"
         }
       ],
-      "notes": "This page should fail with high severity and block the PR"
+      "notes": "This page should fail with high severity and block the PR."
     },
     {
       "id": "eval-case-4",
-      "name": "[YOUR EVAL CASE 4 NAME]",
-      "description": "Description of what this case tests",
+      "name": "Lateral Path report - undefined term, weak prerequisite link",
+      "description": "Structurally complete (all required sections present, correct order), but sorts by an undefined 'blast radius index' and references 'the Access Grants report' without linking it.",
       "type": "fail",
-      "filepath": "docs/[eval case 4 path].md",
-      "reason": "Undefined jargon, weak prerequisite linking",
+      "filepath": "docs/eval-cases/sample-report-fail-medium.md",
+      "reason": "Term 'blast radius index' is used as the sort key but never defined - a reader can't tell what it measures. The page also mentions a related report by name without linking it.",
       "expectedSeverity": "medium",
       "expectedProblems": [
         {
-          "type": "terms",
-          "description": "Term 'reach score' used without definition"
+          "type": "term",
+          "description": "'Blast radius index' used without definition"
         },
         {
-          "type": "structure",
-          "description": "Should link to 'Understanding Access Grants' as prerequisite"
+          "type": "consistency",
+          "description": "References 'the Access Grants report' without a link"
         }
       ],
-      "notes": "This page should fail with medium severity, report only (no PR block)"
+      "notes": "This page should fail with medium severity, report only (no PR block)."
     }
   ],
   "runInstructions": {
     "local": "Run locally before committing: node audit-report.js --test-file gates-test.json",
-    "ci": "Gate runs on every PR matching docs/**/*report*.md. Test cases are for baseline validation only.",
-    "baseline": "Session 21 baseline: which test cases pass/fail the design criteria (before implementation)"
+    "ci": "Gate runs on every PR matching docs/**/*report*.md or docs/**/child-*.md. Test cases are for baseline validation only.",
+    "baseline": "Session 22 baseline: gate implementation validated against these 4 fixtures before enabling on real PRs."
   },
   "metadata": {
-    "createdSession": 21,
-    "createdDate": "[DATE]",
-    "branch": "session-21/audit-gate-design",
-    "author": "You",
-    "status": "Awaiting Session 22 implementation"
+    "createdSession": 22,
+    "createdDate": "2026-08-19",
+    "branch": "session-22/audit-gate-implementation",
+    "author": "Orlee Gillis",
+    "status": "Implemented, awaiting local test run"
   }
 }

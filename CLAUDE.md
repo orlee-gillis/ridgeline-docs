@@ -56,3 +56,27 @@ in Session 21:
 
 Do not edit these skills during Sessions 19–20. Session 21 measures their output 
 against this baseline state. After Session 21, these skills are open for iteration.
+
+## Gates
+
+CI gates fall into three tiers - see `.claude/gates-architecture.md` for the full picture:
+
+1. **Deterministic** - Vale, markdownlint, lychee, the Docusaurus build. Fast, cheap, no model call.
+2. **AI-advisory** - `review-docs.py`. Comments on a PR, never blocks.
+3. **AI-blocking** - `audit-report.js` and the `validate-*.py` scripts. Can fail the PR check.
+
+Every gate is designed in `GATES-DESIGN.md` before it's implemented, and its status is tracked in
+`GATES.md` (inventory) and `GATES-CHANGELOG.md` (history and reasoning). If you're adding a new gate,
+follow that sequence - don't write the workflow file first.
+
+## Skill triggers
+
+When a user's request matches one of these, load the corresponding skill before responding:
+
+| The user says something like... | Load |
+| --- | --- |
+| "review this page", "audit this", "what's wrong with X" | `ai-workflow/skills/ridgeline-doc-auditor/SKILL.md` |
+| "draft a page for X", "write documentation for X" | `ai-workflow/skills/ridgeline-doc-writer/SKILL.md` (frozen - see Hard rules) |
+| A factual question about Unused Access behavior | `ai-workflow/skills/unused-access-expert/SKILL.md` |
+
+See `.claude/skill-selection.md` for more examples and edge cases.
