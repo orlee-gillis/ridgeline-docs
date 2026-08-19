@@ -12,7 +12,7 @@ Each session ends with a Next line: the exact thing that happens after it, and w
 
 **Last worked**: Session 22 (fix and activate the real page-genre gates) — **DONE** [x]
 
-**Then**: Session 23 - Validate gates + add validation gate + MCP + LLM docs
+**Then**: Session 23 - Validate gates + MCP exploration
 
 ---
 
@@ -210,59 +210,55 @@ fixture each) rather than 4 synthetic-only cases.
 
 **Time**: ~2–2.5 hours (actual: significantly longer - most of the time went into discovering and correcting the wrong premise, not building against the original design)
 
-**Next**: Session 23 - Validate gates + add validation gate + MCP + LLM docs
+**Next**: Session 23 - Validate gates + MCP exploration
 
-### [ ] Session 23: Validate Gates + MCP + LLM Documentation
+### [ ] Session 23: Validate Gates + MCP Exploration
 
-Prove the audit gate works, add a validation gate, explore MCP, and document for LLM readers.
+Prove the three real genre gates work, explore MCP for interactive skills, and sketch (not build)
+Phase H's agentic-gates idea. Rewritten from the original Part A/B/C plan below, which assumed a
+single "audit gate" and a still-to-build second gate - both stale after Session 22 replaced that
+premise with three working gates (`validate-parent-report`, `validate-child-report`,
+`validate-workflow-methodology`). The LLM-ready-docs work originally planned as Part C is dropped
+from this session: it now belongs to `documenting-the-agentic-stack.md` Week 3 in `docs-as-code`,
+not a second build here - see that file and `docs-as-code/TRACKS.md` row 11.
 
-**Part A: Validate the audit gate** (~1 hour)
-- Run audit gate against 8–10 past PRs from your repo
-- Measure precision (of failures, how many are real?), recall (of problems it catches)
+**Part A: Validate the three real gates** (~1 hour)
+- Run all three genre gates (`--test-file` mode, then against a handful of past PRs/drafts) and
+  confirm they still catch what they're supposed to
+- Measure precision (of failures, how many are real?) and recall (of real problems, how many get
+  caught) for each gate
 - Record metrics in GATES-METRICS.md
-- Decision: is precision >80%, recall >70%? If not, adjust prompt and re-run.
+- Decision: is precision >80%, recall >70% for each? If not, adjust the prompt in `gate_common.py`
+  and re-run
 
-**Part B: Design and build a validation gate** (~1 hour)
-- Pick a second gate: **validation gate for Unused Access facts**
-- Load the unused-access-expert skill as validation knowledge
-- Design rubric: what counts as a valid claim about Unused Access?
-- Build script + test locally on 3–4 test cases
-- Document in GATES.md
+**Part B: MCP exploration - interactive skills only** (~1 hour)
+- Scope: MCP for the `unused-access-expert`/`ridgeline-doc-auditor` skills at chat time, not the
+  CI gates - gates stay deterministic scripts, not agents with tool access
+- Explore fetching a reference document (e.g., the glossary or the `unused-access-expert`
+  knowledge base) via MCP instead of it being a static bundled file
+- Document the pattern in `.claude/mcp-integration.md`: what MCP adds here, what it doesn't, why
+  it's scoped away from CI
 
-**Part C: MCP exploration + LLM documentation** (~1 hour)
-- **MCP**: Use Claude Code with Google Drive MCP to fetch and update a reference document
-  - Example: Store "Unused Access glossary" in your Google Drive; fetch it via MCP
-  - Show Claude Code using MCP to read the file and suggest updates to unused-access-expert.md
-  - Document the pattern in `.claude/mcp-integration.md`
-  - Why Google Drive: portable (you keep it after losing Atlassian access), personal account, same learning value
-- **LLM docs**: Create the LLM-ready documentation layer
-  - Create `ai-workflow/llm-ready-docs/` folder
-  - Write `llm-ready-docs-checklist.md` (what makes a page LLM-friendly)
-  - Mark up one finished page as an example (e.g., apply-a-remediation.md)
-  - Create `ai-workflow/llm-ready-docs/llms.txt` (fragment: key concepts for LLMs)
-  - Document in GATES-RUNBOOK.md how to maintain LLM-ready markup
+**Part C: Sketch Phase H's agentic gates (plan only, don't build)** (~30 min)
+- Phase H's stretch idea is gates that fix issues automatically, not just report them
+- Write a short design note - what a fix-capable gate would need (write access, a review step, a
+  rollback path) - as a decision doc, not code
+- Stays a plan for Phase H; Session 23 doesn't implement it
 
 **Deliverable:**
-- GATES-METRICS.md with precision/recall for audit gate
-- Second gate: validate-unused-access-facts.yml + validate-unused-access.js
-- GATES-RUNBOOK.md (operations guide: debugging, tuning, adding gates)
-- `.claude/mcp-integration.md` (MCP pattern for fetching + updating skills)
-- `ai-workflow/llm-ready-docs/` folder with:
-  - `llm-ready-docs-checklist.md`
-  - `llms.txt`
-  - One marked-up example page
-- Updated GATES.md (now documents 2 gates)
+- GATES-METRICS.md with precision/recall for all three gates
+- `.claude/mcp-integration.md` (MCP pattern for fetching a reference doc into an interactive skill)
+- A short agentic-gates design note (Phase H planning, not an implementation)
 - Updated GATES-CHANGELOG.md
 
-**Time**: ~3 hours total
+**Time**: ~2.5 hours total
 
-**Branch**: session-23/gates-validation-mcp-llm
+**Branch**: session-23/gates-validation-mcp
 
 **Success criteria**:
-- Audit gate: precision >80%, recall >70%
-- Validation gate: designed, tested, documented
-- MCP: one working example of fetching + updating
-- LLM docs: checklist + example + llms.txt
+- All three gates: precision >80%, recall >70%
+- MCP: one working example of fetching a reference doc into a skill's context
+- Agentic-gates idea has a written design note, not an implementation
 
 **Next**: Session 24 - Audit and improve the skills
 
@@ -463,7 +459,7 @@ This is a valid endpoint: you've demonstrated system thinking, automation, and d
 
 **You are here**: Sessions 21 and 22 done. Session 23 not started.
 
-**Your move**: Start Session 23 (Validate Gates + MCP + LLM Documentation) whenever ready - see
+**Your move**: Start Session 23 (Validate Gates + MCP Exploration) whenever ready - see
 its full task breakdown above.
 
 ---
