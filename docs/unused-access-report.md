@@ -2,6 +2,7 @@
 title: About the Unused Access report
 description: What the Unused Access report includes, how it is ordered, and what to do with a finding.
 sidebar_position: 20
+template: parent-report
 ---
 
 Unused Access finds connected integrations that hold access they were granted but never use, and
@@ -112,6 +113,3 @@ after the next one.
 - [ ] `[VERIFY: exact criteria for the Highly privileged label]`
 - [ ] `[VERIFY: exported CSV column set]`
 - [ ] Confirm whether the 90-day usage window is configurable by the reader
-
-Ridgeline recalculates access usage every 15 minutes, and the report reflects changes within
-two minutes of a grant being modified.

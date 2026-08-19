@@ -2,6 +2,7 @@
 title: About the Access tab
 description: What each part of the Access tab shows, how to read the grant graph and grant table, and how to reach a remediation decision.
 sidebar_position: 30
+template: child-report
 ---
 
 The **Access** tab on an integration's card is where you investigate one integration's access and

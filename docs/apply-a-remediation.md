@@ -2,6 +2,7 @@
 title: Apply a remediation recommendation
 description: How to carry out a least-privilege recommendation on an integration's access grant from inside Ridgeline, what it changes, and how to reverse it.
 sidebar_position: 40
+template: workflow-methodology
 ---
 
 `[UNRELEASED]` This page describes behavior that has not shipped. Its source story is still in review,

@@ -2,7 +2,17 @@
 
 **Session**: 21  
 **Gate Type**: Audit (quality validation)  
-**Status**: Designed, ready for implementation in Session 22
+**Status**: SUPERSEDED - see `GATES-CHANGELOG.md`, Session 22 entry
+
+> **This design turned out to be based on a genre that doesn't correspond to any real page.**
+> "Report page" (and the "child-report" template it referenced) don't match anything in
+> `docs/`. The real page this design was implicitly grounded in - `docs/unused-access-report.md`
+> - is actually a `parent-report` page, one of three real, already-named genres
+> (`parent-report`, `child-report`, `workflow-methodology`) that already had their own
+> dedicated scripts. Those scripts had never actually run (see the Session 22 changelog entry
+> for why) - Session 22 fixed and activated them instead of building what's designed below.
+> Left in place as a historical record of what was designed and why the correction happened,
+> not as an active design.
 
 ---
 

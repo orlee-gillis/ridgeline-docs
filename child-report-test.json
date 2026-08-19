@@ -1,0 +1,22 @@
+{
+  "gate": "validate-child-report",
+  "description": "Test cases for validate-child-report.py. Run with: python .github/scripts/validate-child-report.py --test-file child-report-test.json",
+  "testCases": [
+    {
+      "id": "real-page",
+      "name": "about-the-access-tab.md (real, tagged template: child-report)",
+      "type": "pass",
+      "filepath": "docs/about-the-access-tab.md",
+      "expectedSeverity": "none",
+      "notes": "The real page this genre's checklist section was grounded in. Should pass once the checklist section correctly describes it."
+    },
+    {
+      "id": "broken-fixture",
+      "name": "broken-child-report.md (synthetic)",
+      "type": "fail",
+      "filepath": "eval-cases/broken-child-report.md",
+      "expectedSeverity": "blocker",
+      "notes": "No orientation section, and a recommendation named with no guarantee attached - explicitly a blocker per the checklist."
+    }
+  ]
+}

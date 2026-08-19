@@ -4,13 +4,19 @@ What each page genre must contain to do its job. A missing required section is *
 safety statement is **blocker**.
 
 Cite this file as the source when reporting a genre problem, naming the page type - for example
-`audit-checklist.md, report page`.
+`audit-checklist.md, parent-report`.
+
+**Genre names match the `template:` frontmatter value the page declares** (`parent-report`,
+`child-report`, `workflow-methodology`) - the same tag `validate-parent-report.py`,
+`validate-child-report.py`, and `validate-workflow-methodology.py` key off. A page with no `template:`
+tag isn't audited against any genre here; it only gets the general advisory review.
 
 ---
 
-## Report page
+## parent-report
 
-A page about one report, read by someone looking at that report now.
+A page introducing a report or feature as a whole, read by someone deciding whether and how to use it.
+Real example: `docs/unused-access-report.md`.
 
 | Required | Why it is required |
 | --- | --- |
@@ -25,9 +31,10 @@ A page about one report, read by someone looking at that report now.
 Order matters: inclusion criteria before columns. Reversed, the reader meets the columns without knowing
 what a row is.
 
-## Investigation surface page
+## child-report
 
-A page about a tab, panel, or card where a reader investigates one thing.
+A page about a tab, panel, or card where a reader investigates one thing within a parent-report's
+feature. Real example: `docs/about-the-access-tab.md`.
 
 | Required | Why it is required |
 | --- | --- |
@@ -37,28 +44,18 @@ A page about a tab, panel, or card where a reader investigates one thing.
 | The action the surface leads to | |
 | Any guarantee attached to a recommendation | **blocker** if absent. A reader may act on the recommendation |
 
-## Hub page
+## workflow-methodology
 
-A page whose job is to route a reader to child pages.
-
-| Required | Why it is required |
-| --- | --- |
-| What the area covers, in one or two sentences | A hub that opens with a bare list of links orients nobody |
-| One line per child page saying what it answers | Link titles alone do not tell a reader which to open |
-| Where to start | A hub with no recommended entry point makes the reader choose blind |
-
-A hub page of only links and no orientation fails its genre even when every sentence in it is correct.
-This is the most commonly missed genre requirement, because nothing in the page is wrong.
-
-## Reference page
-
-Tables of values, read by lookup rather than start to finish.
+A page walking through how to carry out one action from start to finish - what it takes to begin, what
+happens at each stage, and where it stops short. Real example: `docs/apply-a-remediation.md`.
 
 | Required | Why it is required |
 | --- | --- |
-| Complete value sets | A partial table reads as exhaustive and misleads silently. Flag any set you could not complete |
-| One heading per field or field group | Lookup depends on the anchor and the search result landing on the right row |
-| Behavioural consequences in the table, not in a note below it | A reader scanning one row does not read the note |
+| Prerequisites - what must be true before the workflow can be started | A reader who doesn't meet them needs to know before attempting, not after failing |
+| What you can do - the scope of the workflow, stated plainly | Without it, a reader can't tell whether this workflow covers their situation |
+| The mechanics, in the order they actually happen | A reader trusts the outcome only if they understand how it was produced |
+| Any guarantee attached to a hard-to-reverse or destructive step | **blocker** if absent - a reader may act on the workflow without knowing what it can't undo |
+| Limits and known gaps | A reader who over-trusts an incomplete workflow makes worse decisions than one who read nothing |
 
 ## Any page type
 
