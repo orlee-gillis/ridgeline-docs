@@ -93,6 +93,14 @@ deliberately-broken fixture per genre) - not yet promoted to a required check.
 **Notes**: `GATES-DESIGN.md` (the Session 21 `audit-report-pages` design) is marked superseded
 rather than deleted, as a record of the wrong turn and why it was corrected.
 
+**Follow-up, deferred**: All three gates use `claude-sonnet-5`. Considered splitting model choice
+per genre to avoid overspending, but held off - each gate has only one real tagged page plus one
+synthetic fixture right now, too small a sample to meaningfully compare model cost/quality
+tradeoffs, and none of the three block merges yet so accuracy matters more than cost at this
+stage. Revisit once more real pages are tagged and these gates have run for a while on real PRs -
+at that point there's enough real signal to test whether a cheaper model (e.g. `claude-haiku-4-5`)
+catches the same findings on any given genre.
+
 ---
 
 ## Future entries (template for next sessions)
