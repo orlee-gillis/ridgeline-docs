@@ -172,13 +172,25 @@ Measure your frozen baseline skills using CI gates as the validation mechanism.
 
 **Next**: Session 22 - Build gate infrastructure + CLAUDE.md
 
-### [ ] Session 22: Build Gate Infrastructure + Skill Selection
+### [x] Session 22: Build Gate Infrastructure + Skill Selection
 
 Build the GitHub Actions workflow, gate script, and automatic skill selection system.
 
+**Completed, diverged from plan below - see `GATES-CHANGELOG.md`'s Session 22 entry for the full
+story.** Items 1-2 as originally scoped (`audit-report-pages.yml` / `audit-report.js`) were dropped
+partway through: the "Report page" genre they were built to check turned out not to correspond to
+any real page in `docs/`. In the process of figuring that out, found that three *other*, older
+gates (`validate-parent-report.py`, `validate-child-report.py`,
+`validate-workflow-methodology.py`) had existed in the repo but never actually run - no real page
+had ever carried the `template:` tag they looked for, and one had a live authentication bug.
+Fixed and activated those three instead. Items 3, 4, 6, 7 below were completed as planned (4 took
+two passes - `.claude/skill-selection.md` was missed initially and added afterward). Item 5 (test
+locally) was completed with 6 cases across the 3 real gates (a real tagged page + a synthetic
+fixture each) rather than 4 synthetic-only cases.
+
 **What you'll do:**
-1. Create `.github/workflows/audit-report-pages.yml` (GitHub Actions workflow)
-2. Create `audit-report.js` (Node.js gate script)
+1. ~~Create `.github/workflows/audit-report-pages.yml` (GitHub Actions workflow)~~ - dropped, see above
+2. ~~Create `audit-report.js` (Node.js gate script)~~ - dropped; built `gate_common.py` + 3 real gates instead
 3. Create `CLAUDE.md` at repo root with skill triggers for automatic loading
 4. Create `.claude/` folder with infrastructure documentation:
    - `.claude/gates-architecture.md` — system structure, cost model, conventions
@@ -192,13 +204,13 @@ Build the GitHub Actions workflow, gate script, and automatic skill selection sy
 **Hands-on**: Use Claude Code to generate the workflow + script from the design. Test locally. Iterate on the prompt if needed. Once precision >80%, move to next session.
 
 **Deliverable:**
-- Working audit gate in GitHub Actions
+- ~~Working audit gate in GitHub Actions~~ - three working gates instead (`validate-parent-report`, `validate-child-report`, `validate-workflow-methodology`), fixed rather than newly built
 - CLAUDE.md with all skills + `load_when` triggers
 - `.claude/` documentation suite
-- GATES.md (first gate: audit-report-pages)
+- GATES.md (first gate: audit-report-pages) - GATES.md documents all three real gates instead
 - GATES-CHANGELOG.md
 
-**Time**: ~2–2.5 hours
+**Time**: ~2–2.5 hours (actual: significantly longer - most of the time went into discovering and correcting the wrong premise, not building against the original design)
 
 **Next**: Session 23 - Validate gates + add validation gate + MCP + LLM docs
 
