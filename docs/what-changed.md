@@ -47,9 +47,9 @@ The overlap collapsed on the second page. Its problems were mostly invisible whe
 
 **Stage 4: Gate** — Automate detection of countable problems so mechanical errors don't make it to production.
 
-Every pull request runs through five blocking gates in `.github/workflows/docs-ci.yml`. Each gate catches a different class of problem:
+Every pull request runs through four blocking gates in `.github/workflows/docs-ci.yml`, plus an advisory AI review. Each catches a different class of problem:
 
-#### Docusaurus build** (npm script)
+#### Docusaurus build (npm script)
 
 - Command: `npm run build`
 - Parses all Markdown files in `docs/`

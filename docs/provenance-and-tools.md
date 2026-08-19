@@ -11,6 +11,6 @@ This page records the evidence and tools used in the authoring pipeline.
 
 ## Notes
 
-- The diagram is a placeholder. Replace `static/img/what-changed-diagram.svg` (or `static/img/what-changed-flow-diagram.svg`) with the final asset and update captions as needed.
+- The workflow diagram shown on the What changed page is `static/img/workflow-diagram.svg`. Replace it with a final asset and update captions as needed.
 
 - Do not commit proprietary or licensed design assets without confirming license/permission.
