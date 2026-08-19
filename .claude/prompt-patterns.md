@@ -8,6 +8,7 @@ Used by `.github/scripts/review-docs.py`. Reviews a diff (not a whole file), ret
 prose, posts it as a comment, never blocks.
 
 Shape:
+
 - Input: `git diff` output for the changed region only.
 - Explicitly tells the model what NOT to check (things the deterministic gates already cover) -
   this is the most important line in the prompt. Without it, the model re-reports style issues
@@ -33,6 +34,7 @@ with sources and suggested fixes, and the calling script decides pass/fail from
 `highest_severity`.
 
 Shape:
+
 - Input: the whole page (genre-level checks need the full structure, not one section).
 - Context: the relevant `## <genre>` section of `audit-checklist.md`, read from disk at request
   time via `extract_checklist_section()` - not copy-pasted into the prompt as a static string.

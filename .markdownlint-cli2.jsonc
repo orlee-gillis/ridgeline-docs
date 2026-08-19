@@ -8,5 +8,5 @@
     "MD024": { "siblings_only": true }
   },
   "ignores": ["node_modules/**", "ai-workflow/**", "*.md"],
-  "globs": ["docs/**/*.md"]
+  "globs": ["docs/**/*.md", ".claude/**/*.md"]
 }
