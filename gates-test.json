@@ -1,0 +1,79 @@
+{
+  "gate": "audit-report-pages",
+  "session": 21,
+  "description": "Test cases for the audit-report-pages gate. Each case specifies an input (page content or path) and expected outcome (pass/fail + severity if fail).",
+  "testCases": [
+    {
+      "id": "eval-case-1",
+      "name": "[YOUR EVAL CASE 1 NAME]",
+      "description": "Description of what this case tests",
+      "type": "pass",
+      "filepath": "docs/[eval case 1 path].md",
+      "reason": "Matches child-report template, clear task, properly sourced",
+      "expectedSeverity": "none",
+      "notes": "This page should pass all audit criteria"
+    },
+    {
+      "id": "eval-case-2",
+      "name": "[YOUR EVAL CASE 2 NAME]",
+      "description": "Description of what this case tests",
+      "type": "pass",
+      "filepath": "docs/[eval case 2 path].md",
+      "reason": "Matches template structure, task is clear",
+      "expectedSeverity": "none",
+      "notes": "This page should pass all audit criteria"
+    },
+    {
+      "id": "eval-case-3",
+      "name": "[YOUR EVAL CASE 3 NAME]",
+      "description": "Description of what this case tests",
+      "type": "fail",
+      "filepath": "docs/[eval case 3 path].md",
+      "reason": "Missing 'How to investigate' section, wrong genre (structured as overview instead of report)",
+      "expectedSeverity": "high",
+      "expectedProblems": [
+        {
+          "type": "genre",
+          "description": "Page is structured as an overview, not a child-report walkthrough"
+        },
+        {
+          "type": "structure",
+          "description": "Missing 'How to investigate' section"
+        }
+      ],
+      "notes": "This page should fail with high severity and block the PR"
+    },
+    {
+      "id": "eval-case-4",
+      "name": "[YOUR EVAL CASE 4 NAME]",
+      "description": "Description of what this case tests",
+      "type": "fail",
+      "filepath": "docs/[eval case 4 path].md",
+      "reason": "Undefined jargon, weak prerequisite linking",
+      "expectedSeverity": "medium",
+      "expectedProblems": [
+        {
+          "type": "terms",
+          "description": "Term 'reach score' used without definition"
+        },
+        {
+          "type": "structure",
+          "description": "Should link to 'Understanding Access Grants' as prerequisite"
+        }
+      ],
+      "notes": "This page should fail with medium severity, report only (no PR block)"
+    }
+  ],
+  "runInstructions": {
+    "local": "Run locally before committing: node audit-report.js --test-file gates-test.json",
+    "ci": "Gate runs on every PR matching docs/**/*report*.md. Test cases are for baseline validation only.",
+    "baseline": "Session 21 baseline: which test cases pass/fail the design criteria (before implementation)"
+  },
+  "metadata": {
+    "createdSession": 21,
+    "createdDate": "[DATE]",
+    "branch": "session-21/audit-gate-design",
+    "author": "You",
+    "status": "Awaiting Session 22 implementation"
+  }
+}
