@@ -10,13 +10,9 @@ Each session ends with a Next line: the exact thing that happens after it, and w
 
 ## Resume here
 
-**Last worked**: Session 21 (design audit gate) — **IN PROGRESS** [~]
+**Last worked**: Session 22 (fix and activate the real page-genre gates) — **DONE** [x]
 
-**Branch**: session-21/audit-gate-design
-
-**Immediate next**: Complete Session 21 by creating and committing GATES-DESIGN.md, gates-test.json, and GATES-CHANGELOG.md (templates provided)
-
-**Then**: Session 22 - Build gate infrastructure (GitHub Actions workflow + Node.js script + CLAUDE.md)
+**Then**: Session 23 - Validate gates + add validation gate + MCP + LLM docs
 
 ---
 
@@ -24,23 +20,23 @@ Each session ends with a Next line: the exact thing that happens after it, and w
 
 This is a portfolio project demonstrating system-level thinking about AI-assisted documentation. Each phase builds infrastructure; later phases showcase it.
 
-**Phases A-F** (Sessions 1-23): Build the system
+**Phases A-F** (Sessions 1-24): Build the system
 - A: Foundations (writing in Docusaurus)
 - B: Legacy content (editorial judgment, before/after)
 - C: Docs-as-code (CI pipeline, PR loop)
 - D: AI authoring (drafting with prompts)
 - E: Quality gates (deterministic + advisory validation)
-- F: Skills automation (measure, freeze, validate through CI)
+- F: Skills automation (measure, freeze, validate through CI, audit and improve)
 
-**Phase G** (Sessions 24-25): Capstone - Package and explain the system
+**Phase G** (Sessions 25-26): Capstone - Package and explain the system
 - **Essential**. Not more building—narrative and defense.
 - Proves you can explain and defend the system you built.
 
-**Phase H** (Sessions 26+): Stretch - Apply or extend
+**Phase H** (Sessions 27+): Stretch - Apply or extend
 - **Optional**. After Phase G succeeds, choose one of these paths.
 - Path 1: Scale to XM Cyber (apply gates system professionally)
 - Path 2: Build tooling (audit script, interactive components)
-- Path 3: Skip—capstone is complete at Session 25
+- Path 3: Skip—capstone is complete at Session 26
 
 ---
 
@@ -148,7 +144,7 @@ Sits here because it needs Vale (Module 4), the PR loop (Session 11), and real d
 
 **Next**: Session 21 - Design audit gate + validate baseline
 
-### [~] Session 21: Design Audit Gate + Validate Baseline
+### [x] Session 21: Design Audit Gate + Validate Baseline
 
 Measure your frozen baseline skills using CI gates as the validation mechanism.
 
@@ -168,7 +164,9 @@ Measure your frozen baseline skills using CI gates as the validation mechanism.
 
 **Branch**: session-21/audit-gate-design
 
-**Status**: In progress—create the three files, fill them in, commit, then done.
+**Status**: Done - GATES-DESIGN.md, gates-test.json, and GATES-CHANGELOG.md committed and merged
+(PR #45). Baseline metrics were recorded in the `docs-as-code` repo instead
+(`ai-workflow/eval-results/session-20-baseline-scores.md` there), not this one.
 
 **Next**: Session 22 - Build gate infrastructure + CLAUDE.md
 
@@ -266,17 +264,47 @@ Prove the audit gate works, add a validation gate, explore MCP, and document for
 - MCP: one working example of fetching + updating
 - LLM docs: checklist + example + llms.txt
 
-**Next**: Phase G, Session 24 - README tour
+**Next**: Session 24 - Audit and improve the skills
 
 ---
 
-## Phase G - Capstone (Module 5) - sessions 24-25
+### [ ] Session 24: Audit and Improve the Skills
+
+Audit the two frozen baseline skills (`ridgeline-doc-writer`, `unused-access-expert`) against the
+full seven-dimension rubric, then improve them. This session was originally tracked in
+`docs-as-code`'s `roadmap.md` as its own "Session 22," before gate infrastructure work got
+reprioritized into Session 22 here - see `GATES-CHANGELOG.md`'s Session 22 entry and
+`docs-as-code/TRACKS.md`'s Session 24 for the full renumbering story. Folds in a separate
+verification pass that `roadmap.md` tracked as "Session 23b."
+
+**What you'll do:**
+1. Your rubric verdicts first, then Claude's pass, then the revisions and the ADRs. **You first,
+   then together.**
+2. Resolve every `[VERIFY]` flag across all pages in `docs/`. For each: the invented SME answer,
+   and a category - legitimate gap, model timidity, or confident invention. Record the categories
+   in `ai-workflow/decisions/UAX-2841.md`.
+3. Fix image sizing on `docs/apply-a-remediation.md` and remove its `[UNRELEASED]` block once its
+   flags are closed.
+
+**Rubric**: `ai-workflow/skills/rubric.md`. Worked example: `rubric-example.md`.
+
+**Deliverable:**
+- Rubric verdicts and ADRs for both skills
+- Revised `ridgeline-doc-writer` and `unused-access-expert` skills
+- Every `[VERIFY]` flag in `docs/` resolved and categorized
+- `apply-a-remediation.md` cleaned up (image sizing, `[UNRELEASED]` block removed)
+
+**Next**: Phase G, Session 25 - README tour
+
+---
+
+## Phase G - Capstone (Module 5) - sessions 25-26
 
 **Essential.** Not more building—packaging and explaining the system you built.
 
 The portfolio is now technically complete. Phase G is about narrative: making it clear what you built and why it matters.
 
-### [ ] Session 24: README Tour (The Guided Narrative)
+### [ ] Session 25: README Tour (The Guided Narrative)
 
 Your repo contains all the evidence. The README is the tour guide.
 
@@ -301,9 +329,9 @@ Your repo contains all the evidence. The README is the tour guide.
 
 **Time**: ~1.5–2 hours
 
-**Next**: Session 25 - Defense (interview practice)
+**Next**: Session 26 - Defense (interview practice)
 
-### [ ] Session 25: The Defense (Prove You Understand It)
+### [ ] Session 26: The Defense (Prove You Understand It)
 
 Mock interview. Claude plays skeptical hiring manager. You defend your decisions.
 
@@ -327,7 +355,7 @@ Mock interview. Claude plays skeptical hiring manager. You defend your decisions
 
 **Success criteria**: You can defend every major decision. You understand tradeoffs. You know what you'd do differently with more time.
 
-**Branch**: session-25/capstone-complete
+**Branch**: session-26/capstone-complete
 
 ---
 
@@ -337,7 +365,7 @@ Your portfolio is done and documented. You can explain it. You're ready to show 
 
 ---
 
-## Phase H - Stretch (Sessions 26+) - Optional
+## Phase H - Stretch (Sessions 27+) - Optional
 
 After Phase G, the portfolio is complete. Phase H is optional. Choose one path based on your goals.
 
@@ -345,7 +373,7 @@ After Phase G, the portfolio is complete. Phase H is optional. Choose one path b
 
 If your goal is to move toward **product enablement roles**, apply the gates system to your professional work.
 
-**[ ] Session 26: Apply gates to XM Cyber docs**
+**[ ] Session 27: Apply gates to XM Cyber docs**
 
 Build 2 gates on your XM CEM Confluence work:
 - Gate 1: Audit XCD pages for style compliance (using xcd-doc-writer skill)
@@ -374,7 +402,7 @@ Build 2 gates on your XM CEM Confluence work:
 
 Build interactive or analysis tools to showcase hands-on AI collaboration.
 
-**[ ] Session 26: The audit script**
+**[ ] Session 27: The audit script**
 
 Crawl your live site and report on structure, broken links, readability.
 
@@ -385,7 +413,7 @@ Crawl your live site and report on structure, broken links, readability.
 
 **Why**: Shows you can spec → iterate → integrate AI-generated code.
 
-**[ ] Session 27: The MDX component**
+**[ ] Session 28: The MDX component**
 
 Interactive decision tree: "Is the grant direct or inherited?" → recommended action.
 
@@ -402,17 +430,17 @@ Interactive decision tree: "Is the grant direct or inherited?" → recommended a
 
 ### Path 3: Stop Here
 
-Your portfolio is complete at Session 25. You don't need Phase H.
+Your portfolio is complete at Session 26. You don't need Phase H.
 
 This is a valid endpoint: you've demonstrated system thinking, automation, and documentation skill. Everything else is polish.
 
 ---
 
-## Decision point: After Session 25
+## Decision point: After Session 26
 
 - **Highly recommended**: Do Path 1 (Scale to XM Cyber). It proves the system works professionally.
 - **If you have time and interest**: Do Path 2 (audit script + MDX). It's showcase work, not essential.
-- **If you're satisfied**: Stop at Session 25. The portfolio is done.
+- **If you're satisfied**: Stop at Session 26. The portfolio is done.
 
 ---
 
@@ -420,7 +448,7 @@ This is a valid endpoint: you've demonstrated system thinking, automation, and d
 
 | Metric | Value |
 |--------|-------|
-| **Sessions (core)** | 25 (Phase A–G) |
+| **Sessions (core)** | 26 (Phase A–G) |
 | **Sessions (optional)** | 1–2 (Phase H) |
 | **Total hours** | ~35–40 hours (core), 40–45 (with Phase H) |
 | **Comfortable pace** | 2–3 sessions/week = 8–10 weeks |
@@ -431,18 +459,13 @@ This is a valid endpoint: you've demonstrated system thinking, automation, and d
 
 ## Next immediate action
 
-**You are here**: Session 21 in progress. Complete by creating three files (templates provided).
+**You are here**: Sessions 21 and 22 done. Session 23 not started.
 
-**Session 21 task**: 
-1. Fill in GATES-DESIGN.md (gate design, criteria, test cases)
-2. Fill in gates-test.json (4 eval cases as test cases)
-3. Fill in GATES-CHANGELOG.md (first entry: gate designed)
-4. Commit all three
-
-**Your move**: Fill templates, commit, then start Session 22. Use the mini learning plan (Sessions 22–23 of the CI gates course) as your step-by-step guide.
+**Your move**: Start Session 23 (Validate Gates + MCP + LLM Documentation) whenever ready - see
+its full task breakdown above.
 
 ---
 
 Created: [date]  
-Last updated: Session 21 in progress  
+Last updated: Session 22 done (2026-08-19)  
 Branch: session-21/audit-gate-design
