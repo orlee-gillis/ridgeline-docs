@@ -18,8 +18,8 @@ banned word or a broken link is wasting a model call on something `grep` already
 ### 2. AI-advisory
 
 `review-docs.py`, run as the `review` job in `docs-ci.yml`. Posts a PR comment. Never fails the
-build (`continue-on-error: true`). Uses `claude-haiku-4-5` because the cost of being wrong is low
-- a human reads the comment and can ignore it.
+build (`continue-on-error: true`). Uses `claude-haiku-4-5` because the cost of being wrong is low,
+since a human reads the comment and can ignore it.
 
 Runs on any doc page **except** ones already covered by a genre-specific gate below (see
 `prompt-patterns.md` for how that exclusion works) - a page with its own dedicated check

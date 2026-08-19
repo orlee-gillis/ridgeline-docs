@@ -21,7 +21,7 @@ fi
 echo
 
 echo "=== 2/6 markdownlint ==="
-if npx --yes markdownlint-cli2 "eval-cases/**/*.md" "docs/**/*.md" > /tmp/verify-markdownlint.log 2>&1; then
+if npx --yes markdownlint-cli2 "eval-cases/**/*.md" "docs/**/*.md" ".claude/**/*.md" > /tmp/verify-markdownlint.log 2>&1; then
   echo "PASS"
 else
   echo "FAIL - see /tmp/verify-markdownlint.log"
@@ -32,7 +32,7 @@ echo
 
 echo "=== 3/6 Vale ==="
 if command -v vale > /dev/null; then
-  if vale eval-cases/ docs/ > /tmp/verify-vale.log 2>&1; then
+  if vale eval-cases/ docs/ .claude/ > /tmp/verify-vale.log 2>&1; then
     echo "PASS"
   else
     echo "FAIL - see /tmp/verify-vale.log"
