@@ -1,7 +1,7 @@
 # Build log
 
 Every time AI generated code or config in this repo: the prompt, what the model got wrong,
-and how I verified work I didn't write. Session 24 distils this into the README's "How I
+and how I verified work I didn't write. Session 25 distils this into the README's "How I
 built this" section.
 
 ## CLAUDE.md - written by Claude Code, August 6 2026

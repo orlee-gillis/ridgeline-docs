@@ -34,7 +34,7 @@ This is a portfolio project demonstrating system-level thinking about AI-assiste
 
 **Phase H** (Sessions 27+): Stretch - Apply or extend
 - **Optional**. After Phase G succeeds, choose one of these paths.
-- Path 1: Scale to XM Cyber (apply gates system professionally)
+- Path 1: Scale to real professional work (apply gates system professionally)
 - Path 2: Build tooling (audit script, interactive components)
 - Path 3: Skip—capstone is complete at Session 26
 
@@ -369,24 +369,26 @@ Your portfolio is done and documented. You can explain it. You're ready to show 
 
 After Phase G, the portfolio is complete. Phase H is optional. Choose one path based on your goals.
 
-### Path 1: Scale to XM Cyber (Product Enablement Angle) — Recommended
+### Path 1: Scale to Real Professional Work (Product Enablement Angle) — Recommended
 
-If your goal is to move toward **product enablement roles**, apply the gates system to your professional work.
+If your goal is to move toward **product enablement roles**, apply the gates system to your real
+professional documentation work. Keep this generic here - once it's real, that work and its
+tooling belong in your employer's own private repo, not this public one.
 
-**[ ] Session 27: Apply gates to XM Cyber docs**
+**[ ] Session 27: Apply gates to your real professional documentation**
 
-Build 2 gates on your XM CEM Confluence work:
-- Gate 1: Audit XCD pages for style compliance (using xcd-doc-writer skill)
-- Gate 2: Validate CIEM facts (using ciem-expert skill)
+Build 2 gates against your real professional documentation work:
+- Gate 1: Audit pages for style compliance, using your organization's own doc-writer skill
+- Gate 2: Validate domain facts, using your organization's own subject-matter-expert skill
 
 **What you'll do:**
-1. Set up `.github/workflows/` in the docs-as-code tracking repo (or create one)
+1. Set up `.github/workflows/` in your organization's own repo (or create one) - not this repo
 2. Adapt the gate architecture from Ridgeline (it's portable)
-3. Build 2 gates specific to XM CEM docs
-4. Document in GATES.md for XM Cyber context
+3. Build 2 gates specific to your organization's documentation
+4. Document the gates in your organization's own private records - not `GATES.md` here
 
 **Deliverable:**
-- 2 working gates on professional documentation
+- 2 working gates on real professional documentation, living in your employer's own private tooling
 - Proof the system scales beyond Ridgeline
 - Bridge from portfolio project to professional workflow
 
@@ -394,7 +396,7 @@ Build 2 gates on your XM CEM Confluence work:
 
 **Time**: ~2–3 hours
 
-**Next**: You have a system in both personal (Ridgeline) and professional (XM Cyber) contexts.
+**Next**: You have a system in both a personal portfolio context (Ridgeline) and a real professional context.
 
 ---
 
@@ -438,7 +440,7 @@ This is a valid endpoint: you've demonstrated system thinking, automation, and d
 
 ## Decision point: After Session 26
 
-- **Highly recommended**: Do Path 1 (Scale to XM Cyber). It proves the system works professionally.
+- **Highly recommended**: Do Path 1 (Scale to real professional work). It proves the system works professionally.
 - **If you have time and interest**: Do Path 2 (audit script + MDX). It's showcase work, not essential.
 - **If you're satisfied**: Stop at Session 26. The portfolio is done.
 
