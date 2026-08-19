@@ -56,3 +56,25 @@ in Session 21:
 
 Do not edit these skills during Sessions 19–20. Session 21 measures their output 
 against this baseline state. After Session 21, these skills are open for iteration.
+
+## Gates
+
+Three CI gates check pages against a genre's requirements: `validate-parent-report`,
+`validate-child-report`, `validate-workflow-methodology`. A page opts in by setting
+`template: parent-report` (or `child-report` / `workflow-methodology`) in its frontmatter - a
+page with no `template:` tag isn't checked against any genre, only the general advisory review.
+
+Genre requirements live in `ai-workflow/skills/ridgeline-doc-auditor/references/audit-checklist.md`.
+Before adding a new `template:` genre, confirm a real page actually needs it - see
+`.claude/gates-architecture.md` for why that matters and the full add-a-gate sequence. Status and
+history: `GATES.md`, `GATES-CHANGELOG.md`.
+
+## Skill triggers
+
+When a user's request matches one of these, load the corresponding skill before responding:
+
+| The user says something like... | Load |
+| --- | --- |
+| "review this page", "audit this", "what's wrong with X" | `ai-workflow/skills/ridgeline-doc-auditor/SKILL.md` |
+| "draft a page for X", "write documentation for X" | `ai-workflow/skills/ridgeline-doc-writer/SKILL.md` (frozen - see Hard rules) |
+| A factual question about Unused Access behavior | `ai-workflow/skills/unused-access-expert/SKILL.md` |

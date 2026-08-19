@@ -1,0 +1,22 @@
+{
+  "gate": "validate-parent-report",
+  "description": "Test cases for validate-parent-report.py. Run with: python .github/scripts/validate-parent-report.py --test-file parent-report-test.json",
+  "testCases": [
+    {
+      "id": "real-page",
+      "name": "unused-access-report.md (real, tagged template: parent-report)",
+      "type": "pass",
+      "filepath": "docs/unused-access-report.md",
+      "expectedSeverity": "none",
+      "notes": "The real page this genre's checklist section was grounded in. Should pass once the checklist section correctly describes it."
+    },
+    {
+      "id": "broken-fixture",
+      "name": "broken-parent-report.md (synthetic)",
+      "type": "fail",
+      "filepath": "eval-cases/broken-parent-report.md",
+      "expectedSeverity": "should-fix",
+      "notes": "Missing ordering explanation, 'what to do with a finding', and data freshness. No blocker-marked row is missing, so should-fix, not blocker."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "gate": "validate-workflow-methodology",
+  "description": "Test cases for validate-workflow-methodology.py. Run with: python .github/scripts/validate-workflow-methodology.py --test-file workflow-methodology-test.json",
+  "testCases": [
+    {
+      "id": "real-page",
+      "name": "apply-a-remediation.md (real, tagged template: workflow-methodology)",
+      "type": "pass",
+      "filepath": "docs/apply-a-remediation.md",
+      "expectedSeverity": ["none", "should-fix"],
+      "notes": "The real page this genre's checklist section was grounded in. Accepts either outcome: the page has several legitimate, correctly-flagged [VERIFY: ...] open items (e.g. which role can select Apply - tracked in ai-workflow/decisions/UAX-2841.md), and whether a properly-flagged placeholder counts as an incomplete prerequisite or as correctly handling an unknown is a genuine judgment call the model doesn't answer identically every run. Never blocker either way. Narrow this back to a single value once those items are resolved and the placeholders are removed."
+    },
+    {
+      "id": "broken-fixture",
+      "name": "broken-workflow-methodology.md (synthetic)",
+      "type": "fail",
+      "filepath": "eval-cases/broken-workflow-methodology.md",
+      "expectedSeverity": "blocker",
+      "notes": "No prerequisites, and no guarantee/safety statement about the fact that termination can't be undone - explicitly a blocker per the checklist."
+    }
+  ]
+}
