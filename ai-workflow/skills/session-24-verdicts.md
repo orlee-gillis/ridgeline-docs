@@ -25,7 +25,16 @@ pass and any resulting ADRs come after both skills are scored here.
 
 ## `unused-access-expert`
 
-*Pending - your independent pass not yet done.*
+| # | Dimension | Your score | Reason |
+| --- | --- | --- | --- |
+| 1 | Source hierarchy | 2 | Dedicated "Source hierarchy" heading with a 5-row ranked table (lines 29-37) - this is the concrete example of what a 2 looks like |
+| 2 | Findability | 0 | Same overlap as `doc-writer`'s Dimension 2 - the two skills' descriptions don't cleanly separate who should be selected |
+| 3 | Progressive disclosure | 0 | The "High-risk sections" section restates facts directly in the body (e.g., "§3 - Usage classification. Undetermined is not Unused...") rather than only citing the section and pointing to `knowledge-base.md` - body is acting as source of truth, not just a summary |
+| 4 | Boundaries and routing | 1 | Points to `doc-writer` ("Pair it with `doc-writer` whenever the output is a page"), but the pointer isn't reciprocal - same one-directional relationship `doc-writer` scored for this dimension |
+| 5 | Controlled vocabulary | 1 | Same shared fact as `doc-writer` - bundled glossary copies currently match, but no canonical file enforces it |
+| 6 | Grounding discipline | 2 | - |
+| 7 | Output correctness | 2 | The Source hierarchy table's rigor (verified behavior > shipped page > in-development note > knowledge base > planned note) supports factually correct output when paired with `doc-writer`, even though this skill doesn't independently produce gate-checked pages |
+| **Total** | | **8 / 14** | |
 
 ## Claude's pass
 
