@@ -289,7 +289,11 @@ verification pass that `roadmap.md` tracked as "Session 23b."
 3. Fix image sizing on `docs/apply-a-remediation.md` and remove its `[UNRELEASED]` block once its
    flags are closed.
 
-**Rubric**: `ai-workflow/skills/rubric.md`. Worked example: `rubric-example.md`.
+**Rubric**: `ai-workflow/skills/rubric.md`. Worked example: `rubric-example.md`. Neither file
+existed before Session 24, despite being referenced here as if they did - written as this
+session's actual first step, seven dimensions grounded in `docs-as-code/roadmap.md`'s framework
+table plus two new ones tied to this project's existing evidence (`[VERIFY]` resolution, the
+genre gates). Score both skills yourself against `rubric.md` before reading Claude's pass.
 
 **Deliverable:**
 - Rubric verdicts and ADRs for both skills
