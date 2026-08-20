@@ -29,7 +29,7 @@ unambiguous for a realistic conflict case. Score 0 if there's no stated preceden
 
 ### 2. Findability
 Does another skill (or a person skimming `CLAUDE.md`'s skill-triggers table) know when to reach for
-this skill vs. a sibling, from the name and description alone - without opening the file? Score 2
+this skill vs. a similar skill, from the name and description alone - without opening the file? Score 2
 if the trigger description is specific enough that a wrong selection would be surprising. Score 0
 if two skills could plausibly both claim the same request.
 

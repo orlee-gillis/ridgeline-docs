@@ -14,7 +14,7 @@ changelog entries from merged-PR titles.
 **Score: 1 (partial)**
 
 **Reason:** The skill's trigger description says "use this when writing about a release." That
-overlaps with a hypothetical sibling skill, `release-notes-writer`, which also claims "release"
+overlaps with a hypothetical similar skill, `release-notes-writer`, which also claims "release"
 language - nothing in either description distinguishes "changelog entry" (terse, one line per PR)
 from "release notes" (prose, grouped by theme, written for end users). A person or another skill
 reading just the two descriptions could reasonably route a request to either one.
