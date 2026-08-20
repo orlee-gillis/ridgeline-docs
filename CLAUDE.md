@@ -78,6 +78,7 @@ When a user's request matches one of these, load the corresponding skill before 
 | "review this page", "audit this", "what's wrong with X" | `ai-workflow/skills/ridgeline-doc-auditor/SKILL.md` |
 | "draft a page for X", "write documentation for X" | `ai-workflow/skills/ridgeline-doc-writer/SKILL.md` (frozen - see Hard rules) |
 | A factual question about Unused Access behavior | `ai-workflow/skills/unused-access-expert/SKILL.md` |
+| "make this sound less AI-generated", "check for AI writing patterns/slop" | `ai-workflow/skills/stop-slop/SKILL.md` (third-party, vendored - see `.claude/skill-selection.md`) |
 
 See `.claude/skill-selection.md` for the fuller reference - what each skill explicitly does *not*
 cover, the review-vs-draft ambiguity between the auditor and writer skills, and when to pair
