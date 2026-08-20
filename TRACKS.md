@@ -239,11 +239,12 @@ not a second build here - see that file and `docs-as-code/TRACKS.md` row 11.
 - Document the pattern in `.claude/mcp-integration.md`: what MCP adds here, what it doesn't, why
   it's scoped away from CI
 
-**Part C: Sketch Phase H's agentic gates (plan only, don't build)** (~30 min)
-- Phase H's stretch idea is gates that fix issues automatically, not just report them
-- Write a short design note - what a fix-capable gate would need (write access, a review step, a
-  rollback path) - as a decision doc, not code
-- Stays a plan for Phase H; Session 23 doesn't implement it
+**Part C: Sketch Phase H's agentic gates (plan only, don't build)** ✅ - `GATES-AGENTIC-DESIGN.md`
+- Design sketch covers: write access scoped to a proposal PR (never a direct commit), a mandatory
+  review step with no auto-merge at any confidence level, a rollback path (isolated commits, clean
+  revert), and a narrow confidence/scope gate so it never proposes a fix for anything requiring
+  judgment (e.g. an open `[VERIFY]`)
+- Stays a plan for Phase H; nothing here is implemented
 
 **Deliverable:**
 - GATES-METRICS.md with precision/recall for all three gates
