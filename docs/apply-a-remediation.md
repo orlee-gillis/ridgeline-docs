@@ -5,9 +5,11 @@ sidebar_position: 40
 template: workflow-methodology
 ---
 
-`[UNRELEASED]` This page describes behavior that has not shipped. Its source story is still in review,
-two of its sub-tasks are unfinished, and the feature has no final name. Do not publish it until the
-release ships and the open items below are closed.
+:::warning
+`[UNRELEASED]` This page describes behavior that has not shipped. Its source story is still in
+review and the feature has no final name. Do not publish it until the release ships and the open
+items below are closed.
+:::
 
 The Unused Access report and the Access tab identify integrations holding access they never use, and
 recommend a narrower access grant that keeps the integration working. Until now, carrying out that
