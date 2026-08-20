@@ -1,5 +1,3 @@
-# SKILL.md - Paste into ridgeline-docs/ai-workflow/skills/unused-access-expert/SKILL.md
-
 ---
 name: unused-access-expert
 description: Subject-matter expert on Ridgeline's Unused Access feature — the report, the Access tab investigation surface, access grant concepts, usage classification, and remediation behavior. Supplies factual accuracy for documentation. Pair with doc-writer for drafting.
@@ -20,11 +18,13 @@ The sourced facts live in the bundled references. Pull from them rather than fro
 
 ## High-risk sections
 
-These sections have the highest error risk:
+These sections have the highest error risk - read them in full in `knowledge-base.md` before
+writing or reviewing anything that touches them, rather than relying on a summary here:
 
-- **§3 - Usage classification.** Undetermined is not Unused. Undetermined grants are strictly treated as Used, so they are never removed. Conflating the two misrepresents the feature's core safety guarantee. This is the most damaging error possible.
-- **§2 - Category asymmetry.** Only Platform grants get full usage analysis. Directory and App-level grants get posture-based guidance. Attributing usage data to them is wrong in a way that reads as correct.
-- **§6 - Remediation invariants.** Scope is always preserved and team membership is always preserved. Never describe remediation as narrowing scope or removing anyone from a team.
+- **§3 - Usage classification.** The most damaging error possible if conflated.
+- **§2 - Category asymmetry.** Wrong in a way that reads as correct if misattributed.
+- **§6 - Remediation invariants.** Never describe remediation as narrowing scope or removing anyone
+  from a team.
 
 ## Source hierarchy — what wins when sources conflict
 

@@ -78,7 +78,7 @@ written decision rather than an accident of what each tool happened to catch.
 ## 4. Route to a genre before writing anything
 
 **Problem.** One flexible template produces pages that are all slightly wrong. A
-navigation hub, a report deep-dive, a troubleshooting page, and a glossary entry have
+navigation hub, a parent-report, a troubleshooting page, and a glossary entry have
 different section orders because they answer different questions, and averaging them
 serves none.
 

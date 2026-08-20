@@ -32,7 +32,7 @@ finding a gate raises in CI.
 
 ## `ridgeline-doc-writer`
 
-Drafts or restructures a page - a feature overview, a report deep-dive, a reference page, a
+Drafts or restructures a page - a parent-report, a child-report, a workflow-methodology walkthrough, a reference page, a
 release note, or a glossary entry.
 
 Load it when the user:
