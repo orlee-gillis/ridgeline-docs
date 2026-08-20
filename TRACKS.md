@@ -319,6 +319,11 @@ genre gates). Score both skills yourself against `rubric.md` before reading Clau
   not removed, since the feature's name is still marketing's open call
 - Added `stop-slop` as a 4th interactive skill (vendored, MIT-licensed, third-party) for catching
   AI writing tells in prose - documented in `.claude/skill-selection.md`
+- **Follow-up, added after Session 25:** the revisions above were scored and reviewed statically
+  but never actually run - the same gap that let Session 21's gate design stay broken for a full
+  session. Fixed: three concrete functional tests confirm the routing fix, the findability fix, and
+  `unused-access-expert`'s frontmatter all work in practice, not just on paper - see
+  `ai-workflow/skills/session-24-functional-test.md`.
 
 **Not done this session** (genuinely out of scope, not silently dropped): image sizing on
 `apply-a-remediation.md` - no concrete issue was ever described anywhere for what "sizing" needed
