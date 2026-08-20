@@ -222,14 +222,14 @@ premise with three working gates (`validate-parent-report`, `validate-child-repo
 from this session: it now belongs to `documenting-the-agentic-stack.md` Week 3 in `docs-as-code`,
 not a second build here - see that file and `docs-as-code/TRACKS.md` row 11.
 
-**Part A: Validate the three real gates** (~1 hour)
-- Run all three genre gates (`--test-file` mode, then against a handful of past PRs/drafts) and
-  confirm they still catch what they're supposed to
-- Measure precision (of failures, how many are real?) and recall (of real problems, how many get
-  caught) for each gate
-- Record metrics in GATES-METRICS.md
-- Decision: is precision >80%, recall >70% for each? If not, adjust the prompt in `gate_common.py`
-  and re-run
+**Part A: Validate the three real gates** ✅ - `GATES-METRICS.md`
+- Ran all three genre gates via `./verify.sh`'s `--test-file` mode: 6/6 test cases passed (2 per
+  gate - the real tagged page and a deliberately-broken synthetic fixture)
+- Precision 100% (3/3), recall 100% (3/3) on this test set - clears the >80%/>70% bar, though the
+  sample is small (n=2 per gate); see `GATES-METRICS.md`'s sample-size caveat and follow-up
+- Corroborated by two real findings the gates already caught in production before this metrics
+  run existed (the `unused-access-report.md` data-freshness contradiction, the correctly-flagged
+  `apply-a-remediation.md` `[VERIFY]` item) - see `docs/meta/ci-gates.md`
 
 **Part B: MCP exploration - interactive skills only** (~1 hour)
 - Scope: MCP for the `unused-access-expert`/`ridgeline-doc-auditor` skills at chat time, not the
