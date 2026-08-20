@@ -15,6 +15,12 @@ tagged `template: parent-report` / `child-report` / `workflow-methodology` alrea
 dedicated review against that genre's real requirements. Reviewing it again here too would
 mean two separately-worded AI comments about the same underlying issue on the same file -
 so files carrying one of those tags are stripped from the diff before this review runs.
+
+Also incorporates the core checks from `ai-workflow/skills/stop-slop/SKILL.md` (AI writing
+tells - filler phrases, passive voice, formulaic structures) rather than running that skill
+as a second automated bot. One advisory voice, broader criteria, no duplicate comments. The
+full skill (phrase lists, structure catalog, before/after examples) stays available as an
+interactive pass for a deeper look than this summary check gives.
 """
 
 import json
@@ -78,6 +84,11 @@ Look for:
   explanation.
 - A statement that contradicts something else in the diff.
 - An instruction the reader could not act on, because it names no control, or no outcome.
+- AI writing tells: throat-clearing openers, needless adverbs, passive voice, a vague
+  declarative standing in for a specific claim ("the reasons are structural"), an inanimate
+  thing performing a human action ("the decision emerges"), a "not X, it's Y" contrast doing
+  the work a direct statement should, or an em dash. Flag the pattern and quote the sentence;
+  do not rewrite it.
 
 Do not comment on:
 
@@ -133,7 +144,9 @@ def post_comment(text: str) -> None:
         "disagreeing with it is a legitimate outcome. Style, structure, and links are "
         "checked by the deterministic gates instead. Pages tagged `template: parent-report` / "
         "`child-report` / `workflow-methodology` are reviewed by their own dedicated gate "
-        "instead of here, to avoid two overlapping AI comments on the same file.*"
+        "instead of here, to avoid two overlapping AI comments on the same file. Also checks "
+        "for AI writing tells (see `ai-workflow/skills/stop-slop/SKILL.md`) - ask for that "
+        "skill directly for a deeper pass than this summary check gives.*"
     )
 
     req = urllib.request.Request(

@@ -81,7 +81,8 @@ hard-to-reverse step (missing guarantee is a `blocker`), limits and known gaps.
 
 ## review-docs (advisory)
 
-**Status**: Live (pre-existing, unchanged in purpose - Session 22 added an exclusion, see below).
+**Status**: Live (pre-existing, unchanged in purpose - Session 22 added an exclusion; Session 24
+folded in AI-writing-tell checks, see below).
 
 **Tier**: AI-advisory - never blocks (`continue-on-error: true`).
 
@@ -90,7 +91,10 @@ hard-to-reverse step (missing guarantee is a `blocker`), limits and known gaps.
 instead, so they don't get a second, overlapping AI comment on the same file.
 
 **Checks**: Unsourced claims, purpose drift, term inconsistency, contradictions, unactionable
-instructions. Explicitly does not repeat what the deterministic gates already cover.
+instructions, and AI writing tells (filler phrases, passive voice, vague declaratives, em dashes -
+the core checks from `ai-workflow/skills/stop-slop/SKILL.md`, folded in here rather than run as a
+second automated bot). Explicitly does not repeat what the deterministic gates already cover.
+For a deeper pass than this summary check gives, ask for the `stop-slop` skill directly.
 
 **Model**: `claude-haiku-4-5`.
 

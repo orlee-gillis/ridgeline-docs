@@ -72,21 +72,22 @@ Third-party skill, vendored unmodified from
 [hardikpandya/stop-slop](https://github.com/hardikpandya/stop-slop) (MIT license, see
 `ai-workflow/skills/stop-slop/LICENSE`). Not authored for this project - added because it does one
 narrow thing well: catching AI writing tells (filler phrases, formulaic structures, passive voice,
-vague declaratives) that none of the other three skills or the CI gates check for. `doc-writer`
-checks genre structure, `doc-auditor` checks genre fit and sourcing, the gates check both against a
-written standard - none of them read for *how AI-generated the prose sounds*.
+vague declaratives) that none of the other three skills fully check for. `doc-writer` checks genre
+structure, `doc-auditor` checks genre fit and sourcing, the gates check both against a written
+standard - none of them read for *how AI-generated the prose sounds*, in depth.
 
 Load it when the user:
 
 - Says something like "make this sound less AI-generated," "check for AI slop," or "does this read
   as written by a person."
-- Is doing a final pass on drafted prose before it ships - a natural last step after `doc-writer`
-  produces a draft and before it's handed off for the human edit.
+- Wants a deeper pass than the automated check gives - the full phrase list, structure catalog, and
+  before/after examples in `references/`, not just the summary version.
 
-**Not a CI gate.** This stays an interactive-only skill, same boundary as the rest of this project's
-"AI-in-CI design": gates stay deterministic scripts, not agents with tool access. Scoring prose for
-"does this sound human" is exactly the kind of subjective judgment call that belongs with a person
-in the loop, not an automated blocking check.
+**Not a separate CI gate - its core checks are folded into `review-docs.py`'s existing advisory
+review instead** (Session 24), so every PR already gets a lightweight pass for AI writing tells
+without a second automated bot commenting on the same file. This skill is for the deeper,
+interactive version of that same check - reaching for the full reference material `review-docs.py`
+deliberately doesn't carry into a CI prompt.
 
 ## When nothing matches
 
