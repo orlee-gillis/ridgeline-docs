@@ -38,4 +38,30 @@ pass and any resulting ADRs come after both skills are scored here.
 
 ## Claude's pass
 
-*Pending - happens after both skills above are scored.*
+### `ridgeline-doc-writer`
+
+| # | Dimension | Your score | Claude's score | Agree? |
+| --- | --- | --- | --- | --- |
+| 1 | Source hierarchy | 1 | 2 | No - see `ai-workflow/decisions/session-24-rubric-disagreements.md` #1 |
+| 2 | Findability | 0 | 0 | Yes |
+| 3 | Progressive disclosure | 1 | 1 | Yes |
+| 4 | Boundaries and routing | 1 | 1 | Same score, different reason - `unused-access-expert` pairing is reciprocal; the real gap is `doc-auditor`, unacknowledged in either skill file |
+| 5 | Controlled vocabulary | 1 | 1 | Yes |
+| 6 | Grounding discipline | 2 | 2 | Yes |
+| 7 | Output correctness | 0 | 0 | Yes |
+| **Total** | | **6/14** | **7/14** | |
+
+### `unused-access-expert`
+
+| # | Dimension | Your score | Claude's score | Agree? |
+| --- | --- | --- | --- | --- |
+| 1 | Source hierarchy | 2 | 2 | Yes |
+| 2 | Findability | 0 | 0 | Yes |
+| 3 | Progressive disclosure | 0 | 1 | No - see `ai-workflow/decisions/session-24-rubric-disagreements.md` #2 |
+| 4 | Boundaries and routing | 1 | 1 | Yes |
+| 5 | Controlled vocabulary | 1 | 1 | Yes |
+| 6 | Grounding discipline | 2 | 2 | Yes |
+| 7 | Output correctness | 2 | N/A | No - see `ai-workflow/decisions/session-24-rubric-disagreements.md` #3 |
+| **Total** | | **8/14** | **7/12** (Dimension 7 excluded) | |
+
+Three disagreements, all written up as ADRs: `ai-workflow/decisions/session-24-rubric-disagreements.md`.
