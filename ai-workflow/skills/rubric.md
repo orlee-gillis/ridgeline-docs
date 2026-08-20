@@ -22,7 +22,7 @@ worse than one that uses it.
 | 2 | **Findability** — can the right skill get picked from its description alone | Two skills could plausibly both claim the same request | Description narrows it down, but a real ambiguity remains | A wrong selection, reading the description alone, would be surprising |
 | 3 | **Progressive disclosure** — lean body, detail one level down | Body tries to be both the summary and the source of truth | Some facts pushed to `references/`, some still duplicated in the body | Body reads in a couple of minutes; every checkable fact has a clear reference |
 | 4 | **Boundaries and routing** — what this skill explicitly doesn't cover | Scope only implied by what's absent | One-directional scope note (says what it's not, no pointer back) | Explicit, reciprocal pairing: each skill names the other and when to switch |
-| 5 | **Controlled vocabulary** — one term, one meaning | Skill bundles its own copy of terms that could drift from the public glossary | Points at the glossary for most terms, but keeps some local definitions | No terminology conflicts with `ai-workflow/glossary.md`; glossary is the enforcement mechanism |
+| 5 | **Controlled vocabulary** — one term, one meaning | The two bundled glossary copies (one per skill) disagree with each other, or a skill's own body defines a term differently from its glossary copy | Copies currently agree, but nothing enforces that - no canonical file exists, just two copies that happen to match | Same as "1" - there is no way to reach a real "2" here until a single canonical glossary exists; see the note below |
 | 6 | **Grounding discipline** — flags what it doesn't know instead of inventing | No instruction to flag uncertainty at all | Flags inconsistently; some confident inventions surfaced in `[VERIFY]` resolution | `[VERIFY]` instruction is specific; invented-and-uncaught inaccuracies are rare to absent in the resolved set |
 | 7 | **Output correctness** — does its output pass the real genre gate | Gate severity `blocker`, or the page is missing the `template:` tag the gate needs | Gate severity `should-fix` | Gate severity `none` on a representative sample |
 
@@ -42,6 +42,13 @@ attached.
 - **Dimension 7** is the one dimension with a hard, already-built measurement tool: run the
   relevant gate (`validate-parent-report` / `validate-child-report` / `validate-workflow-methodology`)
   against a page the skill produced or edited, and read its severity directly.
+- **Dimension 5 has no real path to a 2 right now.** There is no canonical glossary file - only
+  two bundled copies, one per skill (`ridgeline-doc-writer/references/glossary.md` and
+  `unused-access-expert/references/glossary.md`), confirmed byte-for-byte identical as of Session
+  24 but with nothing enforcing that going forward. This is the same drift risk already flagged in
+  `docs-as-code/roadmap.md`'s "glossary reconciliation" TODO. Creating a single upstream copy both
+  skills point to (rather than bundle) is the fix that would unlock an actual 2 - worth raising as
+  a finding/ADR from this audit, not something to silently work around in the score.
 
 ## How to use this
 
