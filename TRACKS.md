@@ -10,9 +10,9 @@ Each session ends with a Next line: the exact thing that happens after it, and w
 
 ## Resume here
 
-**Last worked**: Session 24 (rubric, skill audits, both skills revised, all 18 `[VERIFY]` flags resolved, stop-slop skill added) — **DONE** [x]
+**Last worked**: Session 25 (README rewritten as a guided tour) — **DONE** [x]
 
-**Then**: Session 25 - README tour
+**Then**: Session 26 - Defense (interview practice)
 
 ---
 
@@ -334,29 +334,18 @@ fixing; worth a fresh look if it resurfaces as a real problem.
 
 The portfolio is now technically complete. Phase G is about narrative: making it clear what you built and why it matters.
 
-### [ ] Session 25: README Tour (The Guided Narrative)
+### [x] Session 25: README Tour (The Guided Narrative) ✅
 
 Your repo contains all the evidence. The README is the tour guide.
 
-**What you'll do:**
-- Rewrite the repo README as a guided tour
-- Link every artifact in narrative order: legacy → audit → improved → notes → draft → final → gates → skills stage
-- For each artifact, explain what it proves:
-  - Before/after pages → editorial judgment
-  - Drafting prompt + flagged draft + final edit → AI authoring skill
-  - Vale rules, markdownlint, link check → deterministic validation
-  - Advisory review workflow → AI as collaborator
-  - Frozen skills, baselines, the three genre gates, `GATES-METRICS.md` → measurement + automation
-  - CLAUDE.md, `.claude/` docs, `GATES-AGENTIC-DESIGN.md` → infrastructure thinking
-
-- Make it readable in 5 minutes: someone visiting the repo should understand what you built without reading every file
-
-**Deliverable:**
-- Updated README.md that serves as a guided tour
-- Every major artifact linked and contextualized
-- Clear narrative: "Here's what I built and why"
-
-**Time**: ~1.5–2 hours
+**Delivered:**
+- Rewrote `README.md`: a positioning statement, then the pipeline in narrative order (legacy audit
+  → improved pages → AI-assisted drafting → CI gates → skills measured and improved), each step
+  linking its real artifact and stating what it proves
+- Added a "How I built this" pointer to `ai-workflow/build-log.md`, per that file's own existing
+  plan to be distilled here
+- Setup instructions kept, moved after the narrative instead of leading with it
+- Every link verified against a real file; build, markdownlint, and Vale all clean
 
 **Next**: Session 26 - Defense (interview practice)
 
@@ -490,13 +479,13 @@ This is a valid endpoint: you've demonstrated system thinking, automation, and d
 
 ## Next immediate action
 
-**You are here**: Sessions 21-24 done (Session 23's MCP exploration deferred as a nice-to-have, not
-blocking). Phase F - Skills automation - is complete.
+**You are here**: Sessions 21-25 done (Session 23's MCP exploration deferred as a nice-to-have, not
+blocking). Phase F - Skills automation - is complete; Phase G - Capstone - is underway.
 
-**Your move**: Start Session 25 (README Tour) whenever ready - see its full task breakdown above.
+**Your move**: Start Session 26 (The Defense) whenever ready - see its full task breakdown above.
 
 ---
 
 Created: [date]  
-Last updated: Session 24 done (2026-08-20)  
-Branch: session-24/skill-rubric
+Last updated: Session 25 done (2026-08-20)  
+Branch: session-25/readme-tour

@@ -1,17 +1,65 @@
 # ridgeline-docs
 
-Customer documentation for **Ridgeline**, a fictional security product - built as a public docs-as-code portfolio artifact.
+A public portfolio artifact: customer documentation for **Ridgeline**, a fictional cloud security
+product, built end to end as a docs-as-code pipeline - legacy audit, AI-assisted drafting, CI
+quality gates, and a measured, evidence-based improvement of the AI skills that produce the docs.
+Nothing described in the docs is a real product; the pipeline and the evidence around it are real.
 
-The pipeline: Markdown source in `docs/`, pull-request review, CI quality gates, automatic deployment to GitHub Pages. The `ai-workflow/` folder preserves the AI-assisted authoring artifacts (inputs, prompts, flagged drafts, finals) so the editorial story is visible in the repo history.
+This README is a guided tour. Each section below links the real artifact and says what it proves -
+read top to bottom for the whole story, or jump to any one piece.
+
+## The pipeline
+
+1. **Legacy audit** - [`ai-workflow/legacy/`](ai-workflow/legacy/) holds the "before" pages:
+   fictionalized from real documentation, deliberately unedited. [`ai-workflow/audits/`](ai-workflow/audits/)
+   is what got flagged before anything was rewritten. **Proves:** editorial judgment - assessing
+   existing content against a standard before touching it.
+2. **Improved pages** - [`docs/what-changed.md`](docs/what-changed.md) is the before/after diff
+   with its provenance stated plainly. **Proves:** the improvement is demonstrable, not asserted.
+3. **AI-assisted drafting** - [`ai-workflow/inputs/`](ai-workflow/inputs/) (the raw feature note),
+   [`ai-workflow/prompts/`](ai-workflow/prompts/) (the drafting prompt, versioned), and
+   [`ai-workflow/drafts/`](ai-workflow/drafts/) (the AI's first draft, every unverified claim
+   flagged `[VERIFY: ...]`) feed into the shipped page,
+   [`docs/apply-a-remediation.md`](docs/apply-a-remediation.md). The human edit is its own commit
+   in [PR #5](https://github.com/orlee-gillis/ridgeline-docs/pull/5), so the editorial pass is
+   visible as a diff, not just described. **Proves:** a disciplined AI-drafting workflow where the
+   model flags what it doesn't know instead of inventing it, and the human edit is auditable.
+4. **CI quality gates** - three tiers, documented in [`GATES.md`](GATES.md) and
+   [`docs/meta/ci-gates.md`](docs/meta/ci-gates.md): deterministic checks (Vale, markdownlint, link
+   check, build), three genre-specific AI gates grounded in real pages
+   (`validate-parent-report`/`child-report`/`workflow-methodology`), and an advisory AI reviewer
+   that never blocks. [`GATES-CHANGELOG.md`](GATES-CHANGELOG.md) is the honest record of a real
+   correction: the first version of this gate system was built on an unverified premise and stayed
+   broken, silently, for a full session before anyone checked it against real content.
+   **Proves:** the judgment call of what should block a merge versus what should only advise, and
+   the discipline to catch and document your own mistake rather than bury it.
+5. **Skills, measured and improved** - [`ai-workflow/skills/`](ai-workflow/skills/) holds four
+   Claude Skills: `ridgeline-doc-writer` and `unused-access-expert` (drafting and fact-checking,
+   designed to pair rather than compete), `ridgeline-doc-auditor` (review, never drafting), and
+   `stop-slop` (a vendored, MIT-licensed skill for catching AI writing tells). The two baseline
+   skills were audited against a seven-dimension rubric
+   ([`rubric.md`](ai-workflow/skills/rubric.md)), scored independently, then compared
+   ([`session-24-verdicts.md`](ai-workflow/skills/session-24-verdicts.md)) - disagreements written
+   up as ADRs ([`session-24-rubric-disagreements.md`](ai-workflow/decisions/session-24-rubric-disagreements.md))
+   rather than averaged away. The audit caught a real bug: the drafting skill's routing genres had
+   drifted out of sync with the actual CI gates, so its drafts would never have been checked at
+   all. **Proves:** measuring AI tooling quality with a repeatable method, not a vibe - and using
+   that measurement to find and fix a real defect.
+
+## How I built this
+
+[`ai-workflow/build-log.md`](ai-workflow/build-log.md) logs every time AI generated code or config
+in this repo: the prompt, what the model got wrong, and how I verified work I didn't write myself.
 
 ## Repo layout
 
 | Path | Purpose |
 |---|---|
 | `docs/` | Published pages (Docusaurus source of truth) |
-| `ai-workflow/` | AI-assisted authoring artifacts - see its README |
+| `ai-workflow/` | AI-assisted authoring artifacts - see [its own README](ai-workflow/README.md) |
 | `styles/Ridgeline/` | Custom Vale rules (the style guide as code) |
-| `.github/workflows/` | `docs-ci.yml` (blocking gates), `deploy.yml` (Pages deploy) |
+| `.github/workflows/` | `docs-ci.yml` (gates), `deploy.yml` (Pages deploy) |
+| `.github/scripts/` | The gate scripts and the advisory reviewer |
 
 ## Setup (browser-only)
 
