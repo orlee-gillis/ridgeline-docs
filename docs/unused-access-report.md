@@ -44,12 +44,13 @@ The cards across the top of the report summarize its scope and contents.
 | Card | What it shows |
 | --- | --- |
 | **Report scope** | Which cloud platform the integrations sit in, and how many organizations and workspaces are actively monitored |
-| **Integration count** | How many integrations are in the report, and how many are highly privileged |
-| **Service account count** | How many non-human integrations are in the report, covering both workspace-assigned and system-assigned service accounts, and how many are highly privileged |
-| **Team count** | How many teams appear in the report, and how many are highly privileged |
+| **Integration count** | How many integrations are in the report, and how many are High-impact |
+| **Service account count** | How many non-human integrations are in the report, covering both workspace-assigned and system-assigned service accounts, and how many are High-impact |
+| **Team count** | How many teams appear in the report, and how many are High-impact |
 
-Integrations carrying broad administrative roles are labeled **Highly privileged**.
-`[VERIFY: exact criteria for the Highly privileged label]`
+Integrations carrying broad administrative roles are labeled **High-impact**: at least one of the
+integration's Platform grants includes write access rights at the Organization or Workspace group
+scope level - the two scope levels whose misuse would affect the widest range of resources.
 
 ## Integration table
 
@@ -61,7 +62,7 @@ The table lists your integrations in priority order.
 | --- | --- |
 | **Integration name** | Name of the integration. Opens the integration card |
 | **Integration type** | Type of integration, including **Service account** |
-| **Highly privileged** | Whether the integration carries broad administrative access |
+| **High-impact** | Whether the integration carries broad administrative access |
 | **Reach score** | How much of the environment the integration can affect. Primary sort |
 | **Accessible services** | How many services the integration can reach |
 | **Accessible resources** | How many individual resources it can reach within those services |
@@ -84,7 +85,10 @@ remediation advice never removes them. **Undetermined** is not a form of **Unuse
 - **Narrow the list.** Click the filter icon on a column header and choose the values to keep. To
   see only service accounts, filter **Integration type** to **Service account**.
 - **Export the data.** Click the export icon to download a CSV. Applying filters first exports only
-  the filtered rows. `[VERIFY: exported column set]`
+  the filtered rows. The export mirrors the visible table columns exactly - Integration name,
+  Integration type, High-impact, Reach score, Accessible services, Accessible resources, Access
+  right usage, Critical resources - plus the integration's unique ID as an additional column, for
+  cross-referencing the export against the platform's own records.
 
 ## Working a finding
 
@@ -110,6 +114,4 @@ after the next one.
 - [ ] `[SCREENSHOT: report overview cards]` - cropped
 - [ ] `[SCREENSHOT: integration table header and rows]` - cropped
 - [ ] `[SCREENSHOT: full report]`
-- [ ] `[VERIFY: exact criteria for the Highly privileged label]`
-- [ ] `[VERIFY: exported CSV column set]`
 - [ ] Confirm whether the 90-day usage window is configurable by the reader
