@@ -28,12 +28,24 @@ ADRs in `ai-workflow/decisions/session-24-rubric-disagreements.md`, linked inlin
 | 6 | Grounding discipline | 2 | - | 2 | Agree |
 | 7 | Output correctness | 2 | The Source hierarchy table's rigor supports factually correct output when paired with `doc-writer`, even though this skill never produces a page alone | N/A | The rubric's own wording presupposes the skill produces a page - this one structurally never does alone, so the dimension doesn't apply; scoring it anyway makes the two skills' totals look comparable when they aren't - see [ADR #3](../decisions/session-24-rubric-disagreements.md#3) |
 
-## Standalone findings (not rubric scores, bugs to fix during revision)
+## Standalone findings (not rubric scores, bugs to fix during revision) - all fixed
 
-- `unused-access-expert/SKILL.md` has a stray line above its real frontmatter -
-  `# SKILL.md - Paste into ridgeline-docs/ai-workflow/skills/unused-access-expert/SKILL.md` - an
-  H1 heading with no `description:` field, a leftover copy-paste artifact, not part of the actual
-  frontmatter block.
-- `ridgeline-doc-writer`'s "Route first: pick the genre" section (lines 40-60) still uses five old
-  genres (Feature overview, Report deep-dive, Reference page, Release note, Glossary entry) that
-  don't map to the three real `template:` genres the gates check for.
+- ~~`unused-access-expert/SKILL.md` has a stray line above its real frontmatter~~ - removed.
+- ~~`ridgeline-doc-writer`'s "Route first: pick the genre" section still uses five old genres that
+  don't map to the three real `template:` genres~~ - rewritten to use `parent-report`,
+  `child-report`, `workflow-methodology` (with `reference page`, `release note`, `glossary entry`
+  kept as non-gate-checked options). New templates `child-report.md` and
+  `workflow-methodology.md` added, grounded in the real pages' structure; `report-page.md` renamed
+  to `parent-report.md`.
+
+## Revisions made (this session)
+
+- `ridgeline-doc-writer`: routing genres fixed (Dimension 7), frontmatter description no longer
+  claims "review"/"audit" as its own triggers (Dimension 2), added `## Source hierarchy` heading
+  (Dimension 1 disagreement resolution).
+- `unused-access-expert`: stray frontmatter line removed, "High-risk sections" de-duplicated to
+  citations only (Dimension 3 disagreement resolution).
+- `.claude/skill-selection.md` and `docs/meta/skill-architecture.md` updated to match the real
+  genre names.
+
+Re-scoring against the revised skills happens in Session 26, per `rubric.md`'s own instructions.
