@@ -2,9 +2,10 @@
 title: About the <Report name> report
 description: What the <Report name> report includes, how it is ordered, and what to do with a finding.
 sidebar_position: <10 / 20 / 30 ...>
+template: parent-report
 ---
 
-<!-- REPORT DEEP-DIVE TEMPLATE
+<!-- PARENT-REPORT TEMPLATE
      Purpose: a reader looking at this report right now, deciding whether a row deserves their
      attention and what to do about it.
      The three questions this genre must answer, in this order: why is this row here, why is it near

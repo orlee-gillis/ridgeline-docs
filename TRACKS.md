@@ -10,9 +10,9 @@ Each session ends with a Next line: the exact thing that happens after it, and w
 
 ## Resume here
 
-**Last worked**: Session 23 (validate the three gates, sketch agentic-gates design; MCP exploration deferred) — **DONE** [x]
+**Last worked**: Session 24 (rubric, skill audits, both skills revised, all 18 `[VERIFY]` flags resolved, stop-slop skill added) — **DONE** [x]
 
-**Then**: Session 24 - Audit and improve the skills
+**Then**: Session 25 - README tour
 
 ---
 
@@ -105,7 +105,7 @@ Build deterministic and advisory validation gates. Automate quality checks.
 
 ---
 
-## Phase F - Skills automation - sessions 19-23
+## Phase F - Skills automation - sessions 19-24
 
 The portfolio's differentiating stage: not "I used AI to write docs" but "I built the AI's instructions, measured them through automated gates, and improved them on evidence."
 
@@ -271,7 +271,7 @@ file and `docs-as-code/TRACKS.md` row 11.
 
 ---
 
-### [ ] Session 24: Audit and Improve the Skills
+### [x] Session 24: Audit and Improve the Skills ✅
 
 Audit the two frozen baseline skills (`ridgeline-doc-writer`, `unused-access-expert`) against the
 full seven-dimension rubric, then improve them. This session was originally tracked in
@@ -289,13 +289,40 @@ verification pass that `roadmap.md` tracked as "Session 23b."
 3. Fix image sizing on `docs/apply-a-remediation.md` and remove its `[UNRELEASED]` block once its
    flags are closed.
 
-**Rubric**: `ai-workflow/skills/rubric.md`. Worked example: `rubric-example.md`.
+**Rubric**: `ai-workflow/skills/rubric.md`. Worked example: `rubric-example.md`. Neither file
+existed before Session 24, despite being referenced here as if they did - written as this
+session's actual first step, seven dimensions grounded in `docs-as-code/roadmap.md`'s framework
+table plus two new ones tied to this project's existing evidence (`[VERIFY]` resolution, the
+genre gates). Score both skills yourself against `rubric.md` before reading Claude's pass.
 
-**Deliverable:**
-- Rubric verdicts and ADRs for both skills
-- Revised `ridgeline-doc-writer` and `unused-access-expert` skills
-- Every `[VERIFY]` flag in `docs/` resolved and categorized
-- `apply-a-remediation.md` cleaned up (image sizing, `[UNRELEASED]` block removed)
+**Delivered:**
+- Rubric written (`ai-workflow/skills/rubric.md`, `rubric-example.md`) - didn't exist before this
+  session despite being referenced as if it did
+- Rubric verdicts for both skills, independently scored, then compared: `ridgeline-doc-writer`
+  6/14 (yours) vs. 7/14 (Claude's); `unused-access-expert` 8/14 vs. 7/12 (Dimension 7 excluded as
+  not applicable) - see `ai-workflow/skills/session-24-verdicts.md`
+- Three scoring disagreements written up as ADRs, each with a concrete revision action - see
+  `ai-workflow/decisions/session-24-rubric-disagreements.md`
+- Both skills revised: `ridgeline-doc-writer`'s stale five-genre routing replaced with the three
+  real genres (fixing a bug where drafts wouldn't carry a `template:` tag at all), its findability
+  overlap with `doc-auditor` fixed, a `## Source hierarchy` heading added; `unused-access-expert`'s
+  stray frontmatter artifact removed, its duplicated "High-risk sections" facts replaced with
+  citations. Two new templates built (`child-report.md`, `workflow-methodology.md`), one renamed
+  (`report-page.md` → `parent-report.md`)
+- All 18 `[VERIFY]` flags across `docs/` resolved and categorized in `ai-workflow/decisions/UAX-2841.md`
+  (legitimate gap / model timidity / confident invention) - including renaming the "Highly
+  privileged" label to "High-impact" with a real definition, since the original term is real
+  professional terminology that doesn't belong in this public repo
+- Page titles fixed: dropped "About the..." from `unused-access-report.md` and
+  `about-the-access-tab.md`'s titles and navbar labels (was never intended)
+- `apply-a-remediation.md`'s `[UNRELEASED]` notice reformatted as a `:::warning` callout - **kept**,
+  not removed, since the feature's name is still marketing's open call
+- Added `stop-slop` as a 4th interactive skill (vendored, MIT-licensed, third-party) for catching
+  AI writing tells in prose - documented in `.claude/skill-selection.md`
+
+**Not done this session** (genuinely out of scope, not silently dropped): image sizing on
+`apply-a-remediation.md` - no concrete issue was ever described anywhere for what "sizing" needed
+fixing; worth a fresh look if it resurfaces as a real problem.
 
 **Next**: Phase G, Session 25 - README tour
 
@@ -463,14 +490,13 @@ This is a valid endpoint: you've demonstrated system thinking, automation, and d
 
 ## Next immediate action
 
-**You are here**: Sessions 21, 22, and 23 done (Session 23's MCP exploration deferred as a
-nice-to-have, not blocking).
+**You are here**: Sessions 21-24 done (Session 23's MCP exploration deferred as a nice-to-have, not
+blocking). Phase F - Skills automation - is complete.
 
-**Your move**: Start Session 24 (Audit and Improve the Skills) whenever ready - see its full task
-breakdown above.
+**Your move**: Start Session 25 (README Tour) whenever ready - see its full task breakdown above.
 
 ---
 
 Created: [date]  
-Last updated: Session 23 done (2026-08-20)  
-Branch: session-21/audit-gate-design
+Last updated: Session 24 done (2026-08-20)  
+Branch: session-24/skill-rubric

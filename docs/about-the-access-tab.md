@@ -1,5 +1,5 @@
 ---
-title: About the Access tab
+title: Access tab
 description: What each part of the Access tab shows, how to read the grant graph and grant table, and how to reach a remediation decision.
 sidebar_position: 30
 template: child-report
@@ -194,7 +194,7 @@ Click a grant row to see its individual access rights.
 | **Resources** | How many resources of that type were detected |
 | **Last used** | When the right was last used on any of those resources. Empty when **Undetermined usage** is **True** |
 | **Unused period** | How long since that last use. Empty when **Last used** is empty |
-| **Risky access right** | **True** when the right appears in known escalation paths |
+| **Risky access right** | **True** when the right appears in a known privilege-escalation path - a sequence of rights that, combined, let the holder reach broader access than any single right implies |
 | **Undetermined usage** | Non-default column. **True** means the activity logs carry no usage data for this right |
 
 ### Drill into a right's resources
@@ -256,14 +256,11 @@ When you have reviewed the proposed changes, export the plan as a PDF.
 
 ## Related
 
-- [About the Unused Access report](unused-access-report.md)
+- [Unused Access report](unused-access-report.md)
 
 ## Open items for SME review
 
 - [ ] **Integration Inventory** has no page yet - referenced as plain text rather than linked
-- [ ] `[VERIFY: whether the integration information panel carries a visible label in the UI, and what it is]`
-- [ ] `[VERIFY: "escalation paths" as the description for a risky access right]` - awaiting terminology sign-off
-- [ ] `[VERIFY: whether Grant ID is the correct column name]`
 - [ ] Confirm whether the 90-day usage window is configurable by the reader
 
 Please note this is a test, e.g. a deliberate one.

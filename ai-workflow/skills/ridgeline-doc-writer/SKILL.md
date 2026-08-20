@@ -1,6 +1,6 @@
 ---
 name: ridgeline-doc-writer
-description: Draft or restructure a page of Ridgeline product documentation - a feature overview, a report deep-dive, a reference page of fields and values, a release note, or a glossary entry - from the bundled templates, Ridgeline style guide, and glossary, targeting the Docusaurus docs site. Use whenever the user wants to write, draft, restructure, review, or audit a Ridgeline doc page, or says things like "write the overview for X," "draft the report page," "turn these feature notes into a page," "add a glossary entry for reach," or hands over raw product notes that need to become a page. Trigger even if the user only names the feature or pastes notes without saying "page," "article," or "doc." This skill owns structure, style, and the draft; for Unused Access facts to be correct, it pairs with unused-access-expert rather than guessing.
+description: Draft or restructure a page of Ridgeline product documentation - a parent-report, a child-report, a workflow-methodology walkthrough, a reference page of fields and values, a release note, or a glossary entry - from the bundled templates, Ridgeline style guide, and glossary, targeting the Docusaurus docs site. Use whenever the user wants a page written, drafted, restructured, or fixed - not just reviewed - or says things like "write the overview for X," "draft the report page," "turn these feature notes into a page," "add a glossary entry for reach," "now fix it," or hands over raw product notes or approved audit findings that need to become a page. Trigger even if the user only names the feature or pastes notes without saying "page," "article," or "doc." Do NOT trigger for a pure "what's wrong with this page" or "review this" request with no rewrite asked for - that is ridgeline-doc-auditor, even though the words "review" and "audit" can appear in the same conversation. This skill owns structure, style, and the draft; for Unused Access facts to be correct, it pairs with unused-access-expert rather than guessing.
 ---
 
 # Ridgeline doc writer
@@ -39,12 +39,27 @@ Flag it; do not resolve it with a plausible sentence.
 
 ## Route first: pick the genre
 
-Classify the request into one genre before writing anything. The genres this skill owns:
+Classify the request into one genre before writing anything. Three genres are gate-checked - a real
+CI gate validates any page tagged with the matching `template:` value, so getting this right is what
+lets the draft actually be checked, not just published:
 
-- **Feature overview** - what a capability does, who it is for, how it fits the product, and its
-  limits. Template: `assets/templates/feature-overview.md`.
-- **Report deep-dive** - one report's purpose, inclusion criteria, columns, sort and score, filters,
-  and what to do with the findings. Template: `assets/templates/report-page.md`.
+- **parent-report** (`template: parent-report`) - a page introducing a report or feature as a whole,
+  for a reader deciding whether and how to use it: what puts a row in, what's excluded, how it's
+  ordered and by what metric, the column set, what to do with a finding, data freshness. Real
+  example: `docs/unused-access-report.md`. Template: `assets/templates/parent-report.md`.
+- **child-report** (`template: child-report`) - a page about a tab, panel, or card where a reader
+  investigates one thing within a parent-report's feature: orientation, what each part shows, how to
+  read the primary view, the action it leads to, and any guarantee attached to a recommendation -
+  never omit this, it's a blocker if missing. Real example: `docs/about-the-access-tab.md`.
+  Template: `assets/templates/child-report.md`.
+- **workflow-methodology** (`template: workflow-methodology`) - a page walking through one action
+  start to finish: prerequisites, scope, the mechanics in order, any guarantee attached to a
+  hard-to-reverse step (blocker if missing), limits and known gaps. Real example:
+  `docs/apply-a-remediation.md`. Template: `assets/templates/workflow-methodology.md`.
+
+Two more genres exist but carry no `template:` tag and are not gate-checked - a general advisory
+review is the only check they get:
+
 - **Reference page** - the exhaustive tables: fields, values, categories, states. Optimized for
   lookup, not for reading start to finish. Template: `assets/templates/reference-page.md`.
 - **Release note** - a short, dated summary of user-visible change. No template; follow the
@@ -55,11 +70,12 @@ Classify the request into one genre before writing anything. The genres this ski
 
 **When no genre fits:** say so plainly, name the closest template, and explain what it would
 distort. Do not invent a structure silently, and do not hand off to a skill that does not exist -
-this lineup currently has exactly two skills, and inventing a third in a handoff sentence sends the
-reader chasing something that was never built. A genre gap is a real finding worth surfacing: name it
-as "this needs a dedicated skill or template we do not have yet."
+this lineup currently has exactly three skills (this one, `unused-access-expert`, and
+`ridgeline-doc-auditor`), and inventing a fourth in a handoff sentence sends the reader chasing
+something that was never built. A genre gap is a real finding worth surfacing: name it as "this
+needs a dedicated template we do not have yet."
 
-If a request genuinely spans two genres - a feature overview plus one report's detail - draft the
+If a request genuinely spans two genres - a parent-report plus one child-report's detail - draft the
 part that is clearly primary and say which part belongs to which genre, rather than half-doing both.
 
 ## Read before drafting
@@ -69,6 +85,8 @@ part that is clearly primary and say which part belongs to which genre, rather t
 - `references/glossary.md` - the terminology authority. Keep it open while drafting. It governs
   casing and usage for every named surface, metric, and concept.
 - `assets/templates/<genre>.md` - the canonical section order for the routed genre.
+
+## Source hierarchy
 
 **Precedence when sources conflict:** verified product behavior wins, then `unused-access-expert`'s
 knowledge base for Unused Access behavior, then the glossary for terminology, then the style guide,
@@ -85,11 +103,14 @@ Establish these every time, and ask only for what is genuinely missing:
 
 Then, per genre:
 
-- **Feature overview:** the user-value statement, the audience, prerequisites, the key actions
-  available, and the limits. For a security feature, scope limits and known gaps are not optional -
-  a reader who over-trusts a security page makes worse decisions than one who reads nothing.
-- **Report deep-dive:** the report's one-line value proposition, what puts a row in it and what
+- **parent-report:** the report's one-line value proposition, what puts a row in it and what
   excludes one, the column set, the sort order and the score behind it, and what a reader does next.
+- **child-report:** what surface this is and the decision the reader is here to make, what each part
+  shows, how to read the primary view, and any guarantee attached to the recommendation it leads to
+  - never optional for a security feature; a reader who over-trusts a security page makes worse
+  decisions than one who reads nothing.
+- **workflow-methodology:** the prerequisites, the scope stated plainly, the mechanics in the order
+  they happen, any guarantee attached to a hard-to-reverse step, and the limits and known gaps.
 - **Reference page:** the complete value set for every field. Partial reference tables are worse than
   none, because they read as exhaustive. Flag any set you could not complete.
 - **Release note:** the date, the user-visible change in the reader's terms, and whether it is

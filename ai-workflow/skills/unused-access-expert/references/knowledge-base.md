@@ -61,11 +61,12 @@ Rows are integrations. The columns readers work with most:
 | Reach score | Primary sort |
 | Unused grants | Count of grants with at least one unused access right |
 | Grant categories | Which of Platform / Directory / App-level are present |
-| Labels | Enrichment labels, including **Highly privileged** (definition unconfirmed - see §12) |
+| Labels | Enrichment labels, including **High-impact** (at least one Platform grant with write access rights at the Organization or Workspace group scope level) |
 
 **Configure columns** and CSV export are available and behave as they do elsewhere in the product;
-they need no feature-specific explanation beyond a pointer. The exact exported column set is
-unconfirmed (§12).
+they need no feature-specific explanation beyond a pointer. The export mirrors the visible table
+columns exactly, plus the integration's unique ID as an additional column for cross-referencing
+against the platform's own records.
 
 ## §5 The grant graph and the grant table
 
@@ -201,8 +202,6 @@ lexically separate - see `glossary.md`.
 
 | Question | Status |
 | --- | --- |
-| Exact definition and criteria of the **Highly privileged** label | Unconfirmed - do not define it in copy |
-| The CSV export column set | Unconfirmed - describe export generically |
 | Whether the 90-day window is reader-configurable | Unconfirmed - write "by default, 90 days" and stop there |
 | Whether nested-team chains will become expandable | Unconfirmed - do not promise it |
 
