@@ -10,9 +10,9 @@ Each session ends with a Next line: the exact thing that happens after it, and w
 
 ## Resume here
 
-**Last worked**: Session 22 (fix and activate the real page-genre gates) — **DONE** [x]
+**Last worked**: Session 23 (validate the three gates, sketch agentic-gates design; MCP exploration deferred) — **DONE** [x]
 
-**Then**: Session 23 - Validate gates + MCP exploration
+**Then**: Session 24 - Audit and improve the skills
 
 ---
 
@@ -210,54 +210,61 @@ fixture each) rather than 4 synthetic-only cases.
 
 **Time**: ~2–2.5 hours (actual: significantly longer - most of the time went into discovering and correcting the wrong premise, not building against the original design)
 
-**Next**: Session 23 - Validate gates + MCP exploration
+**Next**: Session 23 - Validate gates + agentic-gates design
 
-### [ ] Session 23: Validate Gates + MCP Exploration
+### [x] Session 23: Validate Gates + Agentic-Gates Design
 
-Prove the three real genre gates work, explore MCP for interactive skills, and sketch (not build)
-Phase H's agentic-gates idea. Rewritten from the original Part A/B/C plan below, which assumed a
-single "audit gate" and a still-to-build second gate - both stale after Session 22 replaced that
-premise with three working gates (`validate-parent-report`, `validate-child-report`,
-`validate-workflow-methodology`). The LLM-ready-docs work originally planned as Part C is dropped
-from this session: it now belongs to `documenting-the-agentic-stack.md` Week 3 in `docs-as-code`,
-not a second build here - see that file and `docs-as-code/TRACKS.md` row 11.
+Prove the three real genre gates work and sketch (not build) Phase H's agentic-gates idea.
+Rewritten from the original Part A/B/C plan below, which assumed a single "audit gate" and a
+still-to-build second gate - both stale after Session 22 replaced that premise with three working
+gates (`validate-parent-report`, `validate-child-report`, `validate-workflow-methodology`). The
+LLM-ready-docs work originally planned as Part C is dropped from this session: it now belongs to
+`documenting-the-agentic-stack.md` Week 3 in `docs-as-code`, not a second build here - see that
+file and `docs-as-code/TRACKS.md` row 11.
 
-**Part A: Validate the three real gates** (~1 hour)
-- Run all three genre gates (`--test-file` mode, then against a handful of past PRs/drafts) and
-  confirm they still catch what they're supposed to
-- Measure precision (of failures, how many are real?) and recall (of real problems, how many get
-  caught) for each gate
-- Record metrics in GATES-METRICS.md
-- Decision: is precision >80%, recall >70% for each? If not, adjust the prompt in `gate_common.py`
-  and re-run
+**Part A: Validate the three real gates** ✅ - `GATES-METRICS.md`
+- Ran all three genre gates via `./verify.sh`'s `--test-file` mode: 6/6 test cases passed (2 per
+  gate - the real tagged page and a deliberately-broken synthetic fixture)
+- Precision 100% (3/3), recall 100% (3/3) on this test set - clears the >80%/>70% bar, though the
+  sample is small (n=2 per gate); see `GATES-METRICS.md`'s sample-size caveat and follow-up
+- Corroborated by two real findings the gates already caught in production before this metrics
+  run existed (the `unused-access-report.md` data-freshness contradiction, the correctly-flagged
+  `apply-a-remediation.md` `[VERIFY]` item) - see `docs/meta/ci-gates.md`
 
-**Part B: MCP exploration - interactive skills only** (~1 hour)
-- Scope: MCP for the `unused-access-expert`/`ridgeline-doc-auditor` skills at chat time, not the
-  CI gates - gates stay deterministic scripts, not agents with tool access
-- Explore fetching a reference document (e.g., the glossary or the `unused-access-expert`
-  knowledge base) via MCP instead of it being a static bundled file
-- Document the pattern in `.claude/mcp-integration.md`: what MCP adds here, what it doesn't, why
-  it's scoped away from CI
+**Part B: MCP exploration - interactive skills only** ⏸ Deferred, not dropped
+- Turned out not to prove what it was meant to: fetching a reference doc live via MCP demonstrates
+  *using* a connector, not *documenting* one - "documenting MCP connectors" as a portfolio claim is
+  already covered by `docs-as-code`'s `documenting-mcp.md` track
+- The narrower thing this would actually test - whether a skill fetching a live reference doc is a
+  viable fix for the glossary/knowledge-base drift already noted in `docs-as-code/roadmap.md`'s
+  "Glossary reconciliation" TODO (bundled copies in both skills going out of sync with the public
+  copy) - is still worth trying eventually, just not gating Session 23
+- Parked as a nice-to-have, no session number assigned - pick it up anytime, or fold it into
+  Session 24 if the skills audit there surfaces the drift problem directly
+- Original scope, for whenever this happens: MCP for the `unused-access-expert`/
+  `ridgeline-doc-auditor` skills at chat time only (not CI gates); explore fetching the glossary or
+  `unused-access-expert` knowledge base via MCP instead of a static bundled file; document the
+  pattern in `.claude/mcp-integration.md`
 
-**Part C: Sketch Phase H's agentic gates (plan only, don't build)** (~30 min)
-- Phase H's stretch idea is gates that fix issues automatically, not just report them
-- Write a short design note - what a fix-capable gate would need (write access, a review step, a
-  rollback path) - as a decision doc, not code
-- Stays a plan for Phase H; Session 23 doesn't implement it
+**Part C: Sketch Phase H's agentic gates (plan only, don't build)** ✅ - `GATES-AGENTIC-DESIGN.md`
+- Design sketch covers: write access scoped to a proposal PR (never a direct commit), a mandatory
+  review step with no auto-merge at any confidence level, a rollback path (isolated commits, clean
+  revert), and a narrow confidence/scope gate so it never proposes a fix for anything requiring
+  judgment (e.g. an open `[VERIFY]`)
+- Stays a plan for Phase H; nothing here is implemented
 
 **Deliverable:**
 - GATES-METRICS.md with precision/recall for all three gates
-- `.claude/mcp-integration.md` (MCP pattern for fetching a reference doc into an interactive skill)
 - A short agentic-gates design note (Phase H planning, not an implementation)
 - Updated GATES-CHANGELOG.md
+- (Deferred, not delivered this session: `.claude/mcp-integration.md` - see Part B above)
 
-**Time**: ~2.5 hours total
+**Time**: ~1.5 hours total (Part B's ~1 hour deferred)
 
 **Branch**: session-23/gates-validation-mcp
 
 **Success criteria**:
 - All three gates: precision >80%, recall >70%
-- MCP: one working example of fetching a reference doc into a skill's context
 - Agentic-gates idea has a written design note, not an implementation
 
 **Next**: Session 24 - Audit and improve the skills
@@ -312,9 +319,8 @@ Your repo contains all the evidence. The README is the tour guide.
   - Drafting prompt + flagged draft + final edit → AI authoring skill
   - Vale rules, markdownlint, link check → deterministic validation
   - Advisory review workflow → AI as collaborator
-  - Frozen skills, baselines, audit gate, validation gate → measurement + automation
-  - CLAUDE.md, `.claude/` docs, MCP pattern → infrastructure thinking
-  - LLM-ready markup → thinking beyond the immediate audience
+  - Frozen skills, baselines, the three genre gates, `GATES-METRICS.md` → measurement + automation
+  - CLAUDE.md, `.claude/` docs, `GATES-AGENTIC-DESIGN.md` → infrastructure thinking
 
 - Make it readable in 5 minutes: someone visiting the repo should understand what you built without reading every file
 
@@ -457,13 +463,14 @@ This is a valid endpoint: you've demonstrated system thinking, automation, and d
 
 ## Next immediate action
 
-**You are here**: Sessions 21 and 22 done. Session 23 not started.
+**You are here**: Sessions 21, 22, and 23 done (Session 23's MCP exploration deferred as a
+nice-to-have, not blocking).
 
-**Your move**: Start Session 23 (Validate Gates + MCP Exploration) whenever ready - see
-its full task breakdown above.
+**Your move**: Start Session 24 (Audit and Improve the Skills) whenever ready - see its full task
+breakdown above.
 
 ---
 
 Created: [date]  
-Last updated: Session 22 done (2026-08-19)  
+Last updated: Session 23 done (2026-08-20)  
 Branch: session-21/audit-gate-design
