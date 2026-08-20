@@ -1,5 +1,5 @@
 ---
-title: About the Access tab
+title: Access tab
 description: What each part of the Access tab shows, how to read the grant graph and grant table, and how to reach a remediation decision.
 sidebar_position: 30
 template: child-report
@@ -256,7 +256,7 @@ When you have reviewed the proposed changes, export the plan as a PDF.
 
 ## Related
 
-- [About the Unused Access report](unused-access-report.md)
+- [Unused Access report](unused-access-report.md)
 
 ## Open items for SME review
 

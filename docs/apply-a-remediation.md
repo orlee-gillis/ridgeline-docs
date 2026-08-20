@@ -102,9 +102,7 @@ own time zone. An applied change doesn't appear in the Unused Access report's pr
 integration's history reflect the change immediately, since Ridgeline writes it directly. Check
 either of those, not the report, to confirm an apply worked.
 
-When an apply succeeds, Ridgeline shows a confirmation. To see what changed, open the grant on the Access tab or the integration's history.
-`[VERIFY: the success state is a toast and a highlighted row; a change summary is out of scope for
-this release]`
+When an apply succeeds, Ridgeline shows a confirmation: a toast notification, and the grant's row is highlighted in the table. A full change summary is out of scope for this release - to see what changed, open the grant on the Access tab or the integration's history.
 
 ![Completed apply on the Access tab, with the reversal option visible](/img/apply-completed.png)
 
@@ -139,8 +137,8 @@ by hand in the platform's admin console; what is unavailable is Ridgeline writin
 
 ## Related documents
 
-- [About the Unused Access report](unused-access-report.md)
-- [About the Access tab](about-the-access-tab.md)
+- [Unused Access report](unused-access-report.md)
+- [Access tab](about-the-access-tab.md)
 
 ## Open items for SME review
 
@@ -175,5 +173,5 @@ by hand in the platform's admin console; what is unavailable is Ridgeline writin
 
 **Placement**
 
-- [ ] `sidebar_position: 40` is provisional. This page sits after About the Access tab and before
+- [ ] `sidebar_position: 40` is provisional. This page sits after Access tab and before
       Access tab reference; confirm against the family's existing numbering.

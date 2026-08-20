@@ -1,5 +1,5 @@
 ---
-title: About the Unused Access report
+title: Unused Access report
 description: What the Unused Access report includes, how it is ordered, and what to do with a finding.
 sidebar_position: 20
 template: parent-report
@@ -98,7 +98,7 @@ remediation advice never removes them. **Undetermined** is not a form of **Unuse
 4. Open the remediation recommendations and review the proposed narrower access.
 
 For what each part of that tab shows and how to read it, see
-[About the Access tab](about-the-access-tab.md).
+[Access tab](about-the-access-tab.md).
 
 ## Data freshness
 
@@ -107,7 +107,7 @@ after the next one.
 
 ## Related
 
-- [About the Access tab](about-the-access-tab.md)
+- [Access tab](about-the-access-tab.md)
 
 ## Open items for SME review
 

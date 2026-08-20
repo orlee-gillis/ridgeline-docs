@@ -27,7 +27,7 @@ A page opts into a genre-specific check by declaring it in frontmatter:
 
 ```yaml
 ---
-title: About the Unused Access report
+title: Unused Access report
 template: parent-report
 ---
 ```
