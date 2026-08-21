@@ -48,4 +48,5 @@ ADRs in `ai-workflow/decisions/session-24-rubric-disagreements.md`, linked inlin
 - `.claude/skill-selection.md` and `docs/meta/skill-architecture.md` updated to match the real
   genre names.
 
-Re-scoring against the revised skills happens in Session 26, per `rubric.md`'s own instructions.
+Re-scoring against the revised skills happens in Session 28 (The Defense, deferred to the very
+end), per `rubric.md`'s own instructions.

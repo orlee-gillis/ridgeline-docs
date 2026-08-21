@@ -60,8 +60,8 @@ attached.
 3. Claude scores next, same seven dimensions, same skills.
 4. Where scores disagree, that disagreement is the interesting part - write it up as a short ADR
    (`ai-workflow/decisions/`), not just an averaged number.
-5. Re-run this same rubric in Session 26 against the revised skills. The comparison is the
-   before/after evidence - this is why the scale and dimensions need to stay fixed between the two
-   runs, not be redesigned each time.
+5. Re-run this same rubric in Session 28 (The Defense, deferred to the very end) against the
+   revised skills. The comparison is the before/after evidence - this is why the scale and
+   dimensions need to stay fixed between the two runs, not be redesigned each time.
 
 See `rubric-example.md` for what a filled-in row looks like in practice.

@@ -13,5 +13,6 @@ changelog entries from merged-PR titles.
 
 That's the shape every row should take: a score, a specific reason grounded in the actual file (a
 quote, a missing line, a concrete test), and - where it's not a 2 - what evidence would change it.
-A score with no reason attached isn't usable for the Session 26 re-measurement, because there'd be
-nothing to check whether the same problem is still there.
+A score with no reason attached isn't usable for the Session 28 re-measurement (The Defense,
+deferred to the very end), because there'd be nothing to check whether the same problem is still
+there.
