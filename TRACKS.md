@@ -12,11 +12,12 @@ Each session ends with a Next line: the exact thing that happens after it, and w
 
 **Last worked**: Session 25 (README rewritten as a guided tour) — **DONE** [x]
 
-**Then**: Session 26 - Defense (interview practice) — **deliberately deferred to the
-very end**, after the Documenting MCP and Documenting the Agentic Stack tracks
-(tracked in `docs-as-code/TRACKS.md`) both finish, so the interview and CV
-paragraph reflect the complete portfolio rather than just this project. Nothing
-else is pending on this roadmap until then.
+**Then**: Phase H (Sessions 26-27, optional stretch) if you want it, then
+**Session 28 - The Defense**, renumbered to sit last in this file's own sequence.
+Session 28 is **deliberately deferred to the very end** regardless — run it after
+the Documenting MCP and Documenting the Agentic Stack tracks (tracked in
+`docs-as-code/TRACKS.md`) both finish, so the interview and CV paragraph reflect
+the complete portfolio, not just this project.
 
 ---
 
@@ -32,15 +33,20 @@ This is a portfolio project demonstrating system-level thinking about AI-assiste
 - E: Quality gates (deterministic + advisory validation)
 - F: Skills automation (measure, freeze, validate through CI, audit and improve)
 
-**Phase G** (Sessions 25-26): Capstone - Package and explain the system
-- **Essential**. Not more building—narrative and defense.
-- Proves you can explain and defend the system you built.
+**Phase G** (Session 25): Capstone narrative - Package the system
+- **Essential**. The last piece of building: the README as guided tour.
 
-**Phase H** (Sessions 27+): Stretch - Apply or extend
-- **Optional**. After Phase G succeeds, choose one of these paths.
+**Phase H** (Sessions 26-27): Stretch - Apply or extend
+- **Optional**. After Phase G, choose one of these paths, or skip to Phase I.
 - Path 1: Scale to real professional work (apply gates system professionally)
 - Path 2: Build tooling (audit script, interactive components)
-- Path 3: Skip—capstone is complete at Session 26
+- Path 3: Skip straight to Phase I
+
+**Phase I** (Session 28): The Defense - Package and defend the system
+- **Essential**, but **deferred to the very end** - run this after Phase H (if
+  taken) and after the Documenting MCP and Documenting the Agentic Stack tracks
+  (tracked in `docs-as-code/TRACKS.md`) both finish, not right after Phase G.
+- Proves you can explain and defend the complete portfolio, not just this project.
 
 ---
 
@@ -356,49 +362,22 @@ Your repo contains all the evidence. The README is the tour guide.
 - Setup instructions kept, moved after the narrative instead of leading with it
 - Every link verified against a real file; build, markdownlint, and Vale all clean
 
-**Next**: Session 26 - Defense (interview practice) — **on hold, run this last**
-
-### [ ] Session 26: The Defense (Prove You Understand It)
-
-**Deliberately deferred to the very end** of all active tracks (Documenting MCP,
-Documenting the Agentic Stack), not run next just because Session 25 finished -
-the CV paragraph and interview answers should speak to the complete portfolio.
-
-Mock interview. Claude plays skeptical hiring manager. You defend your decisions.
-
-**What you'll do:**
-- Claude asks 5 hard questions about your system (sample questions below)
-- You answer out loud, off the cuff, no notes (15–20 min)
-- Then you write a 2-paragraph CV/LinkedIn blurb distilling the project
-
-**Sample questions Claude might ask:**
-- "Why freeze the skills before measuring them? Why not iterate first?"
-- "Your gates are blocking 5% of PRs. Is that the right threshold?"
-- "How would you scale this to a documentation set of 100 pages instead of 10?"
-- "Why use skills instead of just calling the API with a long context window?"
-- "What would you do if the product changed and your gate's facts became stale?"
-
-**Deliverable:**
-- Recorded or transcribed answers (shows you can explain the system)
-- 2-paragraph CV/LinkedIn paragraph capturing the project
-
-**Time**: ~1–1.5 hours
-
-**Success criteria**: You can defend every major decision. You understand tradeoffs. You know what you'd do differently with more time.
-
-**Branch**: session-26/capstone-complete
+**Next**: Phase H (Sessions 26-27, optional stretch) if you want it, otherwise
+skip straight to **Session 28 - The Defense**, held for the very end regardless.
 
 ---
 
 ## Phase G complete ✓
 
-Your portfolio is done and documented. You can explain it. You're ready to show it.
+The narrative is done: your repo explains itself. Phase H (optional) or Session
+28 (The Defense) are next, whenever you're ready for either.
 
 ---
 
-## Phase H - Stretch (Sessions 27+) - Optional
+## Phase H - Stretch (Sessions 26-27) - Optional
 
-After Phase G, the portfolio is complete. Phase H is optional. Choose one path based on your goals.
+After Phase G, the system is fully built. Phase H is optional. Choose one path
+based on your goals, or skip straight to Session 28.
 
 ### Path 1: Scale to Real Professional Work (Product Enablement Angle) — Recommended
 
@@ -406,7 +385,7 @@ If your goal is to move toward **product enablement roles**, apply the gates sys
 professional documentation work. Keep this generic here - once it's real, that work and its
 tooling belong in your employer's own private repo, not this public one.
 
-**[ ] Session 27: Apply gates to your real professional documentation**
+**[ ] Session 26: Apply gates to your real professional documentation**
 
 Build 2 gates against your real professional documentation work:
 - Gate 1: Audit pages for style compliance, using your organization's own doc-writer skill
@@ -435,7 +414,7 @@ Build 2 gates against your real professional documentation work:
 
 Build interactive or analysis tools to showcase hands-on AI collaboration.
 
-**[ ] Session 27: The audit script**
+**[ ] Session 26: The audit script**
 
 Crawl your live site and report on structure, broken links, readability.
 
@@ -446,7 +425,7 @@ Crawl your live site and report on structure, broken links, readability.
 
 **Why**: Shows you can spec → iterate → integrate AI-generated code.
 
-**[ ] Session 28: The MDX component**
+**[ ] Session 27: The MDX component**
 
 Interactive decision tree: "Is the grant direct or inherited?" → recommended action.
 
@@ -461,19 +440,58 @@ Interactive decision tree: "Is the grant direct or inherited?" → recommended a
 
 ---
 
-### Path 3: Stop Here
+### Path 3: Skip to the Defense
 
-Your portfolio is complete at Session 26. You don't need Phase H.
+The system is fully built without Phase H. Skip straight to Session 28.
 
-This is a valid endpoint: you've demonstrated system thinking, automation, and documentation skill. Everything else is polish.
+This is a valid choice: you've demonstrated system thinking, automation, and documentation skill. Phase H is polish, not a requirement.
 
 ---
 
-## Decision point: After Session 26
+## Decision point: After Session 25
 
 - **Highly recommended**: Do Path 1 (Scale to real professional work). It proves the system works professionally.
 - **If you have time and interest**: Do Path 2 (audit script + MDX). It's showcase work, not essential.
-- **If you're satisfied**: Stop at Session 26. The portfolio is done.
+- **Either way, or if you're satisfied without Phase H**: Session 28 (The Defense) is what actually finishes the portfolio - see Phase I below. It's just not run yet, on purpose.
+
+---
+
+## Phase I: Session 28 - The Defense (Prove You Understand It)
+
+**Deliberately deferred to the very end** of all active tracks (Documenting MCP,
+Documenting the Agentic Stack), not run right after Session 25 just because
+Phase G finished - the CV paragraph and interview answers should speak to the
+complete portfolio, including Phase H if you did it.
+
+Mock interview. Claude plays skeptical hiring manager. You defend your decisions.
+
+**What you'll do:**
+- Claude asks 5 hard questions about your system (sample questions below)
+- You answer out loud, off the cuff, no notes (15–20 min)
+- Then you write a 2-paragraph CV/LinkedIn blurb distilling the project
+
+**Sample questions Claude might ask:**
+- "Why freeze the skills before measuring them? Why not iterate first?"
+- "Your gates are blocking 5% of PRs. Is that the right threshold?"
+- "How would you scale this to a documentation set of 100 pages instead of 10?"
+- "Why use skills instead of just calling the API with a long context window?"
+- "What would you do if the product changed and your gate's facts became stale?"
+
+**Deliverable:**
+- Recorded or transcribed answers (shows you can explain the system)
+- 2-paragraph CV/LinkedIn paragraph capturing the project
+
+**Time**: ~1–1.5 hours
+
+**Success criteria**: You can defend every major decision. You understand tradeoffs. You know what you'd do differently with more time.
+
+**Branch**: session-28/capstone-complete
+
+---
+
+## Portfolio complete ✓ (once Session 28 is done)
+
+Your portfolio is done and documented. You can explain it. You're ready to show it.
 
 ---
 
@@ -481,9 +499,10 @@ This is a valid endpoint: you've demonstrated system thinking, automation, and d
 
 | Metric | Value |
 |--------|-------|
-| **Sessions (core)** | 26 (Phase A–G) |
+| **Sessions (core)** | 25 (Phase A–G) |
 | **Sessions (optional)** | 1–2 (Phase H) |
-| **Total hours** | ~35–40 hours (core), 40–45 (with Phase H) |
+| **Sessions (final)** | 1 (Phase I - The Defense, run last, regardless of Phase H) |
+| **Total hours** | ~35–40 hours (core + defense), 40–45 (with Phase H) |
 | **Comfortable pace** | 2–3 sessions/week = 8–10 weeks |
 | **Artifacts (final)** | 40+ files across docs/, ai-workflow/, .github/, .claude/ |
 | **Live**: | Docusaurus site + GitHub Pages + GitHub Actions |
@@ -493,9 +512,11 @@ This is a valid endpoint: you've demonstrated system thinking, automation, and d
 ## Next immediate action
 
 **You are here**: Sessions 21-25 done (Session 23's MCP exploration deferred as a nice-to-have, not
-blocking). Phase F - Skills automation - is complete; Phase G - Capstone - is underway.
+blocking). Phase F - Skills automation - and Phase G - Capstone narrative - are both complete.
 
-**Your move**: Start Session 26 (The Defense) whenever ready - see its full task breakdown above.
+**Your move**: Optionally start Phase H (Session 26 or 26-27, whichever path). Session 28 (The
+Defense) waits until Documenting MCP and Documenting the Agentic Stack (in `docs-as-code/TRACKS.md`)
+both finish - don't start it before then.
 
 ---
 
