@@ -12,7 +12,11 @@ Each session ends with a Next line: the exact thing that happens after it, and w
 
 **Last worked**: Session 25 (README rewritten as a guided tour) — **DONE** [x]
 
-**Then**: Session 26 - Defense (interview practice)
+**Then**: Session 26 - Defense (interview practice) — **deliberately deferred to the
+very end**, after the Documenting MCP and Documenting the Agentic Stack tracks
+(tracked in `docs-as-code/TRACKS.md`) both finish, so the interview and CV
+paragraph reflect the complete portfolio rather than just this project. Nothing
+else is pending on this roadmap until then.
 
 ---
 
@@ -352,9 +356,13 @@ Your repo contains all the evidence. The README is the tour guide.
 - Setup instructions kept, moved after the narrative instead of leading with it
 - Every link verified against a real file; build, markdownlint, and Vale all clean
 
-**Next**: Session 26 - Defense (interview practice)
+**Next**: Session 26 - Defense (interview practice) — **on hold, run this last**
 
 ### [ ] Session 26: The Defense (Prove You Understand It)
+
+**Deliberately deferred to the very end** of all active tracks (Documenting MCP,
+Documenting the Agentic Stack), not run next just because Session 25 finished -
+the CV paragraph and interview answers should speak to the complete portfolio.
 
 Mock interview. Claude plays skeptical hiring manager. You defend your decisions.
 
