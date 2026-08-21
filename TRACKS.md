@@ -220,7 +220,7 @@ still-to-build second gate - both stale after Session 22 replaced that premise w
 gates (`validate-parent-report`, `validate-child-report`, `validate-workflow-methodology`). The
 LLM-ready-docs work originally planned as Part C is dropped from this session: it now belongs to
 `documenting-the-agentic-stack.md` Week 3 in `docs-as-code`, not a second build here - see that
-file and `docs-as-code/TRACKS.md` row 11.
+file and `docs-as-code/TRACKS.md` row 10.
 
 **Part A: Validate the three real gates** ✅ - `GATES-METRICS.md`
 - Ran all three genre gates via `./verify.sh`'s `--test-file` mode: 6/6 test cases passed (2 per
