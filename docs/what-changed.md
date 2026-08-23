@@ -1,3 +1,5 @@
+# What Changed
+
 ## AI-Assisted Audit & Rewrite
 
 Two pages from the Ridgeline portfolio were audited with structured Claude Skills, then rewritten based on findings. This case study shows what changed and why.
