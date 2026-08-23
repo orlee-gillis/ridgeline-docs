@@ -31,6 +31,8 @@ Checks the provided API specification against a **REST-API-specific checklist** 
 
 If the PRD passes Stage 1, generates a **draft API reference page** with frontmatter automatically tagged `template: api-reference`.
 
+**Draft Location**: `ai-workflow/drafts/api-reference-<feature-name>.md`
+
 Each endpoint includes:
 - **Method & Path:** HTTP verb and route (e.g., `GET /api/get_unauthorized_access`)
 - **Description:** What this endpoint does and when you'd call it
@@ -39,7 +41,7 @@ Each endpoint includes:
 - **Example:** Real, verified request and response (success + error)
 - **Notes:** Error handling, rate limits, edge cases, gotchas
 
-The generated page is ready to commit with the template tag already in place.
+The generated draft includes the template tag in frontmatter. When satisfied with the draft, move it to `docs/api-reference-<feature-name>.md` and commit.
 ---
 
 ## How to invoke

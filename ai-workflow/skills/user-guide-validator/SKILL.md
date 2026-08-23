@@ -48,6 +48,8 @@ What type of user guide is this?
    → Audience: Users needing comprehensive step-by-step guidance
 ```
 
+**Draft Location**: `ai-workflow/drafts/user-guide-<feature-name>.md`
+
 **Draft includes:**
 - **Frontmatter:** Automatically populated with selected template (parent-report, child-report, or workflow-methodology)
 - **Overview:** Why this feature matters and what you can do with it
@@ -57,6 +59,8 @@ What type of user guide is this?
 - **Success criteria:** How to verify you completed the task
 - **Troubleshooting:** Common issues and solutions
 - **Next steps:** Related tasks or advanced workflows
+
+When satisfied with the draft, move it to `docs/user-guide-<feature-name>.md` and commit.
 
 ---
 
