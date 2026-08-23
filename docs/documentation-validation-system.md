@@ -309,9 +309,9 @@ The system separates **authoring** (validators) from **publishing** (CI gates):
 
 **Flow 2: Publishing (CI Gates)**
 
-5. **Pull request:** Open a PR to merge your feature branch
-6. **CI validation:** Gates check the page's template tag and validate accordingly
-7. **Merge:** Once CI passes, merge to main (gates in `.github/workflows/` enforce template-specific requirements)
+1. **Pull request:** Open a PR to merge your feature branch
+2. **CI validation:** Gates check the page's template tag and validate accordingly
+3. **Merge:** Once CI passes, merge to main (gates in `.github/workflows/` enforce template-specific requirements)
 
 ### Doc Type → Template Mapping
 
