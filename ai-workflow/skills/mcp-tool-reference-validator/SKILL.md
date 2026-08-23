@@ -95,8 +95,8 @@ A draft tool reference page with all 5 tools documented, ready for:
 
 ## Reference materials
 
-- **PRD Checklist:** `/ai-workflow/skills/mcp-tool-reference-validator/references/prd-checklist.md`
-- **Draft Template:** `/ai-workflow/skills/mcp-tool-reference-validator/references/template.md`
+- **PRD Checklist:** `/ai-workflow/skills/mcp-tool-reference-validator/checklist.md`
+- **Draft Template:** `/ai-workflow/skills/mcp-tool-reference-validator/template.md`
 - **Quality Rubric:** The reordered checklist from `mcp-lab/documenting-mcp/session-8-testing-results.md`
 
 ---

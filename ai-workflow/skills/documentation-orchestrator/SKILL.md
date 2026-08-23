@@ -244,7 +244,7 @@ Preview: /home/user/ridgeline-docs/docs/tools/unauthorized-access-detection.md
 - **MCP Tool Reference Validator (Stage 1):** `/mcp-tool-reference-validator`
 - **User Guide Validator (Stage 1):** `/user-guide-validator`
 - **LLM Docs Validator (Stage 1):** `/llm-docs-validator`
-- **Config Schema:** `/ai-workflow/skills/documentation-orchestrator/references/config-schema.json`
+- **Config Schema:** `/ai-workflow/skills/documentation-orchestrator/config-schema.json`
 
 ---
 

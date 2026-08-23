@@ -97,8 +97,8 @@ A draft API reference page ready for:
 
 ## Reference materials
 
-- **API Checklist:** `/ai-workflow/skills/api-reference-validator/references/prd-checklist.md`
-- **Draft Template:** `/ai-workflow/skills/api-reference-validator/references/template.md`
+- **API Checklist:** `/ai-workflow/skills/api-reference-validator/checklist.md`
+- **Draft Template:** `/ai-workflow/skills/api-reference-validator/template.md`
 
 ---
 
