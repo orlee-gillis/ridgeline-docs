@@ -35,7 +35,8 @@ Runs the validation pipeline in order:
    - Applies to ALL features regardless of doc type
 
 2. **Stage 1 (type-specific):** For each selected doc type, runs its validator:
-   - **MCP tools:** `mcp-tool-reference-validator` (parameters, returns, examples, errors)
+   - **MCP tools:** `mcp-tool-reference-validator` (tool names, parameters, returns, examples, errors)
+   - **REST APIs:** `api-reference-validator` (endpoints, methods, parameters, responses, error codes, examples)
    - **User guides:** `user-guide-validator` (task workflows, prerequisites, troubleshooting)
    - **LLM docs:** `llm-docs-validator` (decision logic, completeness, error scenarios)
 
@@ -77,7 +78,10 @@ Or with a configuration file already in place:
 The orchestrator asks interactive questions:
 
 ```
-Does this feature expose tools, APIs, or other programmatic interfaces?
+Does this feature expose a REST API?
+→ Determines if API reference documentation is needed
+
+Does this feature expose MCP tools or other programmatic interfaces (non-REST)?
 → Determines if MCP tool documentation is needed
 
 Do end users (non-developers) interact with this feature directly?
@@ -86,16 +90,16 @@ Do end users (non-developers) interact with this feature directly?
 Might AI systems (Claude, agents, etc.) need to understand this feature?
 → Determines if LLM documentation is needed
 
-Based on your answers, I recommend: mcp-tools, user-guide
+Based on your answers, I recommend: api-docs, user-guide, llm-docs
 Run with these types? [y/n] → Save to config? [y/n]
 ```
 
 ### Scenario 2: Config-driven (if `.claude/documentation-config.json` exists)
 
 ```
-Found configuration: documentation_types = ["mcp-tools", "user-guide"]
-Running validators for: MCP tool reference, User guide
-(Skipping LLM docs)
+Found configuration: documentation_types = ["api-docs", "user-guide"]
+Running validators for: API reference, User guide
+(Skipping MCP tools and LLM docs)
 ```
 
 ### Scenario 3: Validation passes
@@ -152,11 +156,11 @@ Run `/mcp-tool-reference-validator` separately for detailed feedback on tool spe
 
 ```
 ✓ Stage 0 passed
-✓ Stage 1 (MCP tools) passed
+✓ Stage 1 (API docs) passed
 ✓ Stage 1 (User guide) passed
 
 Drafts generated:
-✓ docs/tools/unauthorized-access-detection.md (MCP tool reference)
+✓ docs/api/unauthorized-access-detection.md (API reference)
 ✓ docs/how-to/review-unauthorized-access.md (User guide)
 
 Next steps:
@@ -178,7 +182,7 @@ Preview: /home/user/ridgeline-docs/docs/tools/unauthorized-access-detection.md
 {
   "feature_name": "Unauthorized Agent Access Detection",
   "description": "Detects when AI agents call tools outside their declared scope",
-  "documentation_types": ["mcp-tools", "user-guide", "llm-docs"],
+  "documentation_types": ["api-docs", "user-guide", "llm-docs"],
   "run_stage_0_first": true,
   "draft_on_stage_1_pass": true
 }
@@ -187,8 +191,8 @@ Preview: /home/user/ridgeline-docs/docs/tools/unauthorized-access-detection.md
 **Fields:**
 - `feature_name` (string, optional): Human-readable name for logging
 - `documentation_types` (array, required): Which validators to run
-  - Options: `"mcp-tools"` | `"user-guide"` | `"llm-docs"`
-  - Example: `["mcp-tools"]` runs only MCP validation; `["mcp-tools", "llm-docs"]` skips user guides
+  - Options: `"mcp-tools"` | `"api-docs"` | `"user-guide"` | `"llm-docs"`
+  - Example: `["mcp-tools"]` runs only MCP validation; `["api-docs", "user-guide"]` skips MCP tools and LLM docs
 - `run_stage_0_first` (boolean, default true): Always run generic validation first
 - `draft_on_stage_1_pass` (boolean, default true): Auto-offer drafts if Stage 1 passes
 
@@ -207,19 +211,25 @@ Preview: /home/user/ridgeline-docs/docs/tools/unauthorized-access-detection.md
 
 ## Interactive Questions
 
-**Question 1: Does this feature expose an API, tool interface, or other programmatic interface?**
-- **If yes:** Add `mcp-tools` validator
-- **Context:** If the feature is callable (users call it, services call it, code calls it), it needs reference documentation
-- **Examples of yes:** Database API, microservice endpoint, tool definition, SDK function
-- **Examples of no:** Internal algorithm, background service, invisible infrastructure
+**Question 1: Does this feature expose a REST API?**
+- **If yes:** Add `api-docs` validator
+- **Context:** REST APIs with HTTP endpoints, methods, parameters, and response schemas need dedicated reference documentation
+- **Examples of yes:** HTTP endpoints (GET /api/...), microservice API, webhook receiver, data export endpoint
+- **Examples of no:** MCP tools (use Question 2), internal service calls, non-HTTP protocols
 
-**Question 2: Do end users (non-developers) interact with this feature directly?**
+**Question 2: Does this feature expose MCP tools or other programmatic interfaces (non-REST)?**
+- **If yes:** Add `mcp-tools` validator
+- **Context:** Tool definitions, SDK functions, or callable services need reference documentation
+- **Examples of yes:** Tool definition for Claude, SDK function, programmatic interface, callable service
+- **Examples of no:** REST API only (covered by Q1), internal algorithm, background service
+
+**Question 3: Do end users (non-developers) interact with this feature directly?**
 - **If yes:** Add `user-guide` validator
 - **Context:** If users perform tasks using this feature, they need step-by-step guidance
 - **Examples of yes:** Web dashboard, command-line tool, mobile app, admin console
 - **Examples of no:** Backend service, API only, developer-only feature
 
-**Question 3: Might AI systems (Claude, agents, etc.) need to understand this feature?**
+**Question 4: Might AI systems (Claude, agents, etc.) need to understand this feature?**
 - **If yes:** Add `llm-docs` validator
 - **Context:** If you want LLMs to autonomously reason about or use this feature, they need self-contained documentation
 - **Examples of yes:** Feature that agents should be aware of, capability for AI tools to invoke, domain knowledge for AI reasoning
@@ -230,10 +240,11 @@ Preview: /home/user/ridgeline-docs/docs/tools/unauthorized-access-detection.md
 ## Reference materials
 
 - **Documentation Input Validator (Stage 0):** `/documentation-input-validator`
+- **API Reference Validator (Stage 1):** `/api-reference-validator`
 - **MCP Tool Reference Validator (Stage 1):** `/mcp-tool-reference-validator`
 - **User Guide Validator (Stage 1):** `/user-guide-validator`
 - **LLM Docs Validator (Stage 1):** `/llm-docs-validator`
-- **Config Schema:** `/ai-workflow/skills/documentation-orchestrator/references/config-schema.json`
+- **Config Schema:** `/ai-workflow/skills/documentation-orchestrator/config-schema.json`
 
 ---
 

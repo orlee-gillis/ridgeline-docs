@@ -96,7 +96,7 @@ Recommendations (should clarify for better docs):
 
 ## Reference materials
 
-- **Completeness Checklist:** `/ai-workflow/skills/documentation-input-validator/references/prd-completeness-checklist.md`
+- **Completeness Checklist:** `/ai-workflow/skills/documentation-input-validator/checklist.md`
 - **Example PRDs:** See type-specific validators for domain-specific PRD examples
 
 ---

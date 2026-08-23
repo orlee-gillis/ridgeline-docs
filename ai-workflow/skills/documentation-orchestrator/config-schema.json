@@ -30,16 +30,16 @@
       "type": "array",
       "description": "Which documentation validators to run. At least one must be selected.",
       "minItems": 1,
-      "maxItems": 3,
+      "maxItems": 4,
       "uniqueItems": true,
       "items": {
         "type": "string",
-        "enum": ["mcp-tools", "user-guide", "llm-docs"]
+        "enum": ["api-docs", "mcp-tools", "user-guide", "llm-docs"]
       },
       "examples": [
-        ["mcp-tools"],
-        ["mcp-tools", "user-guide"],
-        ["mcp-tools", "user-guide", "llm-docs"]
+        ["api-docs"],
+        ["api-docs", "user-guide"],
+        ["api-docs", "mcp-tools", "user-guide", "llm-docs"]
       ]
     },
     "run_stage_0_first": {
