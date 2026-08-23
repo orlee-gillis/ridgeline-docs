@@ -40,7 +40,6 @@ Each endpoint includes:
 - **Notes:** Error handling, rate limits, edge cases, gotchas
 
 The generated page is ready to commit with the template tag already in place.
-
 ---
 
 ## How to invoke
