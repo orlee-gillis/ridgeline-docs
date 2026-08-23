@@ -341,6 +341,7 @@ Each documentation type maps to one or more templates:
 Validator-generated drafts don't go directly to `docs/`. Instead, they land in `ai-workflow/drafts/` to keep authoring separate from publication:
 
 **Step 1: Validator generates draft**
+
 ```bash
 /api-reference-validator
 → Writes: ai-workflow/drafts/api-reference-<feature-name>.md
@@ -348,6 +349,7 @@ Validator-generated drafts don't go directly to `docs/`. Instead, they land in `
 ```
 
 **Step 2: User reviews and edits**
+
 ```bash
 User opens ai-workflow/drafts/api-reference-<feature-name>.md
 User reviews frontmatter and content
@@ -355,6 +357,7 @@ User makes edits as needed (validator output is always just a starting point)
 ```
 
 **Step 3: User promotes to publication**
+
 ```bash
 When satisfied:
 → User moves file: ai-workflow/drafts/api-reference-<feature-name>.md → docs/api-reference-<feature-name>.md
@@ -363,6 +366,7 @@ When satisfied:
 ```
 
 **Step 4: CI gates validate on PR**
+
 ```bash
 User opens PR to main
 CI gates check template tag and validate:
@@ -372,6 +376,7 @@ PR can merge once all checks pass
 ```
 
 **Why this staging approach?**
+
 - ✅ Drafts are never accidentally published (safe in `ai-workflow/drafts/`)
 - ✅ User has full control over when to promote to `docs/`
 - ✅ Follows CLAUDE.md conventions (drafts/ is evidence, docs/ is source of truth)
