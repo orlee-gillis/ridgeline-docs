@@ -219,21 +219,22 @@ Users will succeed when they can:
 Based on this PRD, what documentation should we create?
 
 **This phase needs:**
-1. **API Reference Documentation** — Developers need to understand the detection API
-   - What endpoints exist (`get_unauthorized_access`, `get_remediation_options`, etc.)
-   - What parameters they accept
-   - What responses they return
-   - Error handling
+1. **API Reference Documentation** — Developers need to understand the REST API
+   - What endpoints exist (`GET /api/get_unauthorized_access`, `GET /api/get_remediation_options`, etc.)
+   - What parameters they accept (query, path, headers)
+   - What responses they return (status codes, schemas, examples)
+   - Error handling and HTTP status codes
 
-2. **User Guide** — Security teams need to understand how to use the system
-   - How to find findings
-   - How to interpret severity
-   - How to review context
-   - How to decide on remediation
-   - How to mark reviewed/remediated
+2. **MCP Tool Reference Documentation** — Claude and AI agents need to understand the tool definitions
+   - Tool names and purposes
+   - Parameters and constraints
+   - Return value structures
+   - Error scenarios and recovery
+   - Real usage examples
 
-3. **LLM Documentation** — For future Phase 3
-   - What this capability does
-   - When AI agents should use it
-   - How it works
+3. **LLM Documentation** — AI agents need to understand this capability autonomously
+   - What this capability does (detect unauthorized tool access)
+   - When AI agents should use it (security auditing workflows)
+   - How it integrates with other security tools
+   - Decision logic and examples
 
