@@ -4,31 +4,64 @@ Used by the orchestrator when no configuration file exists (`.claude/documentati
 
 ---
 
-## Question 1: Programmatic Interface
+## Question 1: REST API
 
 **Question:**
 ```
-Does this feature expose an API, tool interface, microservice, SDK function, or other 
-programmatic interface that code or other systems can call?
+Does this feature expose a REST API with HTTP endpoints?
+```
+
+**Purpose:** Determines if API reference documentation is needed.
+
+**Answer "yes" if:**
+- The feature has HTTP endpoints (GET, POST, PUT, DELETE, PATCH, etc.)
+- Users make requests to specific paths (e.g., `/api/get_unauthorized_access`)
+- You have query parameters, path parameters, or request bodies
+- The feature returns structured responses (JSON, XML, etc.)
+- You need to document HTTP methods, status codes, and response schemas
+
+**Examples of "yes":**
+- An API endpoint for checking tool access: `GET /api/get_unauthorized_access`
+- A webhook receiver: `POST /webhooks/events`
+- A data export service: `POST /api/export?format=csv`
+- A REST service with multiple endpoints
+
+**Examples of "no":**
+- MCP tool definitions (use Q2 for those)
+- gRPC services (would use separate documentation)
+- Python SDK functions without an HTTP layer
+- Internal microservice calls (if documented as tools instead)
+
+**If yes →** Add `api-docs` to `documentation_types`
+
+---
+
+## Question 2: MCP Tools & Programmatic Interface
+
+**Question:**
+```
+Does this feature expose MCP tools, SDK functions, tool definitions, or other 
+programmatic interfaces (non-REST) that code or systems can call?
 ```
 
 **Purpose:** Determines if MCP tool documentation is needed.
 
 **Answer "yes" if:**
-- Users write code to call this feature
+- The feature is a tool definition for Claude or other systems
+- Users write code to call this feature (SDK, library, or direct function calls)
 - Other services/microservices call this feature
-- The feature is a tool definition with parameters and return values
 - External systems can invoke this feature programmatically
-- There's a REST API, gRPC endpoint, SDK method, or similar interface
+- There are callable functions with parameters and return values (non-REST)
 
 **Examples of "yes":**
-- An API endpoint for checking tool access: `GET /api/get_unauthorized_access`
-- An SDK function: `client.detect_unauthorized_access(agent_id, days_back)`
 - A tool definition in a workflow system
-- A database query interface
-- A microservice that other services depend on
+- An SDK function: `client.detect_unauthorized_access(agent_id, days_back)`
+- A Python library with callable methods
+- A database query interface or ORM
+- A callable microservice (non-HTTP interface)
 
 **Examples of "no":**
+- REST API only (covered by Q1)
 - A background batch process with no external interface
 - An internal algorithm that users don't interact with directly
 - An infrastructure component (load balancer, message queue, etc.)
@@ -38,7 +71,7 @@ programmatic interface that code or other systems can call?
 
 ---
 
-## Question 2: User-Facing Workflows
+## Question 3: User-Facing Workflows
 
 **Question:**
 ```
@@ -71,7 +104,7 @@ interact with this feature directly to accomplish tasks?
 
 ---
 
-## Question 3: AI/LLM Reasoning
+## Question 4: AI/LLM Reasoning
 
 **Question:**
 ```
@@ -106,48 +139,65 @@ need to understand and reason about this feature to accomplish their goals?
 
 ## Common Patterns
 
-### Pattern 1: API-Only (Developer Tool)
+### Pattern 1: REST API Only (Developer Tool)
 
 **Typical answers:**
-- Q1 (Programmatic interface): **YES**
-- Q2 (User workflows): **NO**
-- Q3 (AI reasoning): Maybe
+- Q1 (REST API): **YES**
+- Q2 (MCP tools): NO
+- Q3 (User workflows): NO
+- Q4 (AI reasoning): Maybe
+
+**Result:** `["api-docs"]` or `["api-docs", "llm-docs"]`
+
+**Example:** A REST API for checking tool access. Developers call endpoints directly. No end-user UI. Possibly useful for LLM context.
+
+### Pattern 2: MCP Tools Only (Callable Function)
+
+**Typical answers:**
+- Q1 (REST API): NO
+- Q2 (MCP tools): **YES**
+- Q3 (User workflows): NO
+- Q4 (AI reasoning): Maybe
 
 **Result:** `["mcp-tools"]` or `["mcp-tools", "llm-docs"]`
 
-**Example:** A Python SDK for calling an analytics service. Developers use it directly. No end-user UI. Possibly useful for LLM context.
+**Example:** A Python SDK or tool definition. Code calls it directly. No HTTP endpoints. No end-user UI. Possibly useful for AI systems.
 
-### Pattern 2: UI-First (End-User Feature)
+### Pattern 3: UI-First (End-User Feature)
 
 **Typical answers:**
-- Q1 (Programmatic interface): Maybe
-- Q2 (User workflows): **YES**
-- Q3 (AI reasoning): Maybe
+- Q1 (REST API): Maybe
+- Q2 (MCP tools): Maybe
+- Q3 (User workflows): **YES**
+- Q4 (AI reasoning): Maybe
 
-**Result:** `["user-guide"]` or `["user-guide", "llm-docs"]` or `["mcp-tools", "user-guide"]`
+**Result:** `["user-guide"]` or `["api-docs", "user-guide"]` or `["api-docs", "user-guide", "llm-docs"]`
 
 **Example:** A dashboard for reviewing findings. End users interact with the UI. Might also have an API for power users. Maybe useful for AI agents to understand.
 
-### Pattern 3: Full Stack (API + UI + AI)
+### Pattern 4: Full Stack (REST API + MCP Tools + UI + AI)
 
 **Typical answers:**
-- Q1 (Programmatic interface): **YES**
-- Q2 (User workflows): **YES**
-- Q3 (AI reasoning): **YES**
+- Q1 (REST API): **YES**
+- Q2 (MCP tools): **YES**
+- Q3 (User workflows): **YES**
+- Q4 (AI reasoning): **YES**
 
-**Result:** `["mcp-tools", "user-guide", "llm-docs"]`
+**Result:** `["api-docs", "mcp-tools", "user-guide", "llm-docs"]`
 
 **Example:** A comprehensive feature with:
 - REST API for developers
+- MCP tool definitions for Claude and agents
 - Web UI for end users
 - Documented in Claude's context for autonomous workflows
 
-### Pattern 4: Internal / Infrastructure
+### Pattern 5: Internal / Infrastructure
 
 **Typical answers:**
-- Q1 (Programmatic interface): NO
-- Q2 (User workflows): NO
-- Q3 (AI reasoning): NO
+- Q1 (REST API): NO
+- Q2 (MCP tools): NO
+- Q3 (User workflows): NO
+- Q4 (AI reasoning): NO
 
 **Result:** `[]` (Don't use documentation orchestrator; this feature doesn't need external documentation)
 
@@ -158,7 +208,11 @@ need to understand and reason about this feature to accomplish their goals?
 ## Decision Tree (Visual)
 
 ```
-Is there a programmatic interface?
+Is there a REST API?
+├─ YES → Need API reference docs
+└─ NO  → Skip API docs
+
+Are there MCP tools or other programmatic interfaces?
 ├─ YES → Need MCP tool docs
 └─ NO  → Skip MCP tool docs
 
@@ -177,16 +231,24 @@ Result: Run validators for selected types
 
 ## How Answers Map to Config
 
-| Q1 | Q2 | Q3 | Recommended Config |
-|---|---|---|---|
-| YES | NO | NO | `["mcp-tools"]` |
-| YES | NO | YES | `["mcp-tools", "llm-docs"]` |
-| YES | YES | NO | `["mcp-tools", "user-guide"]` |
-| YES | YES | YES | `["mcp-tools", "user-guide", "llm-docs"]` |
-| NO | YES | NO | `["user-guide"]` |
-| NO | YES | YES | `["user-guide", "llm-docs"]` |
-| NO | NO | YES | `["llm-docs"]` |
-| NO | NO | NO | (No docs needed; skip orchestrator) |
+| Q1 (REST API) | Q2 (MCP Tools) | Q3 (User Guide) | Q4 (LLM Docs) | Recommended Config |
+|---|---|---|---|---|
+| YES | NO | NO | NO | `["api-docs"]` |
+| YES | NO | NO | YES | `["api-docs", "llm-docs"]` |
+| YES | NO | YES | NO | `["api-docs", "user-guide"]` |
+| YES | NO | YES | YES | `["api-docs", "user-guide", "llm-docs"]` |
+| YES | YES | NO | NO | `["api-docs", "mcp-tools"]` |
+| YES | YES | NO | YES | `["api-docs", "mcp-tools", "llm-docs"]` |
+| YES | YES | YES | NO | `["api-docs", "mcp-tools", "user-guide"]` |
+| YES | YES | YES | YES | `["api-docs", "mcp-tools", "user-guide", "llm-docs"]` |
+| NO | YES | NO | NO | `["mcp-tools"]` |
+| NO | YES | NO | YES | `["mcp-tools", "llm-docs"]` |
+| NO | YES | YES | NO | `["mcp-tools", "user-guide"]` |
+| NO | YES | YES | YES | `["mcp-tools", "user-guide", "llm-docs"]` |
+| NO | NO | YES | NO | `["user-guide"]` |
+| NO | NO | YES | YES | `["user-guide", "llm-docs"]` |
+| NO | NO | NO | YES | `["llm-docs"]` |
+| NO | NO | NO | NO | (No docs needed; skip orchestrator) |
 
 ---
 
@@ -200,7 +262,8 @@ Result: Run validators for selected types
 **Think about the MVP (minimum viable product):**
 - For a new feature, answer based on what you're shipping NOW
 - You can always update the config later as the feature evolves
-- Phase 1 might need only Q1 (API docs), Phase 2 adds Q2 (user guide), Phase 3 adds Q3 (LLM docs)
+- Phase 1 might need only Q1 (REST API), Phase 2 adds Q3 (user guide), Phase 3 adds Q4 (LLM docs)
+- Or Phase 1 might need Q2 (MCP tools), Phase 2 adds Q3 (user guide)
 
 **When in doubt, err toward "yes":**
 - Extra documentation is better than missing documentation
