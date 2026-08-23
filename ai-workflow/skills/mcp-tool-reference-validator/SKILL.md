@@ -14,17 +14,17 @@ Use this Skill **before opening a PR** to catch gaps in the specification and ge
 
 ## What it does
 
-### Stage 1: PRD Input Validation
+### Stage 1: MCP-Specific Input Validation
 
-Checks the provided tool specification against a **required elements checklist**:
+Checks the provided tool specification against an **MCP-specific checklist** (assumes Stage 0 already passed):
 
-✓ Tool name and one-sentence purpose  
-✓ All parameters listed (required/optional, types, constraints)  
-✓ Return value structure described  
-✓ At least one real use case or workflow  
-✓ Known edge cases, error scenarios, or limitations documented  
+✓ Tool names and parameter specification (types, constraints, where to obtain values)  
+✓ Return value structure — all keys, types, nested objects, nullable fields  
+✓ Real, verified examples (success + error cases)  
+✓ All error scenarios documented (HTTP codes, responses, recovery)  
+✓ Tool relationships — how this chains with other tools, limitations  
 
-**Output:** A report of what's present, what's missing, and what needs clarification before moving forward.
+**Output:** A report of what's present, what's missing, and what needs clarification.
 
 ### Stage 2: Draft Generation (if input is complete)
 
@@ -118,6 +118,7 @@ A draft tool reference page with all 5 tools documented, ready for:
 
 ## Notes
 
-- This Skill uses the **generic, reordered MCP tool documentation checklist** from Track 4 (Documenting MCP), so it applies to any feature in the portfolio, not just Ridgeline or UAX.
-- Generated drafts follow the template from `documenting-mcp.md` Project 2, ensuring consistency across the portfolio.
+- This Skill's Stage 1 is **type-specific only** — it assumes Stage 0 (`/documentation-input-validator`) has already passed. The orchestrator runs Stage 0 once, then Stage 1 only for selected doc types.
+- Stage 1 checks only MCP-specific requirements (tool names, parameters, returns, examples, error handling) — it does NOT re-check generic PRD completeness.
+- Generated drafts follow the template from Track 4 (Documenting MCP), ensuring consistency across the portfolio.
 - The Skill is **not frozen**; improvements feed back into the MCP documentation guidance as new features use it.

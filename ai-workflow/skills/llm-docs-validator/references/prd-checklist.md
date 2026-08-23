@@ -1,30 +1,28 @@
-# LLM Documentation PRD Validation Checklist
+# LLM Documentation PRD Validation Checklist — LLM Ingestion (Stage 1)
 
-What the Skill checks for in Stage 1 (input validation) before generating a draft.
+**Assumes Stage 0 passed.** This checklist checks ONLY LLM-specific requirements.
+
+(Stage 0 already verified: feature name, purpose, scope, constraints, at least one example)
 
 ## Required Elements
 
 ### Self-Contained Specification
-- [ ] **Feature purpose is clear without external context** — LLMs can't follow links or infer unstated assumptions
-- [ ] **All parameters/inputs fully specified** — types, constraints, allowed values, examples
-- [ ] **All outputs/returns fully described** — structure, types, nested objects, nullable fields
+- [ ] **All parameters/inputs fully specified** — types, constraints, allowed values, how to obtain them
+- [ ] **All outputs/returns fully described** — structure, types, nested objects, nullable fields, edge cases
 - [ ] **All dependencies explicitly stated** — "requires X to be set up first" or "depends on Y being defined"
+- [ ] **No external references required** — LLMs can't follow links or infer unstated context
 
-### Clarity for Automated Reasoning
-- [ ] **Constraints and limitations explicitly stated** — what this tool does NOT do
-- [ ] **Decision logic documented** — when should an LLM choose this feature over alternatives?
-- [ ] **Error scenarios described** — what happens on missing input? invalid input? resource not found?
+### Decision Logic for LLM Reasoning
+- [ ] **Decision logic documented** — when should an LLM use this vs. alternatives?
+  - Example: "Use get_unauthorized_access when you need violations; use get_actual_access for complete audit trail"
+- [ ] **Related features/tools mentioned** — how does this fit with similar features?
+- [ ] **Error scenarios described** — all error cases with HTTP codes and recovery steps
 - [ ] **Edge cases and exceptions noted** — special behaviors, fallbacks, or unusual states
 
-### Examples for Correctness
+### Examples — Success & Error
 - [ ] **Success-path example provided** — realistic scenario showing correct usage
 - [ ] **Error example(s) provided** — realistic scenarios showing what happens when things go wrong
 - [ ] **Examples are concrete** — actual values, not placeholders like "[value]" or "..."
-
-### Findability & Relationships
-- [ ] **Purpose explains when to use this** — not just what it does, but why you'd call it
-- [ ] **Related features/tools mentioned** — how does this fit with alternatives?
-- [ ] **Scope boundaries clear** — what belongs to this feature vs. other features
 
 ---
 

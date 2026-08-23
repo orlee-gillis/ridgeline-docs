@@ -14,16 +14,16 @@ Use this Skill **before adding documentation to an llms.txt file or AI context w
 
 ## What it does
 
-### Stage 1: PRD Input Validation
+### Stage 1: LLM-Specific Input Validation
 
-Checks the provided feature specification against an **LLM-focused checklist**:
+Checks the provided feature specification against an **LLM-focused checklist** (assumes Stage 0 already passed):
 
-✓ Feature purpose and operational context (what can this tool/feature do?)  
-✓ Complete specification without external reference (all needed info is present)  
-✓ Structured, consistent formatting (easy for LLMs to parse)  
-✓ Clear constraints and limitations (when NOT to use this)  
-✓ Decision logic or heuristics (how should an LLM choose between options?)  
-✓ Examples grounded in realistic scenarios (not theoretical)  
+✓ All parameters/inputs fully specified — types, constraints, how to obtain values  
+✓ All outputs/returns fully described — structure, types, edge cases, nullable fields  
+✓ Decision logic documented — when to use this vs. alternatives  
+✓ All error scenarios covered — HTTP codes, responses, recovery steps  
+✓ No external dependencies — everything self-contained for LLM reasoning  
+✓ Real, verified examples — success and error cases  
 
 **Output:** A report of what's present, what's missing, and what could confuse an LLM.
 
@@ -120,6 +120,7 @@ A draft LLM documentation page ready for:
 
 ## Notes
 
-- This Skill focuses on **clarity and completeness for automated reasoning**—LLMs need all context upfront; they can't ask clarifying questions.
+- This Skill's Stage 1 is **type-specific only** — it assumes Stage 0 (`/documentation-input-validator`) has already passed. The orchestrator runs Stage 0 once, then Stage 1 only for selected doc types.
+- Stage 1 checks only LLM-specific requirements (self-contained specs, decision logic, error scenarios) — it does NOT re-check generic PRD completeness.
+- Focuses on **clarity and completeness for automated reasoning**—LLMs need all context upfront; they can't ask clarifying questions.
 - LLM-ingestible docs are often shorter and more highly structured than human-facing docs, not longer.
-- Works best when paired with `/documentation-input-validator` (Stage 0) first.

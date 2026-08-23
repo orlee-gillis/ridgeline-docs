@@ -1,29 +1,32 @@
-# User Guide PRD Validation Checklist
+# User Guide PRD Validation Checklist — User-Facing Tasks (Stage 1)
 
-What the Skill checks for in Stage 1 (input validation) before generating a draft.
+**Assumes Stage 0 passed.** This checklist checks ONLY user-guide-specific requirements.
+
+(Stage 0 already verified: feature name, purpose, scope, audience, at least one workflow, constraints)
 
 ## Required Elements
 
-### User & Task Clarity
-- [ ] **Audience explicitly stated** — who is this for? (end users, admins, developers, all of the above?)
-- [ ] **User goal described** — what does the user want to accomplish? (not what the system does, but what the user does)
-- [ ] **Success criteria defined** — how does the user know they succeeded?
+### Task Workflow — User-Oriented Details
+- [ ] **Complete task workflow documented** — end-to-end steps from start to success
+- [ ] **Decision points noted** — what choices does the user make? Which path applies to them?
+- [ ] **Normal (happy) path clearly separated** from error handling
+- [ ] **Step-by-step instructions** — each step is atomic and actionable
+- [ ] **Prerequisite setup/permissions** — what needs to be true before user starts? (beyond general setup from Stage 0)
 
-### Workflow Completeness
-- [ ] **At least one complete task scenario** — start to finish, not just fragments
-- [ ] **Decision points noted** — what choices does the user make during the workflow?
-- [ ] **Normal path documented** — the happy path, step-by-step
-- [ ] **Prerequisites or setup documented** — what needs to be true before the user starts?
+### Success Criteria & Interpretation
+- [ ] **Success criteria defined** — how does user know the task succeeded?
+- [ ] **How to interpret results** — what does the output/screen/status mean?
+- [ ] **User skill level noted** — beginner/intermediate/advanced? (refines how to explain steps)
 
-### Failure & Edge Cases
-- [ ] **Common failure modes described** — what could go wrong during the task?
-- [ ] **Troubleshooting guidance** — for each failure mode, how does the user recover?
-- [ ] **Error messages or warnings** explained — what do error states mean?
+### Failure Handling — Troubleshooting
+- [ ] **Common failure modes described** — what could go wrong during this task?
+- [ ] **Troubleshooting guidance** — for each failure, how does user recover?
+- [ ] **Error messages explained** — what do error states mean to the user?
+- [ ] **When to escalate** — what should user do if troubleshooting doesn't help?
 
-### Real-World Context
-- [ ] **Example scenario with realistic context** — not a bare-bones template, but a concrete situation
-- [ ] **Related tasks or next steps mentioned** — how does this task fit into a bigger workflow?
-- [ ] **Prerequisite knowledge identified** — what does the user need to know or understand first?
+### Real-World Example
+- [ ] **Concrete scenario with realistic context** (not bare-bones template)
+- [ ] **Related tasks or next steps** — how does this task fit into larger workflows?
 
 ---
 

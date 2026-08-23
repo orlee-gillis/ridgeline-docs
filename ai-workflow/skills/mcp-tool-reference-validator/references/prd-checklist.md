@@ -1,51 +1,46 @@
-# PRD Validation Checklist
+# PRD Validation Checklist — MCP Tools (Stage 1)
 
-What the Skill checks for in Stage 1 (input validation) before generating a draft.
+**Assumes Stage 0 passed.** This checklist checks ONLY MCP-specific requirements.
+
+(Stage 0 already verified: feature name, purpose, scope, audience, workflows, constraints)
 
 ## For each tool in the spec:
 
-### Tool Identity
-- [ ] **Tool name** (e.g., `list_ai_identities`, not "list AI identities")
-- [ ] **One-sentence purpose** — what the tool does and when you'd use it (not just "returns X")
+### Tool Identity & Specification
+- [ ] **Tool name specified** (e.g., `list_ai_identities`, not "list AI identities")
+- [ ] **Parameters fully specified:**
+  - [ ] All parameters listed (none omitted)
+  - [ ] Parameter types (string, integer, boolean, array, object, etc.)
+  - [ ] Required vs. optional marked for each
+  - [ ] Default values shown for optional parameters
+  - [ ] Constraints documented (max length, allowed values, format, ranges)
+  - [ ] "Where to get it" guidance for parameters from other tools or external sources
 
-### Parameters
-- [ ] **All parameters listed** — none omitted
-- [ ] **Parameter types specified** — string, integer, boolean, array, object, etc.
-- [ ] **Required vs. optional marked** for each
-- [ ] **Default values shown** for optional parameters
-- [ ] **Constraints documented** — max length, allowed values, format requirements, etc.
-- [ ] **"Where to get it" guidance** for parameters that come from:
-  - Another tool's output (e.g., "identity_id from `list_ai_identities`")
-  - User knowledge (e.g., "from your dashboard")
-  - Derived values (e.g., "ISO 8601 datetime")
-
-### Return Values
-- [ ] **Return structure described** — what shape does the response take?
-- [ ] **Top-level keys listed and explained** — what does each key mean?
-- [ ] **Nested objects documented** — if returns contain nested structures, explain their keys
-- [ ] **Optional/null fields noted** — which fields can be null or missing?
+### Return Values — Complete Specification
+- [ ] **Return structure described** — what shape? (object, array, scalar)
+- [ ] **Top-level keys listed and explained** — what each key means
+- [ ] **Nested objects documented** — all nested keys explained
+- [ ] **Optional/null fields marked** — which can be null or missing?
 - [ ] **Data types stated** — string, integer, array of objects, etc.
 
-### Example Response
-- [ ] **Real, verified example provided** — not a template or schema
-- [ ] **Example includes optional/null values in their actual state** (not all fields filled in)
-- [ ] **Example is realistic** — represents an actual API response, not a sanitized simplified version
+### Examples — Real & Verified
+- [ ] **Real example provided** (not template or schema)
+- [ ] **Example includes optional/null values in actual state** (not all fields filled)
+- [ ] **Example is realistic** (actual API response, not sanitized)
 
-### Edge Cases & Errors
-- [ ] **Known error scenarios described** — what happens when:
-  - Required parameter is missing
-  - Parameter is out of bounds
-  - Resource doesn't exist (404)
-  - Permission denied (403)
-  - Rate limit hit
+### Error Scenarios — Complete Coverage
+- [ ] **All error cases documented:**
+  - [ ] Missing required parameter → HTTP code and response
+  - [ ] Invalid parameter (out of bounds/wrong type/wrong format) → HTTP code and response
+  - [ ] Resource not found (404) → HTTP code and response
+  - [ ] Permission denied (403) → HTTP code and response
+  - [ ] Rate limit hit (429) → HTTP code and response
 - [ ] **Undocumented cases noted** — "Error behavior for X is not yet tested"
-- [ ] **Null/empty behavior explained** — what does the tool return for empty results? Null vs. empty array?
+- [ ] **Null/empty behavior explained** — empty array vs. null vs. missing field?
 
-### Workflow Context
-- [ ] **Use case or workflow documented** — how does this tool fit into a larger operation?
-  - Example: "Call `get_declared_scope` after `list_ai_identities` to find what tools an agent is allowed to use"
-- [ ] **Relationship to other tools mentioned** — if this tool chains to another, say so
-- [ ] **Limitations or prerequisites stated** — any setup needed before this tool works?
+### Workflow Context — Tool Relationships
+- [ ] **Relationship to other tools mentioned** — chaining, dependencies, alternatives
+- [ ] **Limitations or prerequisites stated** — any setup needed before calling?
 
 ---
 

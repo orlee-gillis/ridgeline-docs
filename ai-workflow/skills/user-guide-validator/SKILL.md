@@ -14,16 +14,16 @@ Use this Skill **before opening a PR** to ensure user guides are complete and ta
 
 ## What it does
 
-### Stage 1: PRD Input Validation
+### Stage 1: User-Guide-Specific Input Validation
 
-Checks the provided feature specification against a **user-guide-specific checklist**:
+Checks the provided feature specification against a **user-guide-specific checklist** (assumes Stage 0 already passed):
 
-✓ Feature purpose and user goals (what problem does this solve for users?)  
-✓ Task scenarios — at least one complete end-to-end workflow  
-✓ Prerequisite knowledge or setup (what does the user need to know first?)  
-✓ Success criteria (how does the user know they succeeded?)  
-✓ Common failure modes or troubleshooting (what could go wrong and how to fix it?)  
-✓ Audience clarity (who is this guide for? developers? admins? end users?)
+✓ Complete task workflow — end-to-end steps, decision points, happy path  
+✓ Prerequisites specific to the task (beyond general feature setup)  
+✓ Success criteria and how to interpret results  
+✓ Common failure modes and troubleshooting for each  
+✓ Realistic example scenario showing concrete context  
+✓ Related tasks and next steps, user skill level clarification  
 
 **Output:** A report of what's present, what's missing, and what needs clarification.
 
@@ -121,6 +121,7 @@ A draft user guide ready for:
 
 ## Notes
 
-- This Skill focuses on **task-oriented documentation for end users**, not technical API reference.
+- This Skill's Stage 1 is **type-specific only** — it assumes Stage 0 (`/documentation-input-validator`) has already passed. The orchestrator runs Stage 0 once, then Stage 1 only for selected doc types.
+- Stage 1 checks only user-guide-specific requirements (task workflows, prerequisites, success criteria, troubleshooting) — it does NOT re-check generic PRD completeness.
+- Focuses on **task-oriented documentation for end users**, not technical API reference.
 - Differs from `/mcp-tool-reference-validator` by prioritizing user workflows over technical specifications.
-- Works best when paired with `/documentation-input-validator` (Stage 0) first to ensure baseline completeness.
