@@ -14,17 +14,20 @@ When documenting a cloud security feature like "Unauthorized Agent Access Detect
 
 | Phase | Documentation Type | Purpose |
 |-------|------------------|---------|
-| Phase 1 | MCP tool reference | Developers understand how to call the detection API |
+| Phase 1 | API reference | Developers understand the REST endpoints and parameters |
+| Phase 1 | MCP tool reference | Developers understand the tool definitions and parameters |
 | Phase 2 | User guide | Security teams understand how to review findings and take action |
 | Phase 3 | LLM documentation | AI agents understand the feature's capabilities and constraints |
 
-But not every feature goes through all three phases at once. Some features might:
-- Only need an API reference (backend service, no UI)
-- Only need a user guide (UI-first, no programmatic interface)
-- Need API docs + LLM docs but no user guide (developer tool, AI-aware)
-- Need all three (full-stack feature with AI integration)
+But not every feature goes through all phases at once. Some features might:
+- Only need REST API reference (backend service, no UI, no tool definitions)
+- Only need MCP tool reference (callable functions, no HTTP API, no UI)
+- Need REST API + MCP tools (both programmatic interfaces)
+- Need REST API + user guide (HTTP API + end-user UI, no AI integration)
+- Need REST API + LLM docs but no user guide (developer tool, AI-aware)
+- Need all four (full-stack feature with REST API, tools, UI, and AI integration)
 
-**The constraint:** "There won't always be a need for all 3."
+**The constraint:** "There won't always be a need for all 4 types simultaneously."
 
 ### Why This Matters for Docs-as-Code
 
@@ -42,8 +45,9 @@ This doesn't scale well for a portfolio of diverse features with varying documen
 ### Functional Requirements
 
 1. **Support variable documentation needs**
-   - Some features need only 1 doc type; others need 2 or 3
+   - Some features need only 1 doc type; others need 2, 3, or all 4
    - System shouldn't force unnecessary validation
+   - Should support all combinations of the 4 types
 
 2. **Validate before drafting**
    - Stage 0: Generic PRD completeness (applies to all)
@@ -81,7 +85,7 @@ This doesn't scale well for a portfolio of diverse features with varying documen
 
 ## Success Criteria
 
-- ✅ Can validate documentation when not all 3 types are needed
+- ✅ Can validate documentation when not all types are needed
 - ✅ Configuration-driven and interactive modes both work
 - ✅ No overlap between Stage 0 and Stage 1 checklists
 - ✅ Each validator is independent and composable
@@ -96,6 +100,7 @@ This doesn't scale well for a portfolio of diverse features with varying documen
 ### In Scope
 
 - Generic PRD completeness validation (all doc types)
+- REST API reference validation and drafting
 - MCP tool reference validation and drafting
 - User guide validation and drafting
 - LLM documentation validation and drafting
@@ -105,7 +110,6 @@ This doesn't scale well for a portfolio of diverse features with varying documen
 
 ### Out of Scope (Future Extensions)
 
-- REST API reference validation (separate validator, planned)
 - GraphQL API reference validation
 - gRPC service documentation
 - OpenAPI/Swagger integration
@@ -122,8 +126,9 @@ This doesn't scale well for a portfolio of diverse features with varying documen
 2. **How to structure the orchestrator?**
    - Config-first? Interactive-first? Both with fallback?
 
-3. **How many initial validators?**
-   - Start with 3 (MCP, user guide, LLM) and add REST API later?
+3. **How many validators?**
+   - 5 core validators: REST API, MCP tools, user guides, LLM docs, plus orchestrator
+   - Composable design allows adding more types in the future
 
 4. **How to make it extensible?**
    - New doc types = new validators (composition)
@@ -135,6 +140,6 @@ This doesn't scale well for a portfolio of diverse features with varying documen
 
 - **Design must be composable** — each validator independent
 - **No Stage 0 duplication** — stage 0 checks once, stage 1 checks only type-specific
-- **Flexible doc type selection** — can't force all 3 types always
+- **Flexible doc type selection** — can't force all 4 types simultaneously
 - **Portfolio-demonstrable** — design process and decisions should be documented
 - **Real-world usage** — must work for actual features like UAX

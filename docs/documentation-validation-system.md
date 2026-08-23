@@ -13,21 +13,24 @@ Cloud security features have diverse documentation needs depending on their phas
 
 | Phase | Type | Purpose |
 |-------|------|---------|
-| **Phase 1** | MCP Tool Reference | Developers: "How do I call this API?" |
+| **Phase 1** | API Reference | Developers: "What are the endpoints and how do I call them?" |
+| **Phase 1** | MCP Tool Reference | Developers: "What are the tool definitions and parameters?" |
 | **Phase 2** | User Guide | Security teams: "How do I use this feature?" |
 | **Phase 3** | LLM Documentation | AI agents: "What can you do with this?" |
 
 But not every feature goes through all phases simultaneously. Some features might need:
-- Only API reference (backend service, no UI)
-- Only user guides (UI-first, no programmatic API)
+- Only REST API reference (backend service, no UI)
+- Only MCP tool reference (callable functions, no HTTP API)
+- REST API + MCP tools (both programmatic interfaces)
+- API + user guide (developer tool + end-user UI)
 - API + LLM docs but no user guide (developer tool)
-- All three (full-stack feature)
+- All four (full-stack feature)
 
 **The challenge:** How to validate documentation when documentation types are variable, not fixed?
 
 ## Solution: Composable Validators + Intelligent Orchestration
 
-The system consists of **5 independent Skills** that compose into a powerful validation pipeline:
+The system consists of **6 independent Skills** that compose into a powerful validation pipeline:
 
 ### Architecture Overview
 
@@ -43,6 +46,8 @@ PRD Input
 └─────────────────────────────────────┘
     ↓ (if passes)
     ├─→ Stage 1: Type-Specific Validation (selected types only)
+    │   ├─ api-reference-validator
+    │   │   (endpoints, methods, parameters, responses, error codes, examples)
     │   ├─ mcp-tool-reference-validator
     │   │   (tool names, parameters, returns, examples, errors)
     │   ├─ user-guide-validator
@@ -51,6 +56,7 @@ PRD Input
     │       (decision logic, completeness, error scenarios)
     │
     └─→ Stage 2: Optional Draft Generation
+        ├─ API reference draft
         ├─ MCP tool reference draft
         ├─ User guide draft
         └─ LLM documentation draft
@@ -83,21 +89,24 @@ Repeatable, automation-friendly, works in CI.
 
 **Interactive Discovery** (for new features):
 ```
-Q1: Does this expose a programmatic interface?
+Q1: Does this expose a REST API?
+    → Yes = need API reference validator
+
+Q2: Does this expose MCP tools or other programmatic interfaces?
     → Yes = need MCP tools validator
 
-Q2: Do end users interact with this directly?
+Q3: Do end users interact with this directly?
     → Yes = need user guide validator
 
-Q3: Should AI systems understand this?
+Q4: Should AI systems understand this?
     → Yes = need LLM docs validator
 ```
 Low barrier to entry, helps users discover what they need.
 
 **Per-Run Override:**
 ```
-/documentation-orchestrator --types mcp-tools,llm-docs
-# Skips user guide validator
+/documentation-orchestrator --types api-docs,llm-docs
+# Skips MCP tools and user guide validators
 ```
 
 ## Workflow Example: Unauthorized Agent Access
@@ -109,7 +118,7 @@ Create `.claude/documentation-config.json`:
 ```json
 {
   "feature_name": "Unauthorized Agent Access Detection",
-  "documentation_types": ["mcp-tools", "user-guide", "llm-docs"]
+  "documentation_types": ["api-docs", "mcp-tools", "llm-docs"]
 }
 ```
 
@@ -119,8 +128,9 @@ Create `.claude/documentation-config.json`:
 ```
 
 The orchestrator reads the config and determines:
-- **Yes** to MCP tool reference (has API)
-- **Yes** to user guide (security teams use it)
+- **Yes** to API reference (has REST endpoints)
+- **Yes** to MCP tool reference (has tool definitions)
+- **No** to user guide (no UI for end users)
 - **Yes** to LLM docs (AI agents should understand it)
 
 ### Step 3: Stage 0 Validation
@@ -137,7 +147,17 @@ Generic PRD completeness check runs once:
 If Stage 0 passes → proceed to Stage 1
 
 ### Step 4: Stage 1 Validation
-Only the three selected validators run (no wasted effort):
+Only the selected validators run (no wasted effort):
+
+**API Reference Validator:**
+```
+✓ Endpoints: GET /api/get_unauthorized_access, GET /api/get_remediation_options
+✓ HTTP methods: GET documented for each endpoint
+✓ Parameters: identity_id (path), severity_threshold (query), days_back (query) fully specified
+✓ Response schema: Finding objects with all fields, types, nullable indicators
+✓ HTTP status codes: 200, 400, 404, 429, 500 documented with error responses
+✓ Examples: Real success and error response examples
+```
 
 **MCP Tool Validator:**
 ```
@@ -146,15 +166,6 @@ Only the three selected validators run (no wasted effort):
 ✓ Return values: Finding objects with all fields documented
 ✓ Error scenarios: 404 not found, 400 invalid parameter, 429 rate limit
 ✓ Examples: Real success and error responses
-```
-
-**User Guide Validator:**
-```
-✓ Task workflows: Complete finding review workflow documented
-✓ Prerequisites: What users need to know first
-✓ Success criteria: How to know the task succeeded
-✓ Troubleshooting: Common issues and solutions
-✓ Examples: Realistic scenario with context
 ```
 
 **LLM Docs Validator:**
@@ -169,8 +180,8 @@ If all Stage 1 validators pass → offer to generate drafts
 
 ### Step 5: Stage 2 Drafts
 ```
+✓ api-docs: Generate API reference page (endpoints, parameters, responses, examples)
 ✓ mcp-tools: Generate tool reference page
-✓ user-guide: Generate step-by-step user guide
 ✓ llm-docs: Generate LLM-ingestible documentation
 ```
 
@@ -191,6 +202,20 @@ Generic PRD completeness for all doc types.
 - Error handling and edge cases
 
 **Output:** Completeness report (ready/incomplete/needs clarification)
+
+### `api-reference-validator` (Stage 1+2)
+REST API specification validation and drafting.
+
+**Stage 1 checks:**
+- Endpoints (paths, HTTP methods)
+- Request parameters (query, path, body; types, constraints, defaults, where to get them)
+- Response structures (status codes, body schemas, nested objects, nullable fields)
+- Real, verified examples (success + error cases)
+- All HTTP status codes and error scenarios
+- Authentication and authorization requirements
+- Rate limits and other constraints
+
+**Stage 2 output:** API reference page with Endpoint → Request → Response → Examples → Constraints → Notes
 
 ### `mcp-tool-reference-validator` (Stage 1+2)
 MCP tool specification validation and drafting.
@@ -235,8 +260,8 @@ Determines which doc types are needed, runs Stage 0 once, then Stage 1 for selec
 
 **Modes:**
 - **Config-driven:** Reads `.claude/documentation-config.json`
-- **Interactive:** Asks 3 questions about the feature
-- **Override:** `--types mcp-tools` forces specific types
+- **Interactive:** Asks 4 questions about the feature (REST API, MCP tools, user guides, AI/LLM docs)
+- **Override:** `--types api-docs,llm-docs` forces specific types
 
 ## Design Thinking
 
@@ -285,15 +310,21 @@ Stage 0 checks generic items once. Stage 1 checks ONLY type-specific items.
 
 ## Extensibility
 
-The architecture scales to new documentation types:
+The architecture scales to new documentation types. For example, REST API documentation was added as the 4th type:
 
 ```
-Want to add REST API documentation?
-→ Create api-reference-validator (Stage 1+2)
-→ Add "api-docs" to config schema
-→ Add question 4 to interactive flow
-→ No changes to Stage 0 or orchestrator
+Added REST API documentation:
+✓ Created api-reference-validator (Stage 1+2)
+✓ Added "api-docs" to config schema
+✓ Added Q1 (REST API) to interactive flow
+✓ No changes needed to Stage 0 or orchestrator core logic
 ```
+
+To add another type (e.g., GraphQL schema validation):
+1. Create `graphql-schema-validator` (Stage 1+2)
+2. Add `"graphql-docs"` to config schema enum
+3. Add question about GraphQL to interactive flow
+4. Orchestrator automatically discovers and uses it
 
 ## Portfolio Value
 
@@ -323,11 +354,11 @@ This system demonstrates:
 
 Future extensions planned:
 
-- **REST API Reference Validator** (for REST APIs like UAX's API)
 - **GraphQL Documentation Validator** (for GraphQL schemas)
 - **OpenAPI Integration** (for existing Swagger/OpenAPI specs)
 - **Performance Benchmarking** (which validators are fastest)
 - **CI/CD Integration** (automated validation in GitHub Actions)
+- **Auto-remediation** (suggest fixes for common missing documentation)
 
 ---
 
@@ -335,6 +366,7 @@ Future extensions planned:
 
 **Reference Documentation:**
 - [documentation-input-validator](/ai-workflow/skills/documentation-input-validator/SKILL.md) — Stage 0 validation
+- [api-reference-validator](/ai-workflow/skills/api-reference-validator/SKILL.md) — REST APIs
 - [mcp-tool-reference-validator](/ai-workflow/skills/mcp-tool-reference-validator/SKILL.md) — MCP tools
 - [user-guide-validator](/ai-workflow/skills/user-guide-validator/SKILL.md) — User guides
 - [llm-docs-validator](/ai-workflow/skills/llm-docs-validator/SKILL.md) — LLM documentation
