@@ -28,7 +28,7 @@ Checks the provided tool specification against an **MCP-specific checklist** (as
 
 ### Stage 2: Draft Generation (if input is complete)
 
-If the PRD passes Stage 1, generates a **draft tool reference page** using the template from Documenting MCP (Track 4, Project 2).
+If the PRD passes Stage 1, generates a **draft tool reference page** with frontmatter automatically tagged `template: mcp-tool-reference`.
 
 Each tool gets:
 - **Purpose:** Why you'd call this tool (not just what it does technically)
@@ -36,6 +36,8 @@ Each tool gets:
 - **Returns:** Structure organized by top-level keys, with nested object explanations
 - **Example:** A real, verified example response
 - **Notes:** Known gaps, untested cases, limits, or inconsistencies
+
+The generated page is ready to commit with the template tag already in place.
 
 ---
 
