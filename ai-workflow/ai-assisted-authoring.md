@@ -1,10 +1,40 @@
 # AI-assisted authoring
 
-The four stages from source material to published page: the AI techniques used at each, what each technique
+The workflow from source material to published page: the AI techniques used at each stage, what each technique
 is for, and the file that holds it. Lessons are listed separately, because not every technique taught me
 something.
 
+This document describes two parallel workflows:
+
+1. **Multi-type validation** (new) — Validators for specific documentation types (API reference, MCP tools, user guides, LLM docs)
+2. **General authoring** (established) — Four stages from source to published page
+
 ---
+
+## Multi-Type Validation System
+
+Folder: `ai-workflow/skills/` (validators) and `ai-workflow/drafts/` (staged output)
+
+### Techniques used
+
+| Technique | What it is for | Where it lives |
+| --- | --- | --- |
+| Composable validators by doc type | Validate and draft only the documentation types a feature needs, not all types every time | `api-reference-validator/SKILL.md`, `mcp-tool-reference-validator/SKILL.md`, `user-guide-validator/SKILL.md`, `llm-docs-validator/SKILL.md` |
+| Stage 0: Generic PRD validation | Check PRD completeness before type-specific validation | `documentation-input-validator/SKILL.md` |
+| Stage 1: Type-specific validation | Validate only what each doc type needs (endpoints for API, tools for MCP, etc.) | Each validator SKILL.md |
+| Stage 2: Auto-tagged draft generation | Validators auto-tag drafts with template frontmatter for CI gates | Each validator SKILL.md |
+| Draft staging in `ai-workflow/drafts/` | Keep drafts safe until user promotes to `docs/` for publication | `CLAUDE.md` Templates section |
+| Two-flow architecture | Separate authoring (validators) from publishing (CI gates) | `docs/documentation-validation-system.md` |
+
+### What I learned
+
+The validator system enables features to choose which documentation types they need without forcing all types to validate every time. The key insight: validators are pre-publication authoring tools (like a spell-checker), while CI gates are post-publication enforcers (like a publishing checklist). Staging drafts in `ai-workflow/drafts/` prevents accidental publication while giving users full control over promotion timing.
+
+---
+
+## General Authoring Workflow
+
+The four stages from source material to published page:
 
 ## Stage 1 - Gathering the source material
 
