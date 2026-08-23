@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Documentation Configuration Schema",
+  "description": "Declares which documentation types a feature requires. Located at .claude/documentation-config.json",
+  "type": "object",
+  "required": ["documentation_types"],
+  "additionalProperties": false,
+  "properties": {
+    "feature_name": {
+      "type": "string",
+      "description": "Human-readable name of the feature for logging and reference. Optional.",
+      "minLength": 1,
+      "maxLength": 255,
+      "examples": [
+        "Unauthorized Agent Access Detection",
+        "Widget Sync Service",
+        "Rate Limiting System"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of what this feature does. Optional, for documentation only.",
+      "minLength": 1,
+      "maxLength": 1000,
+      "examples": [
+        "Detects when AI agents call tools outside their declared scope"
+      ]
+    },
+    "documentation_types": {
+      "type": "array",
+      "description": "Which documentation validators to run. At least one must be selected.",
+      "minItems": 1,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": ["api-docs", "mcp-tools", "user-guide", "llm-docs"]
+      },
+      "examples": [
+        ["api-docs"],
+        ["api-docs", "user-guide"],
+        ["api-docs", "mcp-tools", "user-guide", "llm-docs"]
+      ]
+    },
+    "run_stage_0_first": {
+      "type": "boolean",
+      "description": "Always run generic PRD validation before type-specific validators. Default: true. Should always be true.",
+      "default": true
+    },
+    "draft_on_stage_1_pass": {
+      "type": "boolean",
+      "description": "If Stage 1 passes, automatically offer to generate drafts. Default: true. Set false to validate without drafting.",
+      "default": true
+    }
+  }
+}

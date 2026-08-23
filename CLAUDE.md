@@ -57,14 +57,37 @@ in Session 21:
 Do not edit these skills during Sessions 19–20. Session 21 measures their output 
 against this baseline state. After Session 21, these skills are open for iteration.
 
-## Gates
+## Templates and CI Gates
 
-Three CI gates check pages against a genre's requirements: `validate-parent-report`,
-`validate-child-report`, `validate-workflow-methodology`. A page opts in by setting
-`template: parent-report` (or `child-report` / `workflow-methodology`) in its frontmatter - a
-page with no `template:` tag isn't checked against any genre, only the general advisory review.
+### Document Templates
 
-Genre requirements live in `ai-workflow/skills/ridgeline-doc-auditor/references/audit-checklist.md`.
+Pages are categorized by template in their frontmatter (`template: <name>`). CI gates validate pages based on their assigned template:
+
+**User Guide Templates** (user-guide-validator generates these):
+- `parent-report` — High-level overview for all users new to a feature
+- `child-report` — Specific task or feature walkthrough
+- `workflow-methodology` — Detailed step-by-step process or methodology
+
+**Reference Templates** (auto-tagged by their validators):
+- `api-reference` — REST API endpoint reference (auto-tagged by `api-reference-validator`)
+- `mcp-tool-reference` — MCP tool definitions and parameters (auto-tagged by `mcp-tool-reference-validator`)
+- `llm-docs` — LLM-ingestible documentation (auto-tagged by `llm-docs-validator`)
+
+A page with no `template:` tag is not checked against genre-specific requirements, only the general advisory review.
+
+### CI Gates
+
+Six CI gates enforce template-specific requirements:
+- `validate-parent-report` — Checks parent-report pages
+- `validate-child-report` — Checks child-report pages
+- `validate-workflow-methodology` — Checks workflow-methodology pages
+- `validate-api-reference` — Checks api-reference pages (auto-fails pages without this template)
+- `validate-mcp-tool-reference` — Checks mcp-tool-reference pages (auto-fails pages without this template)
+- `validate-llm-docs` — Checks llm-docs pages (auto-fails pages without this template)
+
+**Draft Workflow**: Generated drafts go to `ai-workflow/drafts/` with the template tag already in frontmatter. Move to `docs/` and commit when ready for publication.
+
+Template requirements live in `ai-workflow/skills/ridgeline-doc-auditor/references/audit-checklist.md`.
 Before adding a new `template:` genre, confirm a real page actually needs it - see
 `.claude/gates-architecture.md` for why that matters and the full add-a-gate sequence. Status and
 history: `GATES.md`, `GATES-CHANGELOG.md`.

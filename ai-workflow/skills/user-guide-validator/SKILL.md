@@ -27,11 +27,31 @@ Checks the provided feature specification against a **user-guide-specific checkl
 
 **Output:** A report of what's present, what's missing, and what needs clarification.
 
-### Stage 2: Draft Generation (if input is complete)
+### Stage 2: Template Selection & Draft Generation (if input is complete)
 
-If the PRD passes Stage 1, generates a **draft user guide** using a task-oriented template.
+If the PRD passes Stage 1, asks a clarifying question about guide structure, then generates a **draft user guide**.
 
-Each guide includes:
+**Template Selection Question:**
+```
+What type of user guide is this?
+
+1. High-level overview (parent-report)
+   → For feature-level guides, "Getting started", architectural overview
+   → Audience: All users, new to feature
+
+2. Specific task or feature (child-report)
+   → For task walkthroughs, how-to guides, individual workflows
+   → Audience: Users performing specific actions
+
+3. Step-by-step process (workflow-methodology)
+   → For detailed procedures, methodologies, complex workflows
+   → Audience: Users needing comprehensive step-by-step guidance
+```
+
+**Draft Location**: `ai-workflow/drafts/user-guide-<feature-name>.md`
+
+**Draft includes:**
+- **Frontmatter:** Automatically populated with selected template (parent-report, child-report, or workflow-methodology)
 - **Overview:** Why this feature matters and what you can do with it
 - **Before you start:** Prerequisite knowledge, setup, or permissions needed
 - **Main task (step-by-step):** Clear, numbered steps with decision points
@@ -39,6 +59,8 @@ Each guide includes:
 - **Success criteria:** How to verify you completed the task
 - **Troubleshooting:** Common issues and solutions
 - **Next steps:** Related tasks or advanced workflows
+
+When satisfied with the draft, move it to `docs/user-guide-<feature-name>.md` and commit.
 
 ---
 
@@ -90,9 +112,14 @@ RECOMMENDATIONS:
 
 ### If the PRD is **complete:**
 
-A draft user guide ready for:
+1. **Template selection:** You'll be asked which template type fits the guide
+2. **Draft generation:** A user guide with:
+   - Frontmatter including selected template (parent-report, child-report, or workflow-methodology)
+   - Task-oriented content structured for that template type
+   
+Ready for:
 1. Human review and editing
-2. Commit to a feature branch
+2. Commit to a feature branch (template tag already populated)
 3. User feedback testing
 
 ---

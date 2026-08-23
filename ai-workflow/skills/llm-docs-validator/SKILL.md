@@ -29,7 +29,9 @@ Checks the provided feature specification against an **LLM-focused checklist** (
 
 ### Stage 2: Draft Generation (if input is complete)
 
-If the PRD passes Stage 1, generates a **draft LLM-ingestible documentation page** using a context-optimized template.
+If the PRD passes Stage 1, generates a **draft LLM documentation page** with frontmatter automatically tagged `template: llm-docs`.
+
+**Draft Location**: `ai-workflow/drafts/llm-docs-<feature-name>.md`
 
 Each documentation block includes:
 - **Feature description:** What this does and when LLMs should use it
@@ -39,6 +41,8 @@ Each documentation block includes:
 - **Examples and patterns:** Concrete scenarios showing correct usage
 - **Known limitations:** Edge cases, error conditions, and failure modes
 - **Relationship to other features:** How this fits into the larger system
+
+The generated draft includes the template tag in frontmatter. When satisfied with the draft, move it to `docs/llm-docs-<feature-name>.md` and commit.
 
 ---
 

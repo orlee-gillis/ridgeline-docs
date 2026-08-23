@@ -28,7 +28,9 @@ Checks the provided tool specification against an **MCP-specific checklist** (as
 
 ### Stage 2: Draft Generation (if input is complete)
 
-If the PRD passes Stage 1, generates a **draft tool reference page** using the template from Documenting MCP (Track 4, Project 2).
+If the PRD passes Stage 1, generates a **draft tool reference page** with frontmatter automatically tagged `template: mcp-tool-reference`.
+
+**Draft Location**: `ai-workflow/drafts/mcp-tools-<feature-name>.md`
 
 Each tool gets:
 - **Purpose:** Why you'd call this tool (not just what it does technically)
@@ -36,6 +38,8 @@ Each tool gets:
 - **Returns:** Structure organized by top-level keys, with nested object explanations
 - **Example:** A real, verified example response
 - **Notes:** Known gaps, untested cases, limits, or inconsistencies
+
+The generated draft includes the template tag in frontmatter. When satisfied with the draft, move it to `docs/mcp-tools-<feature-name>.md` and commit.
 
 ---
 
@@ -95,8 +99,8 @@ A draft tool reference page with all 5 tools documented, ready for:
 
 ## Reference materials
 
-- **PRD Checklist:** `/ai-workflow/skills/mcp-tool-reference-validator/references/prd-checklist.md`
-- **Draft Template:** `/ai-workflow/skills/mcp-tool-reference-validator/references/template.md`
+- **PRD Checklist:** `/ai-workflow/skills/mcp-tool-reference-validator/checklist.md`
+- **Draft Template:** `/ai-workflow/skills/mcp-tool-reference-validator/template.md`
 - **Quality Rubric:** The reordered checklist from `mcp-lab/documenting-mcp/session-8-testing-results.md`
 
 ---

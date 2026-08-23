@@ -2,7 +2,7 @@
 
 **Date:** August 23, 2026  
 **Status:** Implemented  
-**Outcome:** 5 composable Skills (4 validators + 1 orchestrator)
+**Outcome:** 6 composable Skills (5 validators + 1 orchestrator)
 
 ---
 
@@ -11,11 +11,12 @@
 How do you validate and draft documentation when not all doc types are always needed?
 
 **The Challenge:** A feature might need:
-- **Phase 1:** MCP tool reference (API documentation)
+- **Phase 1:** REST API reference (HTTP endpoints and parameters)
+- **Phase 1:** MCP tool reference (tool definitions and parameters)
 - **Phase 2:** User guide (end-user task documentation)
 - **Phase 3:** LLM documentation (for AI reasoning)
 
-But another feature might need only Phase 1, or only Phases 1+3, or all three. **There won't always be a need for all 3.**
+But another feature might need only REST APIs, or only MCP tools, or REST APIs + user guides, or any other combination. **There won't always be a need for all 4 types simultaneously.**
 
 A naive approach would run all validators every time, wasting effort. A monolithic validator would be hard to extend. The question: how to make documentation types flexible and composable?
 
@@ -88,10 +89,11 @@ Run all checks at once for all doc types.
 
 ### 2. Composition Over Monolith
 
-**Decision:** 5 independent Skills, not 1 mega-validator
+**Decision:** 6 independent Skills, not 1 mega-validator
 
 Skills:
 - `documentation-input-validator` (Stage 0, runs first)
+- `api-reference-validator` (Stage 1+2, REST APIs)
 - `mcp-tool-reference-validator` (Stage 1+2, MCP tools)
 - `user-guide-validator` (Stage 1+2, user guides)
 - `llm-docs-validator` (Stage 1+2, LLM docs)
@@ -115,7 +117,7 @@ Skills:
 ```json
 {
   "feature_name": "Unauthorized Agent Access Detection",
-  "documentation_types": ["mcp-tools", "user-guide", "llm-docs"],
+  "documentation_types": ["api-docs", "mcp-tools", "llm-docs"],
   "run_stage_0_first": true,
   "draft_on_stage_1_pass": true
 }
@@ -134,12 +136,13 @@ Skills:
 
 ### 4. Interactive Questions for New Features
 
-**Decision:** If no config exists, ask 3 questions to discover doc types needed
+**Decision:** If no config exists, ask 4 questions to discover doc types needed
 
 **Questions:**
-1. Does this expose a programmatic interface? → MCP tools?
-2. Do end users interact with this directly? → User guide?
-3. Should AI systems understand this? → LLM docs?
+1. Does this expose a REST API? → API docs?
+2. Does this expose MCP tools or other programmatic interfaces? → MCP tools?
+3. Do end users interact with this directly? → User guide?
+4. Should AI systems understand this? → LLM docs?
 
 **Why:**
 - Low barrier to entry (no config file upfront)
