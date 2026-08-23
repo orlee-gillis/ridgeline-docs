@@ -29,7 +29,7 @@ Checks the provided API specification against a **REST-API-specific checklist** 
 
 ### Stage 2: Draft Generation (if input is complete)
 
-If the PRD passes Stage 1, generates a **draft API reference page** using a REST-focused template.
+If the PRD passes Stage 1, generates a **draft API reference page** with frontmatter automatically tagged `template: api-reference`.
 
 Each endpoint includes:
 - **Method & Path:** HTTP verb and route (e.g., `GET /api/get_unauthorized_access`)
@@ -38,6 +38,8 @@ Each endpoint includes:
 - **Response:** Status codes, response schema, nested objects, nullable fields
 - **Example:** Real, verified request and response (success + error)
 - **Notes:** Error handling, rate limits, edge cases, gotchas
+
+The generated page is ready to commit with the template tag already in place.
 
 ---
 
