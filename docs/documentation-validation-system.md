@@ -336,6 +336,47 @@ Each documentation type maps to one or more templates:
 
 - `user-guide-validator` asks: "What type of guide is this?" and generates the selected template (`parent-report`, `child-report`, or `workflow-methodology`)
 
+### Draft Workflow: Staging and Promotion
+
+Validator-generated drafts don't go directly to `docs/`. Instead, they land in `ai-workflow/drafts/` to keep authoring separate from publication:
+
+**Step 1: Validator generates draft**
+```bash
+/api-reference-validator
+→ Writes: ai-workflow/drafts/api-reference-<feature-name>.md
+→ Frontmatter includes: template: api-reference
+```
+
+**Step 2: User reviews and edits**
+```bash
+User opens ai-workflow/drafts/api-reference-<feature-name>.md
+User reviews frontmatter and content
+User makes edits as needed (validator output is always just a starting point)
+```
+
+**Step 3: User promotes to publication**
+```bash
+When satisfied:
+→ User moves file: ai-workflow/drafts/api-reference-<feature-name>.md → docs/api-reference-<feature-name>.md
+→ User commits: git add docs/api-reference-<feature-name>.md
+→ User pushes to feature branch
+```
+
+**Step 4: CI gates validate on PR**
+```bash
+User opens PR to main
+CI gates check template tag and validate:
+  - validate-api-reference checks the template: api-reference tag
+  - Other gates run advisory checks
+PR can merge once all checks pass
+```
+
+**Why this staging approach?**
+- ✅ Drafts are never accidentally published (safe in `ai-workflow/drafts/`)
+- ✅ User has full control over when to promote to `docs/`
+- ✅ Follows CLAUDE.md conventions (drafts/ is evidence, docs/ is source of truth)
+- ✅ Clear workflow: author → review → publish
+
 ### Why This Design?
 
 - **Validators are pre-publication tools** — they help you draft and catch gaps before committing

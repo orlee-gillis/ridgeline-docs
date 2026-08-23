@@ -30,6 +30,8 @@ Checks the provided tool specification against an **MCP-specific checklist** (as
 
 If the PRD passes Stage 1, generates a **draft tool reference page** with frontmatter automatically tagged `template: mcp-tool-reference`.
 
+**Draft Location**: `ai-workflow/drafts/mcp-tools-<feature-name>.md`
+
 Each tool gets:
 - **Purpose:** Why you'd call this tool (not just what it does technically)
 - **Parameters:** Every parameter with type, default, constraints, and "where to get it" guidance
@@ -37,7 +39,7 @@ Each tool gets:
 - **Example:** A real, verified example response
 - **Notes:** Known gaps, untested cases, limits, or inconsistencies
 
-The generated page is ready to commit with the template tag already in place.
+The generated draft includes the template tag in frontmatter. When satisfied with the draft, move it to `docs/mcp-tools-<feature-name>.md` and commit.
 
 ---
 
