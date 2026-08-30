@@ -491,9 +491,12 @@ grounded in anything real, the same disconnection-from-reality mistake the origi
 
 1. **Pick the 3 real pages first, before writing anything else.** Don't invent a new feature for
    each - check what Ridgeline already almost-documents and is one page away from needing it:
-   - `api-reference`: search `docs/` for anything that already implies a REST endpoint. If nothing
-     does, that's a real finding - it means there's no genuine need for this genre yet, and this
-     step should end with that conclusion instead of manufacturing one.
+   - `api-reference`: already checked, during this reconciliation - `grep -rli "endpoint\|rest
+     api\|POST /\|GET /" docs/*.md` turns up nothing except `documentation-validation-system.md`
+     itself, which describes the validation system, not a real Ridgeline endpoint. There is no
+     real candidate for this genre yet. Re-run that search in case something changed since, but
+     go in expecting the honest answer to be "not yet" - and that's fine, don't invent one to fill
+     the slot.
    - `mcp-tool-reference`: `docs/pipeline-and-ai-terms.md` already defines "MCP server" and
      "connector" for Ridgeline. Read that section and decide if a real tool reference page for a
      Ridgeline MCP tool follows naturally from it.
