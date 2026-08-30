@@ -487,15 +487,32 @@ grounded in anything real, the same disconnection-from-reality mistake the origi
 
 **[ ] Session 29: Ground and build the remaining 3 gates**
 
-- Decide what real (fictional-Ridgeline) surface each genre actually documents - an API, an MCP
-  tool, an LLM-ingestible doc - grounded the same way the first three genres were: write the real
-  page first, then derive the checklist from what it actually needs.
-- Write one real example page per genre in `docs/`, tagged with its `template:` value.
-- Add the matching sections to `audit-checklist.md`, sourced from those pages.
-- Build `validate-api-reference.py`, `validate-mcp-tool-reference.py`, `validate-llm-docs.py`
-  following `gate_common.py`'s existing pattern, and wire their CI jobs in `docs-ci.yml`
-  (`continue-on-error: true` to start, same as the other three did).
-- Update `CLAUDE.md`'s CI Gates section once all six are real.
+**What you'll do, in this order:**
+
+1. **Pick the 3 real pages first, before writing anything else.** Don't invent a new feature for
+   each - check what Ridgeline already almost-documents and is one page away from needing it:
+   - `api-reference`: search `docs/` for anything that already implies a REST endpoint. If nothing
+     does, that's a real finding - it means there's no genuine need for this genre yet, and this
+     step should end with that conclusion instead of manufacturing one.
+   - `mcp-tool-reference`: `docs/pipeline-and-ai-terms.md` already defines "MCP server" and
+     "connector" for Ridgeline. Read that section and decide if a real tool reference page for a
+     Ridgeline MCP tool follows naturally from it.
+   - `llm-docs`: `static/llms.txt` already exists and is genuinely empty - the most likely real
+     candidate of the three, since the gap already exists on disk.
+2. **Write each real page in `docs/`** (tagged `template: <genre>`) before touching the checklist
+   or the script - same order Sessions 5-8 used for the first three genres.
+3. **Derive `audit-checklist.md`'s section for each genre from the page you just wrote** - read
+   what it actually needed, not what you imagine a generic page of that type needs.
+4. **Copy `gate_common.py`'s pattern** to build `validate-api-reference.py`,
+   `validate-mcp-tool-reference.py`, `validate-llm-docs.py`.
+5. **Wire the 3 new CI jobs** in `docs-ci.yml` (`continue-on-error: true` to start, same as the
+   other three did).
+6. **Update `CLAUDE.md`'s CI Gates section** once all six are real - remove the "designed, not yet
+   implemented" language added in PR #70.
+
+**Deliverable:** up to 3 new real pages in `docs/` (fewer if step 1 finds a genre doesn't have a
+real candidate yet - that's a valid outcome, not a failure), their checklist sections, their
+scripts, their CI jobs, and `CLAUDE.md` corrected to match.
 
 **Why this matters**: closes the gap between what `CLAUDE.md` claims and what the pipeline
 actually runs - the same lesson Session 22/24's audit already taught this project once.
