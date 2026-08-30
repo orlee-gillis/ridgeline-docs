@@ -14,6 +14,9 @@ Each session ends with a Next line: the exact thing that happens after it, and w
 
 **Then**: Session 26 - Defense (interview practice)
 
+**Also outstanding** (not part of the Session 26 flow, deferred separately): Session 29 - ground
+and build 3 gates left half-finished by unplanned Aug 19-23 work. See the Phase H addendum.
+
 ---
 
 ## Roadmap overview
@@ -503,6 +506,9 @@ actually runs - the same lesson Session 22/24's audit already taught this projec
 
 - **Highly recommended**: Do Path 1 (Scale to real professional work). It proves the system works professionally.
 - **If you have time and interest**: Do Path 2 (audit script + MDX). It's showcase work, not essential.
+- **Not optional in the same way as the above**: Session 29 (ground and build the remaining 3
+  gates) - this isn't a stretch goal, it's closing a real gap left by unplanned work that landed on
+  `main` on Aug 19-23. See the addendum above.
 - **If you're satisfied**: Stop at Session 26. The portfolio is done.
 
 ---
@@ -512,7 +518,7 @@ actually runs - the same lesson Session 22/24's audit already taught this projec
 | Metric | Value |
 |--------|-------|
 | **Sessions (core)** | 26 (Phase A–G) |
-| **Sessions (optional)** | 1–2 (Phase H) |
+| **Sessions (optional)** | 1–3 (Phase H, incl. Session 29) |
 | **Total hours** | ~35–40 hours (core), 40–45 (with Phase H) |
 | **Comfortable pace** | 2–3 sessions/week = 8–10 weeks |
 | **Artifacts (final)** | 40+ files across docs/, ai-workflow/, .github/, .claude/ |
