@@ -461,6 +461,44 @@ This is a valid endpoint: you've demonstrated system thinking, automation, and d
 
 ---
 
+### Addendum: unplanned work discovered on `main` (Aug 19-23), and its follow-up
+
+Between Aug 19-23, PRs merged directly to `main` from Claude Code sessions outside this
+conversation (branch pattern `claude/<slug>-<id>`), unrecorded here at the time. Reconciled after
+the fact:
+
+**What was real and correctly done**: the `parent-report`/`child-report`/`workflow-methodology`
+gates - the exact fix this project's own "Fix the real docs-review gates" plan had queued - were
+actually completed, and done well: all three real pages tagged with the right `template:` value,
+the three scripts consolidated into a shared `.github/scripts/gate_common.py` (model
+`claude-sonnet-5`, `ANTHROPIC_API_KEY`, structured output with a `suggestion` field, `--test-file`
+local test mode), and the old fictional 4-genre `audit-report-pages` gate removed. No further work
+needed there.
+
+**What was incomplete**: three more genres - `api-reference`, `mcp-tool-reference`, `llm-docs` -
+were added as Skills and documented in `CLAUDE.md` as if their CI gates existed ("Six CI gates
+enforce template-specific requirements"). They don't. No script, no CI job, and no real page uses
+any of the three - the templates' own example content is unfilled `[placeholder]` text, not
+grounded in anything real, the same disconnection-from-reality mistake the original
+`audit-report-pages` gate made. `CLAUDE.md` has been corrected to say so plainly in the meantime.
+
+**[ ] Session 29: Ground and build the remaining 3 gates**
+
+- Decide what real (fictional-Ridgeline) surface each genre actually documents - an API, an MCP
+  tool, an LLM-ingestible doc - grounded the same way the first three genres were: write the real
+  page first, then derive the checklist from what it actually needs.
+- Write one real example page per genre in `docs/`, tagged with its `template:` value.
+- Add the matching sections to `audit-checklist.md`, sourced from those pages.
+- Build `validate-api-reference.py`, `validate-mcp-tool-reference.py`, `validate-llm-docs.py`
+  following `gate_common.py`'s existing pattern, and wire their CI jobs in `docs-ci.yml`
+  (`continue-on-error: true` to start, same as the other three did).
+- Update `CLAUDE.md`'s CI Gates section once all six are real.
+
+**Why this matters**: closes the gap between what `CLAUDE.md` claims and what the pipeline
+actually runs - the same lesson Session 22/24's audit already taught this project once.
+
+---
+
 ## Decision point: After Session 26
 
 - **Highly recommended**: Do Path 1 (Scale to real professional work). It proves the system works professionally.
