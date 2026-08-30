@@ -44,6 +44,13 @@ a gate for a genre ("Report page") that didn't correspond to any real page - the
 described something that didn't exist, and there was nothing to test it against except more
 invented content. Check `ai-workflow/TODO.md` and the live site before adding a new genre here.
 
+**3 more genres exist as Skills but have no gate here yet**: `api-reference`, `mcp-tool-reference`,
+`llm-docs`. Each has a Skill that validates a PRD and drafts a page (`api-reference-validator`,
+`mcp-tool-reference-validator`, `llm-docs-validator`), but none of the three has a
+`validate-<genre>.py` script, a CI job, or (for `api-reference`) even a real page to ground it in
+yet. `CLAUDE.md`'s CI Gates section calls this out explicitly. Building these out for real is
+`TRACKS.md` Phase H, Session 29 - follow the numbered procedure below when you do.
+
 ## Where gates live
 
 | What | Where |
