@@ -503,29 +503,43 @@ way `CLAUDE.md`'s gate count drifted from reality - if you change one, check the
 **Worked example - do this once, for `llm-docs`** (the clearest of the 3, because its file already
 exists and is already blank):
 
-1. Open `static/llms.txt`. Right now it's empty.
-2. Write real content into it: a plain-text summary of this site, for an AI to read, not a human -
-   one short paragraph per real page in `docs/`, e.g. "`unused-access-report.md`: what unused
-   access is and how the report is ordered." No marketing language, just what each page contains.
-3. Open `audit-checklist.md` and add an `## llm-docs` section listing what makes that file good,
-   read off what you just wrote in step 2 - e.g. "every real page in `docs/` is mentioned,"
+1. Write a first draft in `ai-workflow/drafts/llms-txt-draft.md` (not directly into `static/llms.txt` -
+   per `CLAUDE.md`'s Draft Workflow rule: generated content is reviewed as a draft before it becomes
+   the real thing). Content: a plain-text summary of this site, for an AI to read, not a human - one
+   short paragraph per real page in `docs/`, e.g. "`unused-access-report.md`: what unused access is
+   and how the report is ordered." No marketing language, just what each page contains.
+2. **Review and edit that draft yourself before it goes anywhere near a gate.** This is the check-
+   before-the-gate step - the draft exists so a wrong first attempt never becomes the thing the
+   gate ends up measuring itself against.
+3. Once you're satisfied, copy the reviewed content into `static/llms.txt` for real.
+4. Open `audit-checklist.md` and add an `## llm-docs` section listing what makes that file good,
+   read off what you just finalized in step 3 - e.g. "every real page in `docs/` is mentioned,"
    "no marketing language."
-4. Copy `validate-parent-report.py`'s shape (via `gate_common.py`) into a new
-   `validate-llm-docs.py` that checks `static/llms.txt` against the step-3 checklist.
-5. **Before touching CI, run it yourself with `--test-file`.** Write a small fixtures file with two
-   cases: the real `static/llms.txt` from step 2 (expected: passes) and one small deliberately-
-   broken version - e.g. missing a real page, or full of marketing language (expected: fails).
-   Run `python validate-llm-docs.py --test-file <fixtures>.json` and confirm both come out right.
-   Do not skip this - it's the exact step that was missing the first time (the original three
+5. **`llm-docs` cannot reuse `gate_common.py` unmodified - check this before writing the script.**
+   `gate_common.py`'s `run_ci()` only scans `docs/**/*.md` files and matches by a `template:`
+   frontmatter tag. `static/llms.txt` is outside `docs/`, isn't Markdown, and has no frontmatter -
+   it will never be found by that scan, no matter what it contains. `validate-llm-docs.py` needs to
+   check `static/llms.txt` at its fixed path directly, not by tag-matching. Reuse `gate_common.py`'s
+   `call_claude`/`response_schema`/prompt-building pieces if they fit, but the file-selection logic
+   has to be different for this one genre - don't copy `validate-parent-report.py` and expect it to
+   just work.
+6. **Before touching CI, run it yourself with `--test-file`.** Write a small fixtures file with two
+   cases: the real, finalized `static/llms.txt` from step 3 (expected: passes) and one small
+   deliberately-broken version - e.g. missing a real page, or full of marketing language (expected:
+   fails). Run `python validate-llm-docs.py --test-file <fixtures>.json` and confirm both come out
+   right. Do not skip this - it's the exact step that was missing the first time (the original three
    scripts sat silently broken - wrong env var, a missing `.strip()` call - because nobody ran them
    before wiring them into CI).
-6. Only once step 5 passes, add a `validate-llm-docs` job to `docs-ci.yml`
+7. Only once step 6 passes, add a `validate-llm-docs` job to `docs-ci.yml`
    (`continue-on-error: true` to start, same as the other three), so it runs on every PR.
 
-**Then repeat steps 1-6 for `mcp-tool-reference`**, using `docs/pipeline-and-ai-terms.md`'s
-existing "MCP server"/"connector" section as your real source instead of a blank file - write the
-actual tool reference page first, then derive its checklist from it. Same rule applies: test with
-`--test-file` before adding the CI job, not after.
+**Then repeat the same shape for `mcp-tool-reference`** (draft in `ai-workflow/drafts/`, review it
+yourself, promote to a real `docs/*.md` page tagged `template: mcp-tool-reference`, derive the
+checklist from it, build the script, test with `--test-file`, then wire CI), using
+`docs/pipeline-and-ai-terms.md`'s existing "MCP server"/"connector" section as your real source
+material. Unlike `llm-docs`, this one **is** a normal `docs/*.md` page with frontmatter, so
+`gate_common.py`'s existing tag-matching mechanism applies unmodified - `validate-mcp-tool-
+reference.py` can be the same two-line wrapper shape as the original three.
 
 **`api-reference` is different: skip it, for now.** Already checked during this reconciliation -
 `grep -rli "endpoint\|rest api\|POST /\|GET /" docs/*.md` turns up nothing except the mystery
@@ -537,10 +551,12 @@ shortfall.
 **Once the script and CI job exist for a genre, update `CLAUDE.md`'s CI Gates section** to move it
 out of "designed, not yet implemented" (added in PR #70) and into the real list.
 
-**Deliverable:** 1-2 new real pages in `docs/` (`llm-docs` and, if it makes sense, `mcp-tool-
-reference` - not `api-reference`, per above), their checklist sections, their scripts, a
-`--test-file` fixtures file per script with a passing and a failing case, their CI jobs (added only
-after the fixtures pass locally), and `CLAUDE.md` corrected to match.
+**Deliverable:** real content in `static/llms.txt` (drafted, reviewed, promoted - not tagged, since
+it has no frontmatter) and, if it makes sense, one new real `docs/*.md` page tagged `template:
+mcp-tool-reference` - not `api-reference`, per above - each with its checklist section, its script
+(`validate-llm-docs.py` using a fixed-path check, `validate-mcp-tool-reference.py` as a normal
+`gate_common.py` wrapper), a `--test-file` fixtures file per script with a passing and a failing
+case, a CI job added only after the fixtures pass locally, and `CLAUDE.md` corrected to match.
 
 **Why this matters**: closes the gap between what `CLAUDE.md` claims and what the pipeline
 actually runs - the same lesson Session 22/24's audit already taught this project once.
