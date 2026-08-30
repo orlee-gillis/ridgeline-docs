@@ -493,6 +493,13 @@ actually run anywhere - no script, no CI job. This session builds the check for 
 a time, the same way Sessions 5-8 built the first working example of this pattern: a real page
 first, then a checklist read off that page, then a script, then a CI job.
 
+The actual procedure to follow is `.claude/gates-architecture.md`'s "Adding a new genre-specific
+gate" section - it's already correct, including testing the script with `--test-file` before the
+CI job gets added. What follows below is that same procedure worked through concretely for
+`llm-docs`, so it's easier to picture - **if the two ever disagree, `gates-architecture.md` is the
+one that's right**, not this worked example. Don't let this description drift from that file the
+way `CLAUDE.md`'s gate count drifted from reality - if you change one, check the other.
+
 **Worked example - do this once, for `llm-docs`** (the clearest of the 3, because its file already
 exists and is already blank):
 
@@ -505,12 +512,20 @@ exists and is already blank):
    "no marketing language."
 4. Copy `validate-parent-report.py`'s shape (via `gate_common.py`) into a new
    `validate-llm-docs.py` that checks `static/llms.txt` against the step-3 checklist.
-5. Add a `validate-llm-docs` job to `docs-ci.yml` (`continue-on-error: true` to start, same as the
-   other three), so it runs on every PR.
+5. **Before touching CI, run it yourself with `--test-file`.** Write a small fixtures file with two
+   cases: the real `static/llms.txt` from step 2 (expected: passes) and one small deliberately-
+   broken version - e.g. missing a real page, or full of marketing language (expected: fails).
+   Run `python validate-llm-docs.py --test-file <fixtures>.json` and confirm both come out right.
+   Do not skip this - it's the exact step that was missing the first time (the original three
+   scripts sat silently broken - wrong env var, a missing `.strip()` call - because nobody ran them
+   before wiring them into CI).
+6. Only once step 5 passes, add a `validate-llm-docs` job to `docs-ci.yml`
+   (`continue-on-error: true` to start, same as the other three), so it runs on every PR.
 
-**Then repeat steps 1-5 for `mcp-tool-reference`**, using `docs/pipeline-and-ai-terms.md`'s
+**Then repeat steps 1-6 for `mcp-tool-reference`**, using `docs/pipeline-and-ai-terms.md`'s
 existing "MCP server"/"connector" section as your real source instead of a blank file - write the
-actual tool reference page first, then derive its checklist from it.
+actual tool reference page first, then derive its checklist from it. Same rule applies: test with
+`--test-file` before adding the CI job, not after.
 
 **`api-reference` is different: skip it, for now.** Already checked during this reconciliation -
 `grep -rli "endpoint\|rest api\|POST /\|GET /" docs/*.md` turns up nothing except the mystery
@@ -523,8 +538,9 @@ shortfall.
 out of "designed, not yet implemented" (added in PR #70) and into the real list.
 
 **Deliverable:** 1-2 new real pages in `docs/` (`llm-docs` and, if it makes sense, `mcp-tool-
-reference` - not `api-reference`, per above), their checklist sections, their scripts, their CI
-jobs, and `CLAUDE.md` corrected to match.
+reference` - not `api-reference`, per above), their checklist sections, their scripts, a
+`--test-file` fixtures file per script with a passing and a failing case, their CI jobs (added only
+after the fixtures pass locally), and `CLAUDE.md` corrected to match.
 
 **Why this matters**: closes the gap between what `CLAUDE.md` claims and what the pipeline
 actually runs - the same lesson Session 22/24's audit already taught this project once.
