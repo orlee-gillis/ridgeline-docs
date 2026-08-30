@@ -493,6 +493,13 @@ actually run anywhere - no script, no CI job. This session builds the check for 
 a time, the same way Sessions 5-8 built the first working example of this pattern: a real page
 first, then a checklist read off that page, then a script, then a CI job.
 
+The actual procedure to follow is `.claude/gates-architecture.md`'s "Adding a new genre-specific
+gate" section - it's already correct, including testing the script with `--test-file` before the
+CI job gets added. What follows below is that same procedure worked through concretely for
+`llm-docs`, so it's easier to picture - **if the two ever disagree, `gates-architecture.md` is the
+one that's right**, not this worked example. Don't let this description drift from that file the
+way `CLAUDE.md`'s gate count drifted from reality - if you change one, check the other.
+
 **Worked example - do this once, for `llm-docs`** (the clearest of the 3, because its file already
 exists and is already blank):
 
