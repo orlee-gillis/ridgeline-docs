@@ -58,16 +58,27 @@ invented content. Check `ai-workflow/TODO.md` and the live site before adding a 
 ## Adding a new genre-specific gate
 
 1. Confirm a **real page** exists using this genre - don't invent one. Check the live site and
-   `ai-workflow/TODO.md` for known gaps first.
-2. Add a `## <genre>` section to `audit-checklist.md`, grounded in that real page's actual
+   `ai-workflow/TODO.md` for known gaps first. Confirm it's actually a `docs/*.md` page with
+   frontmatter, too - if the real artifact lives outside `docs/` or has no frontmatter (e.g. a
+   plain-text file under `static/`), steps 4-5 below don't apply as written.
+2. If the content doesn't exist yet, generate/write it as a draft in `ai-workflow/drafts/` first
+   and review/edit it yourself there - per `CLAUDE.md`'s Draft Workflow rule. Don't derive the
+   checklist in step 3 from a first, unreviewed draft.
+3. Add a `## <genre>` section to `audit-checklist.md`, grounded in that real page's actual
    structure (read the page, don't guess from a template file - templates and real pages can
    drift apart).
-3. Tag the real page(s) with `template: <genre>` in frontmatter.
-4. Write `.github/scripts/validate-<genre>.py` as a two-line wrapper around `gate_common.run()`.
-5. Write `<genre>-test.json` with at least two cases: the real tagged page (should pass) and one
+4. Promote the reviewed draft to its real location, tagging it `template: <genre>` in frontmatter
+   if it's a `docs/*.md` page.
+5. Write `.github/scripts/validate-<genre>.py` as a two-line wrapper around `gate_common.run()` -
+   **only if the real artifact is a `docs/*.md` page with frontmatter.** `gate_common.py`'s
+   `run_ci()` finds pages by scanning `docs/**/*.md` and matching a `template:` tag; it cannot see
+   anything outside `docs/` or without frontmatter, regardless of content. For a genre whose real
+   artifact doesn't fit that shape, write a bespoke file-selection check instead - `gate_common.py`'s
+   `call_claude`/`response_schema`/prompt-building pieces can still be reused, just not `run_ci()`.
+6. Write `<genre>-test.json` with at least two cases: the real tagged page (should pass) and one
    small deliberately-broken fixture under `eval-cases/` (should fail). Run
    `python .github/scripts/validate-<genre>.py --test-file <genre>-test.json` until both pass
    with the expected severity.
-6. Add the job to `docs-ci.yml` (`continue-on-error: true` to start), record it in `GATES.md`,
+7. Add the job to `docs-ci.yml` (`continue-on-error: true` to start), record it in `GATES.md`,
    and add an entry to `GATES-CHANGELOG.md`.
-7. Only promote to a required check after it's run clean on real PRs for a while.
+8. Only promote to a required check after it's run clean on real PRs for a while.
