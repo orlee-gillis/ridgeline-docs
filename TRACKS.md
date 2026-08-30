@@ -487,35 +487,44 @@ grounded in anything real, the same disconnection-from-reality mistake the origi
 
 **[ ] Session 29: Ground and build the remaining 3 gates**
 
-**What you'll do, in this order:**
+**In plain terms**: 3 Skills in this repo (`api-reference-validator`, `mcp-tool-reference-validator`,
+`llm-docs-validator`) claim to automatically check pages of those 3 types. That check doesn't
+actually run anywhere - no script, no CI job. This session builds the check for real, one genre at
+a time, the same way Sessions 5-8 built the first working example of this pattern: a real page
+first, then a checklist read off that page, then a script, then a CI job.
 
-1. **Pick the 3 real pages first, before writing anything else.** Don't invent a new feature for
-   each - check what Ridgeline already almost-documents and is one page away from needing it:
-   - `api-reference`: already checked, during this reconciliation - `grep -rli "endpoint\|rest
-     api\|POST /\|GET /" docs/*.md` turns up nothing except `documentation-validation-system.md`
-     itself, which describes the validation system, not a real Ridgeline endpoint. There is no
-     real candidate for this genre yet. Re-run that search in case something changed since, but
-     go in expecting the honest answer to be "not yet" - and that's fine, don't invent one to fill
-     the slot.
-   - `mcp-tool-reference`: `docs/pipeline-and-ai-terms.md` already defines "MCP server" and
-     "connector" for Ridgeline. Read that section and decide if a real tool reference page for a
-     Ridgeline MCP tool follows naturally from it.
-   - `llm-docs`: `static/llms.txt` already exists and is genuinely empty - the most likely real
-     candidate of the three, since the gap already exists on disk.
-2. **Write each real page in `docs/`** (tagged `template: <genre>`) before touching the checklist
-   or the script - same order Sessions 5-8 used for the first three genres.
-3. **Derive `audit-checklist.md`'s section for each genre from the page you just wrote** - read
-   what it actually needed, not what you imagine a generic page of that type needs.
-4. **Copy `gate_common.py`'s pattern** to build `validate-api-reference.py`,
-   `validate-mcp-tool-reference.py`, `validate-llm-docs.py`.
-5. **Wire the 3 new CI jobs** in `docs-ci.yml` (`continue-on-error: true` to start, same as the
-   other three did).
-6. **Update `CLAUDE.md`'s CI Gates section** once all six are real - remove the "designed, not yet
-   implemented" language added in PR #70.
+**Worked example - do this once, for `llm-docs`** (the clearest of the 3, because its file already
+exists and is already blank):
 
-**Deliverable:** up to 3 new real pages in `docs/` (fewer if step 1 finds a genre doesn't have a
-real candidate yet - that's a valid outcome, not a failure), their checklist sections, their
-scripts, their CI jobs, and `CLAUDE.md` corrected to match.
+1. Open `static/llms.txt`. Right now it's empty.
+2. Write real content into it: a plain-text summary of this site, for an AI to read, not a human -
+   one short paragraph per real page in `docs/`, e.g. "`unused-access-report.md`: what unused
+   access is and how the report is ordered." No marketing language, just what each page contains.
+3. Open `audit-checklist.md` and add an `## llm-docs` section listing what makes that file good,
+   read off what you just wrote in step 2 - e.g. "every real page in `docs/` is mentioned,"
+   "no marketing language."
+4. Copy `validate-parent-report.py`'s shape (via `gate_common.py`) into a new
+   `validate-llm-docs.py` that checks `static/llms.txt` against the step-3 checklist.
+5. Add a `validate-llm-docs` job to `docs-ci.yml` (`continue-on-error: true` to start, same as the
+   other three), so it runs on every PR.
+
+**Then repeat steps 1-5 for `mcp-tool-reference`**, using `docs/pipeline-and-ai-terms.md`'s
+existing "MCP server"/"connector" section as your real source instead of a blank file - write the
+actual tool reference page first, then derive its checklist from it.
+
+**`api-reference` is different: skip it, for now.** Already checked during this reconciliation -
+`grep -rli "endpoint\|rest api\|POST /\|GET /" docs/*.md` turns up nothing except the mystery
+`documentation-validation-system.md` page itself, which isn't a real endpoint. There is no real
+page to ground this genre in yet. Re-run that search in case something's changed, but go in
+expecting "not yet" - and building only 2 of the 3 gates this session is a fine outcome, not a
+shortfall.
+
+**Once the script and CI job exist for a genre, update `CLAUDE.md`'s CI Gates section** to move it
+out of "designed, not yet implemented" (added in PR #70) and into the real list.
+
+**Deliverable:** 1-2 new real pages in `docs/` (`llm-docs` and, if it makes sense, `mcp-tool-
+reference` - not `api-reference`, per above), their checklist sections, their scripts, their CI
+jobs, and `CLAUDE.md` corrected to match.
 
 **Why this matters**: closes the gap between what `CLAUDE.md` claims and what the pipeline
 actually runs - the same lesson Session 22/24's audit already taught this project once.
