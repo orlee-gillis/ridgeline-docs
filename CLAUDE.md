@@ -63,27 +63,26 @@ against this baseline state. After Session 21, these skills are open for iterati
 
 Pages are categorized by template in their frontmatter (`template: <name>`). CI gates validate pages based on their assigned template:
 
-**User Guide Templates** (user-guide-validator generates these):
-- `parent-report` — High-level overview for all users new to a feature
-- `child-report` — Specific task or feature walkthrough
-- `workflow-methodology` — Detailed step-by-step process or methodology
+**Implemented and CI-wired** (real pages exist, gates actually run):
+- `parent-report` — High-level overview for all users new to a feature. Real page: `docs/unused-access-report.md`.
+- `child-report` — Specific task or feature walkthrough. Real page: `docs/about-the-access-tab.md`.
+- `workflow-methodology` — Detailed step-by-step process or methodology. Real page: `docs/apply-a-remediation.md`.
 
-**Reference Templates** (auto-tagged by their validators):
-- `api-reference` — REST API endpoint reference (auto-tagged by `api-reference-validator`)
-- `mcp-tool-reference` — MCP tool definitions and parameters (auto-tagged by `mcp-tool-reference-validator`)
-- `llm-docs` — LLM-ingestible documentation (auto-tagged by `llm-docs-validator`)
+**Designed, not yet implemented** (Skills exist and generate drafts tagged with these values, but no real page uses them yet and no CI gate checks them — see `TRACKS.md` Phase H, Session 29):
+- `api-reference` — REST API endpoint reference (`api-reference-validator` Skill exists; no `validate-api-reference` script or CI job yet)
+- `mcp-tool-reference` — MCP tool definitions and parameters (`mcp-tool-reference-validator` Skill exists; no `validate-mcp-tool-reference` script or CI job yet)
+- `llm-docs` — LLM-ingestible documentation (`llm-docs-validator` Skill exists; no `validate-llm-docs` script or CI job yet)
 
-A page with no `template:` tag is not checked against genre-specific requirements, only the general advisory review.
+A page with no `template:` tag is not checked against genre-specific requirements, only the general advisory review. Do not tag a page with `api-reference`, `mcp-tool-reference`, or `llm-docs` yet — there is no gate to check it against.
 
 ### CI Gates
 
-Six CI gates enforce template-specific requirements:
+Three CI gates are implemented and enforce template-specific requirements today:
 - `validate-parent-report` — Checks parent-report pages
 - `validate-child-report` — Checks child-report pages
 - `validate-workflow-methodology` — Checks workflow-methodology pages
-- `validate-api-reference` — Checks api-reference pages (auto-fails pages without this template)
-- `validate-mcp-tool-reference` — Checks mcp-tool-reference pages (auto-fails pages without this template)
-- `validate-llm-docs` — Checks llm-docs pages (auto-fails pages without this template)
+
+All three share `.github/scripts/gate_common.py` (model `claude-sonnet-5`, structured output, `--test-file` local test mode). Three more (`validate-api-reference`, `validate-mcp-tool-reference`, `validate-llm-docs`) are planned but not built — see Session 29.
 
 **Draft Workflow**: Generated drafts go to `ai-workflow/drafts/` with the template tag already in frontmatter. Move to `docs/` and commit when ready for publication.
 
