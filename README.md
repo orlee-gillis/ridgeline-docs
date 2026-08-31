@@ -27,24 +27,38 @@ read top to bottom for the whole story, or jump to any one piece.
 4. **CI quality gates** - three tiers, documented in [`GATES.md`](GATES.md) and
    [`docs/meta/ci-gates.md`](docs/meta/ci-gates.md): deterministic checks (Vale, markdownlint, link
    check, build), three genre-specific AI gates grounded in real pages
-   (`validate-parent-report`/`child-report`/`workflow-methodology`), and an advisory AI reviewer
-   that never blocks. [`GATES-CHANGELOG.md`](GATES-CHANGELOG.md) is the honest record of a real
-   correction: the first version of this gate system was built on an unverified premise and stayed
-   broken, silently, for a full session before anyone checked it against real content.
+   (`validate-parent-report`/`child-report`/`workflow-methodology`, currently advisory), and an
+   advisory AI reviewer for untagged pages.
+
+   All three AI genre gates validate report-style pages only. Reference documentation (API/MCP/LLM
+   guides) passes through deterministic checks; validator skills for these genres exist but haven't
+   yet been wired into CI gates.
+
+   Preceding any merge is an approval step: a human reads the AI-generated draft and decides
+   readiness for publication. This manual gate is the control that makes generated content
+   defensible—where editorial judgment overrides automation. [`GATES-CHANGELOG.md`](GATES-CHANGELOG.md)
+   records a real correction: the first gate system version was built on an unverified premise and
+   stayed broken, silently, for a full session before anyone checked it against real content.
    **Proves:** the judgment call of what should block a merge versus what should only advise, and
-   the discipline to catch and document your own mistake rather than bury it.
-5. **Skills, measured and improved** - [`ai-workflow/skills/`](ai-workflow/skills/) holds four
-   Claude Skills: `ridgeline-doc-writer` and `unused-access-expert` (drafting and fact-checking,
-   designed to pair rather than compete), `ridgeline-doc-auditor` (review, never drafting), and
-   `stop-slop` (a vendored, MIT-licensed skill for catching AI writing tells). The two baseline
-   skills were audited against a seven-dimension rubric
-   ([`rubric.md`](ai-workflow/skills/rubric.md)), scored independently, then compared
-   ([`session-24-verdicts.md`](ai-workflow/skills/session-24-verdicts.md)) - disagreements written
-   up as ADRs ([`session-24-rubric-disagreements.md`](ai-workflow/decisions/session-24-rubric-disagreements.md))
+   the discipline to catch and document mistakes rather than bury them.
+5. **Skills, measured and improved** - [`ai-workflow/skills/`](ai-workflow/skills/) holds a
+   growing suite of Claude Skills: the original pair `ridgeline-doc-writer` and
+   `unused-access-expert` (drafting and fact-checking, designed to pair), joined by
+   `ridgeline-doc-auditor` (review-only), `stop-slop` (AI-writing-tell detection),
+   `documentation-orchestrator` (workflow coordination), and six genre-specific validators
+   (`api-reference-validator`, `mcp-tool-reference-validator`, `llm-docs-validator`,
+   `user-guide-validator`, and `documentation-input-validator`) that route drafts to the
+   appropriate CI gate or reviewer.
+
+   The two baseline skills—`ridgeline-doc-writer` and `unused-access-expert`—were audited
+   against a seven-dimension rubric ([`rubric.md`](ai-workflow/skills/rubric.md)), scored
+   independently, then compared ([`session-24-verdicts.md`](ai-workflow/skills/session-24-verdicts.md))
+   with disagreements written up as ADRs
+   ([`session-24-rubric-disagreements.md`](ai-workflow/decisions/session-24-rubric-disagreements.md))
    rather than averaged away. The audit caught a real bug: the drafting skill's routing genres had
-   drifted out of sync with the actual CI gates, so its drafts would never have been checked at
-   all. **Proves:** measuring AI tooling quality with a repeatable method, not a vibe - and using
-   that measurement to find and fix a real defect.
+   drifted out of sync with the actual CI gates. The newer orchestrator, validator, and reviewer
+   skills have not yet been audited against this rubric. **Proves:** measuring AI tooling quality
+   with a repeatable method, not a vibe—and using that measurement to find and fix real defects.
 
 ## How I built this
 
@@ -57,6 +71,7 @@ in this repo: the prompt, what the model got wrong, and how I verified work I di
 |---|---|
 | `docs/` | Published pages (Docusaurus source of truth) |
 | `ai-workflow/` | AI-assisted authoring artifacts - see [its own README](ai-workflow/README.md) |
+| `ai-workflow/skills/` | Claude Skills for authoring (drafting, review, validation, orchestration) |
 | `styles/Ridgeline/` | Custom Vale rules (the style guide as code) |
 | `.github/workflows/` | `docs-ci.yml` (gates), `deploy.yml` (Pages deploy) |
 | `.github/scripts/` | The gate scripts and the advisory reviewer |
