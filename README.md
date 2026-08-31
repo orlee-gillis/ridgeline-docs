@@ -31,8 +31,9 @@ read top to bottom for the whole story, or jump to any one piece.
    advisory AI reviewer for untagged pages.
 
    All three AI genre gates validate report-style pages only. Reference documentation (API/MCP/LLM
-   guides) passes through deterministic checks; validator skills for these genres exist but haven't
-   yet been wired into CI gates.
+   guides) receives only deterministic checks (Vale, markdownlint, link check, build) and skips AI
+   validation; validator skills for these genres have been designed but not yet implemented as CI
+   gates.
 
    Preceding any merge is an approval step: a human reads the AI-generated draft and decides
    readiness for publication. This manual gate is the control that makes generated content
