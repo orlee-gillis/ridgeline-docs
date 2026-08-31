@@ -33,18 +33,8 @@ read top to bottom for the whole story, or jump to any one piece.
    broken, silently, for a full session before anyone checked it against real content.
    **Proves:** the judgment call of what should block a merge versus what should only advise, and
    the discipline to catch and document your own mistake rather than bury it.
-5. **Skills, measured and improved** - [`ai-workflow/skills/`](ai-workflow/skills/) holds four
-   Claude Skills: `ridgeline-doc-writer` and `unused-access-expert` (drafting and fact-checking,
-   designed to pair rather than compete), `ridgeline-doc-auditor` (review, never drafting), and
-   `stop-slop` (a vendored, MIT-licensed skill for catching AI writing tells). The two baseline
-   skills were audited against a seven-dimension rubric
-   ([`rubric.md`](ai-workflow/skills/rubric.md)), scored independently, then compared
-   ([`session-24-verdicts.md`](ai-workflow/skills/session-24-verdicts.md)) - disagreements written
-   up as ADRs ([`session-24-rubric-disagreements.md`](ai-workflow/decisions/session-24-rubric-disagreements.md))
-   rather than averaged away. The audit caught a real bug: the drafting skill's routing genres had
-   drifted out of sync with the actual CI gates, so its drafts would never have been checked at
-   all. **Proves:** measuring AI tooling quality with a repeatable method, not a vibe - and using
-   that measurement to find and fix a real defect.
+5. **Skills, measured and improved** — ai-workflow/skills/ holds ten Claude Skills across three roles. Drafting and fact-checking: ridgeline-doc-writer and unused-access-expert, designed to pair rather than compete. Review: ridgeline-doc-auditor, which reviews and never drafts, and stop-slop, a vendored MIT-licensed skill for catching AI writing tells. Validation and routing: documentation-input-validator checks source material before drafting begins, documentation-orchestrator routes work by genre, and four genre validators — api-reference-validator, mcp-tool-reference-validator, llm-docs-validator, and user-guide-validator — check drafts against the conventions of their document type. Validated drafts are approved by a human before entering the CI gates; approval is a precondition for the pipeline, not a stage within it.
+The two baseline skills were audited against a seven-dimension rubric (rubric.md), scored independently, then compared (session-24-verdicts.md) — disagreements written up as ADRs (session-24-rubric-disagreements.md) rather than averaged away. The audit caught a real bug: the drafting skill’s routing genres had drifted out of sync with the actual CI gates, so its drafts would never have been checked at all. The six validation and routing skills have not yet been through the rubric.
 
 ## How I built this
 
