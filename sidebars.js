@@ -21,7 +21,16 @@ const sidebars = {
       label: 'About this project',
       items: [
         'what-changed',
-        'marketing-work-sample',
+        {
+          type: 'category',
+          label: 'Marketing work sample',
+          link: {type: 'doc', id: 'marketing-work-sample'},
+          items: [
+            'marketing-work-sample/landing-page',
+            'marketing-work-sample/blog-post',
+            'marketing-work-sample/one-pager',
+          ],
+        },
         'pipeline-and-ai-terms',
       ],
     },
