@@ -21,6 +21,7 @@ const sidebars = {
       label: 'About this project',
       items: [
         'what-changed',
+        'marketing-work-sample',
         'pipeline-and-ai-terms',
       ],
     },
