@@ -6,10 +6,11 @@ sidebar_position: 1
 ---
 
 import DraftVsEdit from '@site/src/components/DraftVsEdit';
+import LandingSummary from './_landing-summary.mdx';
 
-The Unused Access landing page, shown as the unedited AI draft next to my edited version. The
-table under the images summarizes the problems in the draft and how the edit solves each one. The
-full text of every changed element follows the table. Back to the
+Compare the unedited AI draft (left) with my edited version (right). The table under the images
+lists each problem in the draft and how the edit solves it. Further down, the exact text of every
+changed element is shown before and after. Back to the
 [marketing work sample](../marketing-work-sample.mdx).
 
 <DraftVsEdit
@@ -17,61 +18,28 @@ full text of every changed element follows the table. Back to the
   brief="An AI-generated draft of the Unused Access landing page, edited for clarity and accuracy. Audience: security leaders and cloud security engineers."
   draftImage="landing-draft.png"
   editImage="landing-edit.png"
-  draftUrl="[TODO: AI draft link]"
+  draftUrl="https://claude.ai/artifact/FWWzy7RV4wbF5x7R5k4cmt"
   finalUrl="https://claude.ai/artifact/1iUNCzwhLgYquPGuAdNz89"
 >
 
-| Problem | Solution |
-| --- | --- |
-| The headline and intro explained how the feature works before saying why it matters. | The headline says what the reader will see, and the intro opens with the risk: a compromised integration exposes every permission it holds. |
-| "The access that matters most" and "the longest list" never said what was being compared or what the access was to. | The second heading names both sides, the integrations that could do the most damage if compromised and the ones with the most unused permissions, and "your environment" says what the access is to. |
-| "Grants," "rights" and "remediation" are product terms a new reader doesn't know. | The page says "permissions" throughout, and step 3 explains "remediation" the first time it appears. |
-| The closing heading invited readers to start using the feature, but its buttons lead to the documentation, the blog post and the one-pager. | It now invites readers to learn how the feature works. |
+<LandingSummary />
 
 </DraftVsEdit>
 
 ## Text, before and after
 
-**Headline before:** Find the access your integrations never use. Remove it safely.
+Each row is one element of the page, in the order it appears from top to bottom.
 
-**Headline after:** See how much of your environment your integrations can reach, and how much they use.
-
-**Intro paragraph before:** Every integration starts with a grant, and few are ever revisited. Unused Access shows which integrations hold access they never touch, ranks them by how much of your environment they can reach, and recommends narrower access that keeps them working.
-
-**Intro paragraph after:** Integrations often hold permissions they never use, and if one is compromised, an attacker inherits all of them. Unused Access shows you which permissions those are, so you can remove them safely, without breaking a workflow or removing the wrong ones.
-
-**Second heading before:** Start with the access that matters most, not the longest list.
-
-**Second heading after:** Prioritize the integrations that could do the most damage if compromised, not the ones with the longest list of unused permissions.
-
-**Card 1 before:** Ranked by reach. Rows sort by Reach score, so the first screen holds the integrations where unused access matters most, not the ones with the biggest raw counts.
-
-**Card 1 after:** Ranked by Reach score. Integrations are ordered according to Reach score, immediately showing you the integrations where unused access matters most
-
-**Card 2 before:** Safer to act on. Recommendations propose narrower access that keeps the integration working. Rights the logs cannot audit count as used and are never removed.
-
-**Card 2 after:** Safe to remove. Each recommendation proposes narrower permissions that still keep the integration running smoothly. Permissions that the activity logs can't verify are treated as used and are never recommended for removal.
-
-**Card 3 before:** No new permissions. Unused Access reuses the permissions granted when each integration was connected and reads activity logs you already have.
-
-**Card 3 after:** No permission renewal needed. Unused Access works from the access and activity logs you already have, so nothing extra needs to be granted.
-
-**Steps heading before:** From finding to fixing in three steps
-
-**Steps heading after:** From usage finding to permission fine-tuning in three steps
-
-**Step 1 before:** Open the report. Go to Access Center, then Exposures, then Unused Access. Filter to service accounts or export a CSV if you need it.
-
-**Step 1 after:** Open the report. Go to Access Center > Exposures > Unused Access. Start with the integrations at the top, since their exposure would cause the most severe damage.
-
-**Step 2 before:** Review the grants. Open an integration and its Access tab to see which grants reach it and which of their rights go unused.
-
-**Step 2 after:** Find the unused permissions. Open an integration's Access tab to see which of its permissions it never uses.
-
-**Step 3 before:** Apply narrower access. Review the proposed alternative and apply it, keeping the integration working with less access.
-
-**Step 3 after:** Apply the recommended remediation. In the same Access tab, review the remediation that narrows permissions to only the ones the integration uses, then apply it.
-
-**Closing heading before:** Ready to see what your integrations are not using?
-
-**Closing heading after:** Want to learn how Unused Access finds the permissions your integrations don't use?
+| Element | Before (AI draft) | After (my edit) |
+| --- | --- | --- |
+| Headline | Find the access your integrations never use. Remove it safely. | See how much of your environment your integrations can reach, and how much they use. |
+| Intro paragraph | Every integration starts with a grant, and few are ever revisited. Unused Access shows which integrations hold access they never touch, ranks them by how much of your environment they can reach, and recommends narrower access that keeps them working. | Integrations often hold permissions they never use, and if one is compromised, an attacker inherits all of them. Unused Access shows you which permissions those are, so you can remove them safely, without breaking a workflow or removing the wrong ones. |
+| Second heading | Start with the access that matters most, not the longest list. | Prioritize the integrations that could do the most damage if compromised, not the ones with the longest list of unused permissions. |
+| Card 1 | **Ranked by reach.** Rows sort by Reach score, so the first screen holds the integrations where unused access matters most, not the ones with the biggest raw counts. | **Ranked by Reach score.** Integrations are ordered according to Reach score, immediately showing you the integrations where unused access matters most |
+| Card 2 | **Safer to act on.** Recommendations propose narrower access that keeps the integration working. Rights the logs cannot audit count as used and are never removed. | **Safe to remove.** Each recommendation proposes narrower permissions that still keep the integration running smoothly. Permissions that the activity logs can't verify are treated as used and are never recommended for removal. |
+| Card 3 | **No new permissions.** Unused Access reuses the permissions granted when each integration was connected and reads activity logs you already have. | **No permission renewal needed.** Unused Access works from the access and activity logs you already have, so nothing extra needs to be granted. |
+| Steps heading | From finding to fixing in three steps | From usage finding to permission fine-tuning in three steps |
+| Step 1 | **Open the report.** Go to Access Center, then Exposures, then Unused Access. Filter to service accounts or export a CSV if you need it. | **Open the report.** Go to Access Center > Exposures > Unused Access. Start with the integrations at the top, since their exposure would cause the most severe damage. |
+| Step 2 | **Review the grants.** Open an integration and its Access tab to see which grants reach it and which of their rights go unused. | **Find the unused permissions.** Open an integration's Access tab to see which of its permissions it never uses. |
+| Step 3 | **Apply narrower access.** Review the proposed alternative and apply it, keeping the integration working with less access. | **Apply the recommended remediation.** In the same Access tab, review the remediation that narrows permissions to only the ones the integration uses, then apply it. |
+| Closing heading | Ready to see what your integrations are not using? | Want to learn how Unused Access finds the permissions your integrations don't use? |
