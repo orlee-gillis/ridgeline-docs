@@ -19,8 +19,25 @@ reasoning behind each change. Back to the [marketing work sample](../marketing-w
   finalUrl="[TODO: final version link]"
 >
 
-- [TODO: my change note 1]
-- [TODO: my change note 2]
-- [TODO: my change note 3]
+| Problem | Solution |
+| --- | --- |
+| The title and opening named the topic but did not say the article explains why it matters. | The title and subtitle now state the explanation: unused permissions can leave integrations exposed, and removing them safely prevents that exposure. |
+| Abstract phrases and metaphors ("the longest list", "the biggest doors", "the first screen", "not every exposure is equal") did not say what was being compared or where to look. | Each is a concrete statement, such as "the longest list of unused permissions", with a screenshot of the screen it describes. The section headings now say what each section covers. |
+| The sections on safe removal and setup described the report ("the report recalculates once a day") and did not speak to a reader's situation. | One example, a security engineer reviewing the service account provisioning-runner, runs through both sections and shows what the reader sees and does. |
+| Product terms and unclear references ("grants", "rights", "it", "they", "much") made sentences hard to follow. | The text says "permissions", repeats the noun where a pronoun was unclear, and bolds each name that appears in the product exactly as written, such as Access tab, Reach score and Deployment Operator. |
 
 </DraftVsEdit>
+
+## Text, before and after
+
+| Element | Before | After |
+| --- | --- | --- |
+| Title | The access your integrations never use is still access | Why unused permissions can leave your integrations exposed |
+| Subtitle | Every integration you connect begins with a grant. Almost none are revisited. Here is why that gap matters, and how to close it without breaking anything. | Integrations are granted permissions upon installation, and few are checked later to see whether those permissions are used. Here is why unused permissions can leave integrations exposed, and how to prevent that exposure by removing them safely, without breaking a workflow or removing the wrong ones. |
+| Heading 1 | Access piles up quietly | Unused permissions go unnoticed |
+| Heading 2 | Why the longest list is the wrong place to start | Address the most damaging exposures first |
+| Pull-quote | Prioritize by what an integration can reach, not by how many permissions it has left over. | Prioritize the integrations that could do the most damage if compromised, not the ones with the longest list of unused permissions. |
+| Heading 3 | Removing access without breaking production | Removing permissions without breaking production |
+| Heading 4 | Nothing new to approve first | Narrowing existing permissions needs no new ones |
+| Heading 5 | Where to start | Where to start reducing exposure |
+| Closing heading | See how the report works | See how Unused access works |
