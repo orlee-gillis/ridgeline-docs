@@ -11,7 +11,7 @@ const isRealUrl = (url) => /^https?:\/\//.test(url || '');
 // One labeled image. If the file is missing, shows a placeholder box instead
 // of a broken-image icon, so the page lays out correctly before the
 // screenshots are added.
-function Shot({label, file, alt}) {
+function Shot({label, file, alt, needed}) {
   const src = useBaseUrl(`${IMAGE_DIR}${file}`);
   const imgRef = useRef(null);
   const [missing, setMissing] = useState(false);
@@ -29,8 +29,11 @@ function Shot({label, file, alt}) {
       <figcaption className={styles.label}>{label}</figcaption>
       {missing ? (
         <div className={styles.placeholder} role="img" aria-label={alt}>
-          <span>Image not added yet</span>
-          <code>static{IMAGE_DIR}{file}</code>
+          <strong>Screenshot to add</strong>
+          <span>{needed}</span>
+          <span>
+            Upload as <code>{file}</code> to <code>static{IMAGE_DIR}</code>
+          </span>
         </div>
       ) : (
         <a
@@ -98,11 +101,13 @@ export default function DraftVsEdit({
           label="AI draft"
           file={draftImage}
           alt={`AI-generated draft of the Unused Access ${pieceName}, unedited`}
+          needed={`The AI-generated ${pieceName}, exactly as generated.`}
         />
         <Shot
           label="My edit"
           file={editImage}
           alt={`My edited version of the Unused Access ${pieceName}`}
+          needed={`The edited ${pieceName}.`}
         />
       </div>
 
