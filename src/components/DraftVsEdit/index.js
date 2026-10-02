@@ -79,7 +79,7 @@ function LinkButton({url, children, primary}) {
  * - pieceName: lowercase name used in alt text, such as "landing page"
  * - brief: what was requested and who it is for
  * - draftImage / editImage: filenames in static/img/marketing-sample/
- * - draftUrl / finalUrl: links to the full pieces, or a "[TODO: ...]" string
+ * - draftUrl / finalUrl: optional links to the full pieces. A button shows only when its link is given
  * - children: the "What I changed and why" list, written as Markdown
  */
 export default function DraftVsEdit({
@@ -114,12 +114,16 @@ export default function DraftVsEdit({
       <p className={styles.sectionLabel}>What I changed and why</p>
       {children}
 
-      <div className={styles.buttons}>
-        <LinkButton url={draftUrl}>Open the AI draft</LinkButton>
-        <LinkButton url={finalUrl} primary>
-          Open my final version
-        </LinkButton>
-      </div>
+      {draftUrl || finalUrl ? (
+        <div className={styles.buttons}>
+          {draftUrl ? <LinkButton url={draftUrl}>Open the AI draft</LinkButton> : null}
+          {finalUrl ? (
+            <LinkButton url={finalUrl} primary>
+              Open my final version
+            </LinkButton>
+          ) : null}
+        </div>
+      ) : null}
     </div>
   );
 }
