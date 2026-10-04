@@ -64,24 +64,26 @@ pass. The pull requests that published this work sample ran these checks:
 
 For how the checks are split and why, see [CI gates](meta/ci-gates.md).
 
-### Claude skills I built for this site
+### Claude skills I used for the marketing content
 
-These are the skills I wrote for documentation work on this site:
+I built these skills and used them to keep the landing page, blog post and one-pager accurate and
+consistent with the product:
 
-- **ridgeline-doc-writer:** drafts or restructures a documentation page from templates, the style
-  guide and the glossary.
-- **unused-access-expert:** supplies the facts about Unused Access (the report, the Access tab,
-  usage classification and remediation) so drafts stay accurate.
-- **ridgeline-doc-auditor:** audits a finished page for genre fit, unsourced claims, undefined
-  terms and fit to the reader's task.
-- **documentation-input-validator:** checks that a product spec has enough detail to write
-  documentation from.
-- **documentation-orchestrator:** decides which kinds of documentation a feature needs and runs the
-  right validators in order.
-- **user-guide-validator:** validates and drafts step-by-step guides for end users.
-- **api-reference-validator:** validates and drafts REST API reference pages.
-- **mcp-tool-reference-validator:** validates and drafts reference pages for MCP tools.
-- **llm-docs-validator:** validates and drafts documentation written for language models to read.
+- **unused-access-expert:** supplies the sourced facts and approved terms for Unused Access, so
+  every claim in the three pieces matches the product.
+- **ridgeline-doc-auditor:** flags claims without a source, undefined terms and wording that
+  differs between pieces, so the pieces don't contradict each other.
+- **documentation-orchestrator:** decides which checks a feature needs and runs them in order, so
+  the three pieces start from a vetted description of the feature.
+- **user-guide-validator:** checks that the task steps are complete and in order, which is what the
+  landing page's three steps, the blog's "where to start" and the one-pager's steps rely on.
+- **mcp-tool-reference-validator:** checks that a feature's tool details (inputs, outputs and error
+  cases) are complete and verified, so capability claims rest on a full specification.
+- **llm-docs-validator:** checks that a feature's scope, limits and decision logic are stated
+  explicitly, so what Unused Access does and doesn't do is unambiguous in all three pieces.
+
+I also built three skills for other documentation work: ridgeline-doc-writer,
+documentation-input-validator and api-reference-validator.
 
 ---
 
