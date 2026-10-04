@@ -4,6 +4,24 @@ sidebar_label: Marketing work sample
 description: Three marketing pieces for the Unused Access feature, each shown as the unedited AI draft next to my edited version, with the reasoning behind each change.
 ---
 
+:::info[How this work sample was checked before it was published]
+
+I built an automated review process for this site with Claude. Every change goes through a pull
+request, and the site is published when the pull request is merged. I merge only after the checks
+pass. The pull requests that published this work sample ran these checks:
+
+- **Prose style, Markdown structure, links and a full site build.** These are rule-based checks
+  with no AI involved. A style error, a broken link or a failed build turns the check red.
+- **An advisory review by Claude.** It reads the changed pages and posts a comment on claims that
+  look unsourced, terms used inconsistently, or a page that drifted from its purpose. It never
+  fails the build. A person reads the comment and decides.
+- **Genre checks by Claude.** Pages that declare a document type are checked against a written
+  checklist for that type. These work-sample pages declare no type, so the other checks cover them.
+
+For how the checks are split and why, see [CI gates](meta/ci-gates.md).
+
+:::
+
 {/*
   SCREENSHOTS TO UPLOAD - six PNG files, all into static/img/marketing-sample/
   Use these exact filenames (lowercase). Each box on the page fills in as soon as its file exists.
