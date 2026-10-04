@@ -1,24 +1,82 @@
 ---
 title: 'One-pager: AI draft vs. my edit'
 sidebar_label: One-pager
-description: The Unused Access one-pager, shown as the unedited AI draft next to my edited version, with the reasoning behind each change.
+description: The Unused Access one-pager, shown as the unedited AI draft next to my edited version, with every text change explained.
 sidebar_position: 3
 ---
 
 import DraftVsEdit from '@site/src/components/DraftVsEdit';
 
-The Unused Access one-pager, shown as the unedited AI draft next to my edited version, with the
-reasoning behind each change. Back to the [marketing work sample](../marketing-work-sample.mdx).
+Compare the unedited AI draft (left) with my edited version (right). Below the images, every text
+change is listed in the order it appears on the page, with the text before, the text after, and why
+it changed. The edited version also tightens the spacing and type size slightly so the longer text
+still fits on one page. Back to the [marketing work sample](../marketing-work-sample.mdx).
 
 <DraftVsEdit
   pieceName="one-pager"
-  brief="[TODO: what was requested] Audience: security leaders and cloud security engineers."
+  brief="An AI-generated one-page summary of the Unused Access feature, edited for clarity and consistency with the landing page and blog post. Audience: security leaders and cloud security engineers."
   draftImage="onepager-draft.png"
   editImage="onepager-edit.png"
 >
 
-- [TODO: my change note 1]
-- [TODO: my change note 2]
-- [TODO: my change note 3]
+**Headline**
+
+- **Before:** Find the access your integrations never use. Remove it safely.
+- **After:** Find the unused permissions your integrations hold, and remove them safely.
+- **Why:** "Access" didn't say what kind of access, and the rest of the piece says "permissions". The new headline uses the same term and says what is unused.
+
+**Intro paragraph**
+
+- **Before:** Unused Access finds connected integrations that hold access they were granted but never use, and recommends narrower alternatives that keep each integration working. Use it to decide which integrations to reduce access on first.
+- **After:** Integrations often hold unused permissions to your cloud resources and services. Even so, if an integration is compromised, an attacker inherits all of its permissions, including the unused ones. Unused Access shows you which permissions those are. It then recommends a remediation that removes the unused permissions without causing access-denied errors. The report ranks integrations by how much of your environment they can reach, so you know which to remediate first.
+- **Why:** The draft described the feature but never said why unused permissions matter. "Access", "narrower alternatives" and "reduce access on first" were all vague. The new paragraph states the problem and the risk first, then what the feature does. It introduces "remediation" where it first appears and names the concrete failure a bad removal would cause, access-denied errors.
+
+**Column 1: Ranked by environment reach**
+
+- **Before:** Ranked by reach. Rows sort by Reach score, so the integrations where unused access matters most come first.
+- **After:** Ranked by environment reach. The report lists and ranks your integrations by Reach score, so the ones that can reach the most of your environment appear at the top.
+- **Why:** "Rows" and "the report" had no context, so readers couldn't tell what was being sorted. "Reach" alone was too general. The new title and text say what is ranked (your integrations, in the report) and what the score measures (how much of your environment each one can reach).
+
+**Column 2: Safe permission removal**
+
+- **Before:** Safe to act on. Advice keeps integrations working. Rights the logs cannot audit count as used and are never removed.
+- **After:** Safe permission removal. Each remediation keeps the permissions an integration *does* use. Permissions that the activity logs can't verify are treated as used and are never recommended for removal.
+- **Why:** "Safe to act on" didn't say what the safe action is. "Advice" and "rights the logs cannot audit" were unclear. The new title names the action, the text uses the same term as the intro (remediation), and the emphasis on *does* shows that only unused permissions are removed.
+
+**Column 3: No additional permissions needed**
+
+- **Before:** No new permissions. Reuses the permissions granted at connection and reads activity logs you already have.
+- **After:** No additional permissions needed. Unused Access works from the permissions each integration already has and the activity logs you already have, so nothing needs to be granted first.
+- **Why:** The draft title and text had no subject, so it wasn't clear whether the integrations or the tool needed no new permissions. The new text names Unused Access as the subject and says what that means for the reader.
+
+**At a glance: labels**
+
+- **Before:** Where to find it, and What it covers.
+- **After:** Where to find the report, and What the report covers.
+- **Why:** "It" could mean the feature, the report or an integration. Naming the report removes the doubt.
+
+**At a glance: What the report covers**
+
+- **Before:** Integrations, including service accounts, with excessive access
+- **After:** Integrations, including service accounts, that hold permissions they never use
+- **Why:** "Excessive" was never defined and implied a judgment the report doesn't make. The report finds permissions that are unused, so the row now says that.
+
+**At a glance: High-impact label**
+
+- **Before:** What stands out. High-impact label for broad administrative roles
+- **After:** High-impact label. Marks integrations that hold broad administrative roles, so they stand out in the report
+- **Why:** "What stands out" described an impression, not a feature. The new row names the label as it appears in the product, says which integrations get it, and says where it appears.
+
+**At a glance: What you can do and Data freshness**
+
+- **Before:** Search, filter, configure columns, export to CSV. Recalculates once a day.
+- **After:** In the report, search, filter, choose which columns to show, and export the results to CSV. The report's findings are recalculated once a day.
+- **Why:** Both rows had no subject, so it wasn't clear what the actions applied to or what was recalculated. Each row now names the report.
+
+**Working a finding**
+
+- **Before:** 1. Open the integration card. 2. Review grants on the Access tab. 3. Apply narrower access.
+- **After:** 1. Click an integration in the report. 2. Open its Access tab to see which permissions it never uses. 3. Review and apply the recommended remediation.
+- **Why:** The draft steps didn't say where to start, used "grants" where the rest of the piece says "permissions", and didn't say what the Access tab shows. The new steps follow the same path as the landing page and use the same terms.
 
 </DraftVsEdit>
