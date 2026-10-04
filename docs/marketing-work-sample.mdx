@@ -4,8 +4,44 @@ sidebar_label: Marketing work sample
 description: Three marketing pieces for the Unused Access feature, each shown as the unedited AI draft next to my edited version, with the reasoning behind each change.
 ---
 
-import LandingSummary from './marketing-work-sample/_landing-summary.mdx';
-import BlogSummary from './marketing-work-sample/_blog-summary.mdx';
+:::info[How this work sample was checked before it was published]
+
+I built an automated review process for this site with Claude. Every change goes through a pull
+request, and the site is published when the pull request is merged. I merge only after the checks
+pass. The pull requests that published this work sample ran these checks:
+
+- **Prose style, Markdown structure, links and a full site build.** These are rule-based checks
+  with no AI involved. A style error, a broken link or a failed build turns the check red.
+- **An advisory review by Claude.** It reads the changed pages and posts a comment on claims that
+  look unsourced, terms used inconsistently, or a page that drifted from its purpose. It never
+  fails the build. A person reads the comment and decides.
+- **Genre checks by Claude.** Pages that declare a document type are checked against a written
+  checklist for that type. These work-sample pages declare no type, so the other checks cover them.
+
+For how the checks are split and why, see [CI gates](meta/ci-gates.md).
+
+:::
+
+:::info[Claude skills I built for this site]
+
+These are the skills I wrote for documentation work on this site:
+
+- **ridgeline-doc-writer:** drafts or restructures a documentation page from templates, the style
+  guide and the glossary.
+- **unused-access-expert:** supplies the facts about Unused Access (the report, the Access tab,
+  usage classification and remediation) so drafts stay accurate.
+- **ridgeline-doc-auditor:** audits a finished page for genre fit, unsourced claims, undefined
+  terms and fit to the reader's task.
+- **documentation-input-validator:** checks that a product spec has enough detail to write
+  documentation from.
+- **documentation-orchestrator:** decides which kinds of documentation a feature needs and runs the
+  right validators in order.
+- **user-guide-validator:** validates and drafts step-by-step guides for end users.
+- **api-reference-validator:** validates and drafts REST API reference pages.
+- **mcp-tool-reference-validator:** validates and drafts reference pages for MCP tools.
+- **llm-docs-validator:** validates and drafts documentation written for language models to read.
+
+:::
 
 {/*
   SCREENSHOTS TO UPLOAD - six PNG files, all into static/img/marketing-sample/
@@ -34,26 +70,18 @@ recommends narrower access that keeps each integration working. Findings are ord
 of the environment each integration can reach, so security teams can decide where to reduce access
 first. For the product documentation, see [Unused Access report](unused-access-report.md).
 
-## What changed, at a glance
+## The three pieces
 
-Each table lists a problem in the AI draft and how my edit solves it. For the draft and the edit
-side by side, and the exact text before and after, open the full comparison for each piece.
+Each piece has its own page, with the AI draft and my edit side by side and every change listed
+with the text before, the text after, and why it changed.
 
-### Landing page
-
-<LandingSummary />
-
-[Open the full landing page comparison](marketing-work-sample/landing-page.mdx)
-
-### Blog post
-
-<BlogSummary />
-
-[Open the full blog post comparison](marketing-work-sample/blog-post.mdx)
-
-### One-pager
-
-The one-pager write-up is not done yet. [Open the one-pager page](marketing-work-sample/one-pager.mdx)
+- [Landing page](marketing-work-sample/landing-page.mdx): 11 text changes. The edit leads with the
+  risk and what the reader gets, replaces abstract phrases with concrete ones, drops product
+  jargon, and closes by inviting readers to learn more.
+- [Blog post](marketing-work-sample/blog-post.mdx): 16 changes, including five added product
+  screenshots. The edit explains why unused permissions matter, follows one engineer's example
+  through two sections, and uses plain terms throughout.
+- [One-pager](marketing-work-sample/one-pager.mdx): the write-up is not done yet.
 
 ---
 

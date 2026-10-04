@@ -1,16 +1,15 @@
 ---
 title: 'Blog post: AI draft vs. my edit'
 sidebar_label: Blog post
-description: The Unused Access blog post, shown as the unedited AI draft next to my edited version, with a summary of the problems the edit fixes.
+description: The Unused Access blog post, shown as the unedited AI draft next to my edited version, with every text change and the added screenshots explained.
 sidebar_position: 2
 ---
 
 import DraftVsEdit from '@site/src/components/DraftVsEdit';
-import BlogSummary from './_blog-summary.mdx';
 
-Compare the unedited AI draft (left) with my edited version (right). The table under the images
-lists each problem in the draft and how the edit solves it. Further down, the text of the title,
-subtitle and headings is shown before and after. Back to the
+Compare the unedited AI draft (left) with my edited version (right). The edited post also adds five
+screenshots of the product. Below the images, every change is listed in the order it appears on the
+page, with the text before, the text after, and why it changed. Back to the
 [marketing work sample](../marketing-work-sample.mdx).
 
 <DraftVsEdit
@@ -20,22 +19,100 @@ subtitle and headings is shown before and after. Back to the
   editImage="blog-edit.png"
 >
 
-<BlogSummary />
+**Title**
+
+- **Before:** The access your integrations never use is still access
+- **After:** Why unused permissions can leave your integrations exposed
+- **Why:** The draft's title was a statement that didn't tell readers the article explains why unused access matters. The new title says what the article explains. "Can" keeps exposure conditional, because it only happens if an integration is compromised.
+
+**Subtitle**
+
+- **Before:** Every integration you connect begins with a grant. Almost none are revisited. Here is why that gap matters, and how to close it without breaking anything.
+- **After:** Integrations are granted permissions upon installation, and few are checked later to see whether those permissions are used. Here is why unused permissions can leave integrations exposed, and how to prevent that exposure by removing them safely, without breaking a workflow or removing the wrong ones.
+- **Why:** "Grant" is product jargon, and "without breaking anything" was vague. The new subtitle says when permissions are granted, what is missing afterwards (a later check on whether they are used), and what safe removal avoids: breaking a workflow or removing the wrong permissions.
+
+**Opening paragraph**
+
+- **Before:** Someone clicks allow. A service account gets a role. A team is added to a project. The integration works, the ticket closes, and nobody comes back to ask whether the access was more than the job needed.
+- **After:** An integration is granted permissions upon installation. Once it works, the task is considered done, and nobody comes back to check whether it was given more than the job required.
+- **Why:** The string of short scenes read as staged, and "clicks allow" and "the ticket closes" appear nowhere else in the post. The new paragraph says the same thing plainly and matches the subtitle.
+
+**First heading**
+
+- **Before:** Access piles up quietly
+- **After:** Unused permissions go unnoticed
+- **Why:** The new heading names the subject, unused permissions, and the problem, that nobody notices them.
+
+**First section text**
+
+- **Before:** Grants are made once, in the moment, usually to get something working. Over time the distance between what an integration is allowed to do and what it actually does keeps growing. That distance is unused access. Unused access does no work for you. If an integration's credentials are ever misused, though, it is exactly the part someone else inherits.
+- **After:** Permissions are granted once, at time of need, usually so the integration can complete a specific task, such as syncing billing data or deploying code. Over time, the integration uses only some of its granted permissions, while the rest stay in place. These are its unused permissions, and nothing signals that they are no longer needed. Even if the integration never uses them, these permissions remain active. If an integration is compromised, an attacker inherits all of its permissions, including the ones it doesn't use. In practice, that means an attacker can reach resources the integration itself never touches.
+- **Why:** "The distance between what an integration is allowed to do and what it actually does" was abstract and "does no work for you" was oddly personal. The new text gives a concrete example, says what happens to the permissions the integration doesn't use, and ends on what an attacker can reach in practice.
+
+**Second heading**
+
+- **Before:** Why the longest list is the wrong place to start
+- **After:** Address the most damaging exposures first
+- **Why:** "The longest list" never said a list of what, and the heading described what not to do. The new heading says what to do and names the thing that matters: exposure.
+
+**Second section text**
+
+- **Before:** The natural first move is to open the integration with the most unused permissions. It feels thorough, but it is rarely the best use of an afternoon. A long list on an integration that can barely touch anything matters less than a short list on one that can reach critical resources. That is why the Unused Access report sorts by Reach score, how much of your environment an integration can affect, and only then by the number of unused grants. The first screen holds the integrations where cleanup pays off most. Integrations carrying broad administrative roles are labeled High-impact, so they stand out immediately.
+- **After:** The natural first move is to open the integration with the longest list of unused permissions. But the number of unused permissions doesn't reflect the magnitude of damage an attacker can cause. An integration can have a lot of unused permissions and still not reach much of your environment. Another integration can have just a few and reach critical resources. The second integration carries the greater exposure risk. This is why the Unused Access report sorts by **Reach score**: how much of your environment an integration can expose, and only then by the number of its unused permissions. The integrations at the top of the table are where cleanup pays off most. Integrations carrying broad administrative roles are marked in their own column, so they catch your eye immediately.
+- **Why:** "A long list" and "a short list" were vague and "the first screen" pointed at a screen the reader couldn't see. The new text says the number of unused permissions doesn't reflect the damage an attacker can cause, contrasts two integrations, and points to the top of the table, which the screenshot shows.
+
+**Pull-quote**
+
+- **Before:** Prioritize by what an integration can reach, not by how many permissions it has left over.
+- **After:** Prioritize the integrations that could do the most damage if compromised, not the ones with the longest list of unused permissions.
+- **Why:** "Has left over" was vague. The pull-quote now repeats the point of the section in the same words as the landing page.
+
+**Third heading**
+
+- **Before:** Removing access without breaking production
+- **After:** Removing permissions without breaking production
+- **Why:** The heading uses "permissions", the word the rest of the post uses.
+
+**Third section text**
+
+- **Before:** Fear of breaking something is what keeps broad access in place. Nobody wants to be the person whose cleanup took down a sync job. So the report does not stop at what is unused. It recommends narrower alternatives that keep the integration working. It also draws a careful line around uncertainty: rights the activity logs cannot audit are marked Undetermined, treated as used, and never removed by remediation advice. Undetermined is not a polite word for unused.
+- **After:** Fear of breaking something is what keeps broad permissions in place. Nobody wants to remove a permission and find out later that a workflow depended on it. A security engineer is reviewing **provisioning-runner**, a service account the platform-ops team uses to create and restart deployments. The account holds the **Deployment Operator** role, which also allows deleting deployments, modifying network rules, and assigning roles. The activity logs show that the account has never used those three rights. Still, the engineer hesitates to remove them: if a deployment script turns out to need one of those rights, the script will fail in production. With **Unused Access**, the engineer opens **provisioning-runner** and sees a narrower version of the **Deployment Operator** role. The narrower role keeps the rights to read, create, and restart deployments, and drops the other three. Rights that the activity logs can't verify stay in the role, so the engineer doesn't have to guess which rights are safe to remove.
+- **Why:** The draft described the report, "the report does not stop at what is unused", and did not speak to the reader's situation. It also used the label "Undetermined" without explaining it. The new text tells one engineer's story, which shows what the reader sees and does, and states the rule about unverifiable permissions in plain words.
+
+**Fourth heading and text**
+
+- **Before:** **Nothing new to approve first.** Security tools that ask for fresh permissions before they can help reduce permissions have a certain irony. Unused Access requires no additional platform permissions. It reuses the ones granted when each integration was connected and reads activity logs that are already available. The report recalculates once a day.
+- **After:** **Narrowing existing permissions needs no new ones.** Getting to that recommendation did not require giving **Unused Access** any new permissions either. **Unused Access** worked from the permissions that **provisioning-runner** already had and from the activity logs that were already available. Its findings refresh once a day, so each time the engineer checks **provisioning-runner**, the results reflect recent activity.
+- **Why:** "Approve" is not a term the product uses, and the line about security tools in general was disconnected from the story. The new section continues the same engineer's example and says what the engineer did not have to do.
+
+**Fifth heading and text**
+
+- **Before:** **Where to start.** Open Access Center, then Exposures, then Unused Access. Start at the top of the table. Click an integration, open its Access tab, see which grants reach it and which rights go unused, then review the proposed narrower access.
+- **After:** **Where to start reducing exposure.** Open **Access Center** > **Exposures** > **Unused Access** and start at the top of the table, where exposure would cause the most severe damage. Click an integration and open its **Access tab** to see which of its permissions it never uses. Then, review the recommended remediation, which narrows its permissions to only the ones it uses, and apply it.
+- **Why:** "Where to start" didn't say what the reader is starting. The new heading does, and the steps use the same wording as the landing page.
+
+**Closing paragraph**
+
+- **Before:** One integration at a time is plenty. The point is not a perfect score. It is to stop leaving the biggest doors open by default.
+- **After:** There is no need to remove the unused permissions from every integration at once. Start with one integration, then move on to the next. The goal is to lower the exposure of the integrations that could do the most damage first, not to reach zero unused permissions.
+- **Why:** "The biggest doors" and "a perfect score" were metaphors that didn't say what they meant. The new paragraph says it directly, in the post's own terms.
+
+**Closing block**
+
+- **Before:** **See how the report works.** The documentation walks through each column, the filters, and how to work a finding.
+- **After:** **See how Unused Access works.** The documentation explains each column in the Unused Access report, how to filter the results, and how to take a finding from review to remediation.
+- **Why:** The new text names the report and ends on the path the engineer followed, from review to remediation.
+
+**Screenshots (added)**
+
+- **Before:** The draft had no screenshots.
+- **After:** Five screenshots of the product: the access summary and the grant graph under the first section, the Unused Access report under the second, a remediation recommendation under the third, and the Access tab under the last.
+- **Why:** The draft referred to screens such as "the first screen" without showing them. Each screenshot sits next to the paragraph that describes it, so the reader can see what the text says and where to look.
+
+**Names shown in the product (bold)**
+
+- **Before:** Names that appear in the product were plain text.
+- **After:** Names that appear in the product exactly as written, such as **Reach score**, **Access Center**, **Access tab**, **Deployment Operator** and **provisioning-runner**, are bold.
+- **Why:** The bold type tells the reader which words to look for on screen.
 
 </DraftVsEdit>
-
-## Text, before and after
-
-Each row is one element of the post, in the order it appears from top to bottom.
-
-| Element | Before (AI draft) | After (my edit) |
-| --- | --- | --- |
-| Title | The access your integrations never use is still access | Why unused permissions can leave your integrations exposed |
-| Subtitle | Every integration you connect begins with a grant. Almost none are revisited. Here is why that gap matters, and how to close it without breaking anything. | Integrations are granted permissions upon installation, and few are checked later to see whether those permissions are used. Here is why unused permissions can leave integrations exposed, and how to prevent that exposure by removing them safely, without breaking a workflow or removing the wrong ones. |
-| Heading 1 | Access piles up quietly | Unused permissions go unnoticed |
-| Heading 2 | Why the longest list is the wrong place to start | Address the most damaging exposures first |
-| Pull-quote | Prioritize by what an integration can reach, not by how many permissions it has left over. | Prioritize the integrations that could do the most damage if compromised, not the ones with the longest list of unused permissions. |
-| Heading 3 | Removing access without breaking production | Removing permissions without breaking production |
-| Heading 4 | Nothing new to approve first | Narrowing existing permissions needs no new ones |
-| Heading 5 | Where to start | Where to start reducing exposure |
-| Closing heading | See how the report works | See how Unused Access works |
