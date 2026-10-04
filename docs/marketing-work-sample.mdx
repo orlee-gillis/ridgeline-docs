@@ -4,27 +4,51 @@ sidebar_label: Marketing work sample
 description: Three marketing pieces for the Unused Access feature, each shown as the unedited AI draft next to my edited version, with the reasoning behind each change.
 ---
 
+This work sample covers three marketing pieces for the Unused Access feature. For each one, the AI
+draft appears exactly as it was generated, untouched, next to my edited version. A summary under
+each pair explains what I changed and why, so the edits show the editorial judgment behind them.
+
+To see the complete pieces, open the Claude Design files:
+[the unedited AI draft](https://claude.ai/artifact/FWWzy7RV4wbF5x7R5k4cmt) and
+[my edited version](https://claude.ai/artifact/1iUNCzwhLgYquPGuAdNz89). Each file holds the landing
+page, the blog post and the one-pager.
+
 :::info[About this product]
 
 Ridgeline is a fictional cloud security product that I created for this portfolio. Nothing described
 here is a real product. Unused Access is one of its features. It finds connected integrations,
 including service accounts, that hold access they were granted but never use, and recommends
 narrower access that keeps each integration working. Findings are ordered by how much of the
-environment each integration can reach, so security teams can decide where to reduce access first. For the product documentation, see
-[Unused Access report](unused-access-report.md).
+environment each integration can reach, so security teams can decide where to reduce access first.
+For the product documentation, see [Unused Access report](unused-access-report.md).
 
 :::
 
-:::info[How this site is published]
+## The three pieces
+
+Each piece has its own page, with the AI draft and my edit side by side and every change listed
+with the text before, the text after, and why it changed.
+
+- [Landing page](marketing-work-sample/landing-page.mdx): 11 text changes. The edit leads with the
+  risk and what the reader gets, replaces abstract phrases with concrete ones, drops product
+  jargon, and closes by inviting readers to learn more.
+- [Blog post](marketing-work-sample/blog-post.mdx): 16 changes, including five added product
+  screenshots. The edit explains why unused permissions matter, follows one engineer's example
+  through two sections, and uses plain terms throughout.
+- [One-pager](marketing-work-sample/one-pager.mdx): 10 text changes. The edit opens with the risk,
+  replaces unclear labels such as "it" and "excessive access" with specific terms, and uses the
+  same wording as the landing page and blog post.
+
+## How this work sample was made
+
+### How it was published
 
 I edited the three pieces in Claude Design, then used Claude Code to turn my edits into these pages.
 Claude Code wrote the Markdown, added the screenshots, and opened a pull request in GitHub. The
-checks described below run on every pull request. When I merge it, GitHub publishes the Docusaurus
-site to GitHub Pages.
+checks in the next section run on every pull request. When I merge it, GitHub publishes the
+Docusaurus site to GitHub Pages.
 
-:::
-
-:::info[How this work sample was checked before it was published]
+### How it was checked before it was published
 
 I built an automated review process for this site with Claude. Every change goes through a pull
 request, and the site is published when the pull request is merged. I merge only after the checks
@@ -40,9 +64,7 @@ pass. The pull requests that published this work sample ran these checks:
 
 For how the checks are split and why, see [CI gates](meta/ci-gates.md).
 
-:::
-
-:::info[Claude skills I built for this site]
+### Claude skills I built for this site
 
 These are the skills I wrote for documentation work on this site:
 
@@ -60,47 +82,6 @@ These are the skills I wrote for documentation work on this site:
 - **api-reference-validator:** validates and drafts REST API reference pages.
 - **mcp-tool-reference-validator:** validates and drafts reference pages for MCP tools.
 - **llm-docs-validator:** validates and drafts documentation written for language models to read.
-
-:::
-
-{/*
-  SCREENSHOTS TO UPLOAD - six PNG files, all into static/img/marketing-sample/
-  Use these exact filenames (lowercase). Each box on the page fills in as soon as its file exists.
-
-  landing-draft.png   - the AI-generated landing page, exactly as generated
-  landing-edit.png    - your edited landing page
-  blog-draft.png      - the AI-generated blog post, exactly as generated
-  blog-edit.png       - your edited blog post
-  onepager-draft.png  - the AI-generated one-pager, exactly as generated
-  onepager-edit.png   - your edited one-pager
-
-  Capture the draft and the edit of a piece the same way (same width, same part of the page)
-  so they compare cleanly side by side.
-*/}
-
-This work sample covers three marketing pieces for the Unused Access feature. For each one, the AI
-draft appears exactly as it was generated, untouched, next to my edited version. A summary under
-each pair explains what I changed and why, so the edits show the editorial judgment behind them.
-
-To see the complete pieces, open the Claude Design files:
-[the unedited AI draft](https://claude.ai/artifact/FWWzy7RV4wbF5x7R5k4cmt) and
-[my edited version](https://claude.ai/artifact/1iUNCzwhLgYquPGuAdNz89). Each file holds the landing
-page, the blog post and the one-pager.
-
-## The three pieces
-
-Each piece has its own page, with the AI draft and my edit side by side and every change listed
-with the text before, the text after, and why it changed.
-
-- [Landing page](marketing-work-sample/landing-page.mdx): 11 text changes. The edit leads with the
-  risk and what the reader gets, replaces abstract phrases with concrete ones, drops product
-  jargon, and closes by inviting readers to learn more.
-- [Blog post](marketing-work-sample/blog-post.mdx): 16 changes, including five added product
-  screenshots. The edit explains why unused permissions matter, follows one engineer's example
-  through two sections, and uses plain terms throughout.
-- [One-pager](marketing-work-sample/one-pager.mdx): 10 text changes. The edit opens with the risk,
-  replaces unclear labels such as "it" and "excessive access" with specific terms, and uses the
-  same wording as the landing page and blog post.
 
 ---
 
