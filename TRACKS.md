@@ -487,6 +487,9 @@ grounded in anything real, the same disconnection-from-reality mistake the origi
 
 **[ ] Session 29: Ground and build the remaining 3 gates**
 
+*Not to be confused with the final defense (re-running the evals, mock interview, CV paragraph),
+which `docs-as-code/TRACKS.md` tracks as Session 30. Renumbered 2026-10-13 to remove the clash.*
+
 **In plain terms**: 3 Skills in this repo (`api-reference-validator`, `mcp-tool-reference-validator`,
 `llm-docs-validator`) claim to automatically check pages of those 3 types. That check doesn't
 actually run anywhere - no script, no CI job. This session builds the check for real, one genre at
