@@ -1,0 +1,7 @@
+{
+  "feature_name": "Unauthorized Agent Access Detection",
+  "description": "Detects when AI agents call tools outside their declared scope",
+  "documentation_types": ["api-docs", "mcp-tools", "llm-docs"],
+  "run_stage_0_first": true,
+  "draft_on_stage_1_pass": true
+}
