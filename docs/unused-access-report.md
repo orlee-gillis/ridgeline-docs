@@ -108,10 +108,3 @@ after the next one.
 ## Related
 
 - [Access tab](about-the-access-tab.md)
-
-## Open items for SME review
-
-- [ ] `[SCREENSHOT: report overview cards]` - cropped
-- [ ] `[SCREENSHOT: integration table header and rows]` - cropped
-- [ ] `[SCREENSHOT: full report]`
-- [ ] Confirm whether the 90-day usage window is configurable by the reader
